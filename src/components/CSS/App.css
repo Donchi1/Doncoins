@@ -1,0 +1,129 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+.dropnav {
+  outline: none !important;
+  color: rgb(117, 40, 117);
+}
+.gradcolor {
+  background: linear-gradient(to top right, #3bccff 11%, #ff99cc 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.link {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.plans:hover {
+  transform: scale(1.03);
+  transition: all 0.5s linear;
+  z-index: 10;
+}
+.backtop {
+  position: fixed;
+  right: 0.7rem;
+  left: 0;
+  bottom: 2rem;
+  z-index: 20;
+}
+.subBtn {
+  outline: none !important;
+  border: none !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.subInput {
+  border-right: hidden !important;
+  border-left: hidden !important;
+  background-color: black !important;
+  border-top: hidden !important;
+  outline: none;
+  font-size: 1.2rem;
+}
+.dontshow {
+  display: none;
+}
+.dontshow {
+  display: flex;
+}
+.about {
+  background: url('../../assets/bgcoin3.png') center / cover no-repeat;
+  height: 60vh;
+}
+.services {
+  background: url('../../assets/bgcoin.png') center / cover no-repeat;
+  height: 60vh;
+}
+
+.hero {
+  background: url('../../assets/images\ \(1\).jpeg') center / cover no-repeat;
+  height: 90vh;
+}
+
+.componentready {
+  animation: round 0.5s linear infinite alternate;
+  background-color: 'black';
+}
+
+.cardtext {
+  display: inline !important;
+  font-size: 1.7rem;
+  background-color: black;
+  color: white;
+  border: 1px solid #33ccff;
+  border-radius: 1.2rem;
+}
+.formstyle {
+  border: 1px solid #33ccff !important;
+  border-radius: 1.2rem !important;
+  background-color: black !important;
+}
+.userlink {
+  font-size: 1.5rem !important;
+  color: white !important;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  text-decoration: none !important;
+}
+.userlink :hover {
+  color: 'darkblue' !important;
+}
+
+@keyframes round {
+  0% {
+    transform: rotate(0%);
+  }
+  50% {
+    transform: rotate(180%);
+  }
+  100% {
+    transform: rotate(360%);
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .mynav {
+    position: absolute;
+    right: 7%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .userlink {
+    margin-top: 1rem;
+    align-self: flex-start !important;
+  }
+  .link {
+    margin-top: 1.5rem;
+  }
+}
