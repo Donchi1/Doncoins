@@ -5,6 +5,8 @@ const initialAuth = {
 
   subcriptionSuccess: '',
   subcriptionError: null,
+  uploadSuccess: '',
+  uploadError: null,
 }
 
 export const projectReducer = (state = initialAuth, action) => {
@@ -13,20 +15,15 @@ export const projectReducer = (state = initialAuth, action) => {
       return {
         ...state,
 
-        paymentSuccess: 'successful payment',
-      }
-    case 'PAYMENT_ERROR':
-      return {
-        ...state,
-
-        paymentSuccess: 'unsuccessful payment',
+        paymentSuccess:
+          'Wait for less than 2hours while we review your payment prove',
       }
 
     case 'WITHDRAWAL_ERROR':
       return {
         ...state,
         withdrawalError:
-          'unsuccessful withdrawal check your data or contact account manager',
+          'unsuccessful withdrawal check your data or contact customer service ',
       }
     case 'SUBCRIPTION_SUCCESS':
       return {
@@ -40,6 +37,16 @@ export const projectReducer = (state = initialAuth, action) => {
         ...state,
 
         subcriptionError: 'Subcription unsuccessful',
+      }
+    case 'UPLOAD_SUCCESS':
+      return {
+        ...state,
+        uploadSuccess: 'upload Successful',
+      }
+    case 'UPLOAD_ERROR':
+      return {
+        ...state,
+        uploadError: 'upload Could not be completed',
       }
 
     default:

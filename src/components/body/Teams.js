@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardGroup } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 
 function Teams() {
@@ -48,7 +48,7 @@ function Teams() {
             <Card.Text>Switzeland</Card.Text>
             <Card.Text>
               Kelvin a passionate and a genus in crypto. About 15 years
-              experience in the financial sector. Lincon has contributed much to
+              experience in the financial sector.Kevin has contributed much to
               make crypogenus what it is tody{' '}
             </Card.Text>
           </Card.Body>

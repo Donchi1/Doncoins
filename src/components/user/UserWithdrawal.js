@@ -84,7 +84,7 @@ function UserWithdrawal({ show, setShow }) {
                 </Modal.Footer>
                 <p>Causion: Input a correct wallet address</p>
               </div>
-              <p>{transError ? transError : ''}</p>
+              <p className="text-danger">{transError ? transError : ''}</p>
             </Modal.Body>
           </>
         )}

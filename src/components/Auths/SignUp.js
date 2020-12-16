@@ -23,7 +23,7 @@ function SignUp() {
     date: new Date(),
     validaty: false,
   })
-  const [openModalVerify, setOpenModalVerify] = useState(false)
+
   const firebase = useFirebase()
   const { push } = useHistory()
   const dispatch = useDispatch()
@@ -48,7 +48,6 @@ function SignUp() {
       gender: '',
     })
     if (isLoaded(authState) && !isEmpty(authState)) {
-      setOpenModalVerify(true)
       return push('/login')
     } else {
       return <Redirect to="/signup" />
@@ -211,7 +210,7 @@ function SignUp() {
         </div>
 
         <div className="row">
-          <div className="col-4 form-group">
+          <div className="col-6 form-group">
             <label htmlFor="country" style={{ fontSize: '1.4rem' }}>
               Country
             </label>
@@ -230,7 +229,7 @@ function SignUp() {
               }}
             />
           </div>
-          <div className="col-4 form-group">
+          <div className="col-6 form-group">
             <label htmlFor="state" style={{ fontSize: '1.4rem' }}>
               State
             </label>

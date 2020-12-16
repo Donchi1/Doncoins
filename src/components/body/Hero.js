@@ -7,6 +7,7 @@ import { isEmpty, isLoaded } from 'react-redux-firebase'
 
 function HeroComponent() {
   const authState = useSelector((state) => state.firebase.auth)
+
   return (
     <div>
       <div
@@ -29,7 +30,9 @@ function HeroComponent() {
             World giant and genus in cryptography. Invest with a little and earn
             big.
           </h5>
-          {isLoaded(authState) && !isEmpty(authState) ? (
+          {isLoaded(authState) &&
+          !isEmpty(authState) &&
+          authState.emailVerified ? (
             <Link to="/user">
               <Button
                 color="white"

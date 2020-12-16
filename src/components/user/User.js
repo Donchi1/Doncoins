@@ -25,7 +25,7 @@ import { useSelector } from 'react-redux'
 function User() {
   const [showModalpay, setCloseModalpay] = useState(false)
   const [showModalWithdraw, setCloseModalwithdraw] = useState(false)
-  const withdrawal = useSelector((state) => state.firestore.ordered.withdrawals)
+
   const userProfile = useSelector((state) => state.firebase.profile)
 
   const [showBtn, setshowBtn] = useState(false)
@@ -678,7 +678,7 @@ function User() {
 
         <Button
           size="lg"
-          className="text-uppercase mb-3"
+          className="text-uppercase mb-3 ml-2"
           onClick={() => setCloseModalpay(true)}
         >
           Make payment

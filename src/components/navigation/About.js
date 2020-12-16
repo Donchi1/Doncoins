@@ -20,22 +20,17 @@ function About() {
             low and high income round the whole world. Our mission is to make
             sure no, low and high income earners make the best out of what the
             earn by investing little and earning big. We make sure your earning
-            increases prior to the choosen investment plan as our name implies.
-            We make sure people make proper use of the income, take advantage of
-            the internet and crypography tradings. We are here to provide a
-            means of global investments for people of low and high income round
-            the whole world. Our mission is to make sure no, low and high income
-            earners make the best out of what the earn by investing little and
-            earning big. We make sure your earning increases prior to the
-            choosen investment plan as our name implies. We make sure people
-            make proper use of the income, take advantage of the internet and
-            crypography tradings. We are here to provide a means of global
-            investments for people of low and high income round the whole world.
-            Our mission is to make sure no, low and high income earners make the
-            best out of what the earn by investing little and earning big. We
-            make sure your earning increases prior to the choosen investment
-            plan as our name implies. We make sure people make proper use of the
-            income, take advantage of the internet and crypography tradings.
+            increases prior to the choosen investment plan . We make sure people
+            make proper use of their income, take advantage of the internet and
+            crypography tradings. Cryptogenus was establish by a group of young
+            investors based in Uk who started with a small business. As
+            investors, they knew the need to invest and get additional income.
+            They started a small investment platform through banks named{' '}
+            <strong>ADDUP</strong> to get an addition wealth in return. The
+            emerge of Cryptography made them expand there view and vision into
+            online Investment and a change of name. Today Cryptogenus is one top
+            giant in Cryptography through Blockchain technology and forex
+            trading..
           </p>
         </div>
         <div className="  col-md-12 col-lg-4 mb-3 ">
@@ -46,8 +41,8 @@ function About() {
             We are dedicated to our clients, prividing them a stable and
             reliable means of financial stability is our major focus. We give
             our client an opportunity to get a standard profit in due time as
-            per there investment status we make sure our clients or investor
-            never regrets joining or investing with our platform.
+            per there investment status. We make sure our clients or investor
+            never regrets joining or investing in our company.
             <span className="text-primary">
               WE ARE THE GENUS IN THE CRYPO INVESTMENT MARKET
             </span>

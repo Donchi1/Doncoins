@@ -12,9 +12,8 @@ function Testimonials() {
                 <img
                   src={require('../../assets/testlady3.jpg')}
                   alt="testimony"
-                  width="400px"
-                  height="400px"
-                  className="rounded-circle"
+                  style={{ width: '400px', height: '400px' }}
+                  className="rounded-circle testmon"
                 />
               </div>
               <div style={{ width: '50%' }}>
@@ -38,9 +37,8 @@ function Testimonials() {
                 <img
                   src={require('../../assets/testlady1.jpg')}
                   alt="testimony"
-                  width="400px"
-                  height="400px"
-                  className="rounded-circle"
+                  style={{ width: '400px', height: '400px' }}
+                  className="rounded-circle testmon"
                 />
               </div>
               <div style={{ width: '50%' }}>
@@ -67,9 +65,8 @@ function Testimonials() {
                   <img
                     src={require('../../assets/testlady.jpg')}
                     alt="testimony"
-                    width="400px"
-                    height="400px"
-                    className="rounded-circle"
+                    style={{ width: '400px', height: '400px' }}
+                    className="rounded-circle testmon"
                   />
                 </div>
                 <div style={{ width: '50%' }}>
@@ -99,9 +96,8 @@ function Testimonials() {
                 <img
                   src={require('../../assets/testguy.jpg')}
                   alt="testimony"
-                  width="400px"
-                  height="400px"
-                  className="rounded-circle"
+                  style={{ width: '400px', height: '400px' }}
+                  className="rounded-circle testmon"
                 />
               </div>
               <div style={{ width: '50%' }}>
@@ -125,9 +121,8 @@ function Testimonials() {
                 <img
                   src={require('../../assets/testguy1.jpg')}
                   alt="testimony"
-                  width="400px"
-                  height="400px"
-                  className="rounded-circle"
+                  style={{ width: '400px', height: '400px' }}
+                  className="rounded-circle testmon"
                 />
               </div>
               <div style={{ width: '50%' }}>

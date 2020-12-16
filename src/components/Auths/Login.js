@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, Navbar } from 'react-bootstrap'
-import { Link, useLocation, Redirect, useHistory } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 import { isLoaded, isEmpty, useFirebase } from 'react-redux-firebase'
 import { useSelector, useDispatch } from 'react-redux'
@@ -70,6 +70,20 @@ function Login() {
           onSubmit={handleSubmit}
           style={{ borderRadius: '1.5rem', backgroundColor: itemColor }}
         >
+          {!emailVerified && (
+            <div
+              style={{
+                border: '1px solid red',
+                backgroundColor: 'black',
+                width: '50%',
+              }}
+              className="mx-auto mb-2"
+            >
+              <p className="text-warning text-muted text-center pt-1">
+                Make sure your email is verified to continue
+              </p>
+            </div>
+          )}
           <div className="text-center">
             <img
               src={require('../../assets/avater.png')}
@@ -150,7 +164,7 @@ function Login() {
             }}
             size="sm"
           >
-            Submit Message
+            LOGIN
           </Button>
           <p className="text-center text-danger">{authError && authError}</p>
           <p className="text-uppercase text-center mt-4 text-light">

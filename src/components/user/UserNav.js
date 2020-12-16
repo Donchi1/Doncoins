@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 
 import { LogoutAction } from '../Auths/Action'
@@ -12,6 +12,8 @@ function UserNav() {
   const { push } = useHistory()
 
   const userProfile = useSelector((state) => state.firebase.profile)
+  const user = useSelector((state) => state.firebase.profile)
+  console.log(user)
 
   useFirestoreConnect([
     {
@@ -22,7 +24,7 @@ function UserNav() {
   ])
 
   const data = useSelector((state) => state)
-  console.log(data)
+
   const handleLogout = () => {
     LogoutAction(firebase, dispatch)
     push('/')
@@ -37,7 +39,7 @@ function UserNav() {
     >
       <Link to="/">
         <Navbar.Brand
-          className="text-uppercase font-weight-bold ml-4"
+          className="text-uppercase font-weight-bold ml-4 profilenav"
           style={{
             fontSize: '2rem',
             alignItems: 'center',

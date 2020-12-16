@@ -20,10 +20,14 @@ function NavBar() {
       style={{ backgroundColor: itemColor }}
       variant="dark"
       sticky="top"
-      className={pathname === '/admin' ? 'dontshow' : 'shownow'}
+      className={
+        pathname === '/admin' || pathname === '/login' || pathname === '/signup'
+          ? 'dontshow'
+          : 'shownow'
+      }
     >
       <Navbar.Brand
-        className="text-uppercase font-weight-bold ml-4"
+        className="text-uppercase font-weight-bold mynav-logo ml-4"
         style={{
           fontSize: '2rem',
           alignItems: 'center',

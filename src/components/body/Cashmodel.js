@@ -1,5 +1,4 @@
 import React from 'react'
-import { bg } from '../navigation/NavBar'
 import { Card } from 'react-bootstrap'
 
 function Cashmodel() {

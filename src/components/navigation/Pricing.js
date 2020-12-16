@@ -3,7 +3,7 @@ import Footer from '../body/Footer'
 import ReuseHero from './ReuseHero'
 import Plans from '../body/Plans'
 import { Row, Card, Button, Col, Container } from 'react-bootstrap'
-import { bg, itemColor, backgroundcolor } from './NavBar'
+import { itemColor, backgroundcolor } from './NavBar'
 import { Link } from 'react-router-dom'
 
 function Pricing() {

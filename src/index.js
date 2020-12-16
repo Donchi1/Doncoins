@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { createStore, applyMiddleware } from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
+
 import firebase from './database/firebasedb'
-import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import BeforeComponents from './components/Auths/BeforeComponents'
 import rootReducer from './components/Auths/RootReducer'
@@ -25,7 +25,11 @@ ReactDOM.render(
       firebase={firebase}
       createFirestoreInstance={createFirestoreInstance}
       dispatch={store.dispatch}
-      config={{ useFirestoreForProfile: 'true', userProfile: 'users' }}
+      config={{
+        useFirestoreForProfile: 'true',
+        userProfile: 'users',
+        attachAuthIsReady: true,
+      }}
     >
       <BeforeComponents>
         <App />

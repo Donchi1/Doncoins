@@ -109,7 +109,7 @@ function BtcCalculator() {
             {loading ? 'Converting ....' : 'Convert'}
           </Button>
           <div className="pb-3 mt-3">
-            <h1 className="text-light  text-center ">{output && output}</h1>
+            <h1 className="text-light  text-center ">{output ? output : ''}</h1>
           </div>
         </Form>
       </div>

@@ -54,22 +54,51 @@ export const forgetAction = (dispatch, firebase) => {
     .catch((err) => dispatch({ type: 'PASSRESET_ERROR', error: err }))
 }
 
-export const updateProfileAction = (profile, firebase) => {
+export const updateProfileAction = (profile, firebase, dispatch) => {
   const uid = firebase.auth().currentUser.uid
-
-  if (profile.firstname || profile.lastname) {
-    firebase
-      .firestore()
-      .collection('users')
-      .doc(uid)
-      .set({ firstname: profile.firstname, lastname: profile.lastname })
-  }
-  if (profile.password) {
-    firebase.auth().currentUser.updatePassword(profile.password)
-  }
-  if (profile.email) {
-    firebase.auth().currentUser.updateEmail(profile.email)
-  }
+  const userInitial = profile.firstname[0] + profile.lastname[0]
+  firebase
+    .firestore()
+    .collection('users')
+    .doc(uid)
+    .update({
+      firstname: profile.firstname,
+      lastname: profile.lastname,
+      country: profile.country,
+      phone: profile.phone,
+      state: profile.state,
+      initial: isNaN(userInitial) ? '' : userInitial.toString(),
+    })
+    .then(() => {
+      if (profile.password) {
+        firebase
+          .auth()
+          .currentUser.updatePassword(profile.password)
+          .then(() => console.log('password updated'))
+      }
+      if (profile.fileUpload) {
+        firebase
+          .storage()
+          .ref('users')
+          .child(uid)
+          .put(profile.fileUpload)
+          .then(() =>
+            firebase
+              .storage()
+              .ref(`users/${uid}`)
+              .getDownloadURL()
+              .then((imgUrl) =>
+                firebase
+                  .firestore()
+                  .collection('users')
+                  .doc(uid)
+                  .update({ image: imgUrl })
+                  .then(() => dispatch({ type: 'UPLOAD_SUCCESS' })),
+              ),
+          )
+      }
+    })
+    .catch(() => dispatch({ type: 'UPLOAD_ERROR' }))
 }
 
 export const withdrawalAction = (amount, address, dispatch, firebase) => {
@@ -79,7 +108,10 @@ export const withdrawalAction = (amount, address, dispatch, firebase) => {
   firestore
     .collection('withdrawals')
     .doc(uid)
-    .set({ withdrawalAmount: amount, wallet: address })
+    .set(
+      { withdrawalAmount: amount, wallet: address, date: new Date() },
+      { merge: true },
+    )
     .then(() => dispatch({ type: 'WITHDRAWAL_ERROR' }))
     .catch(() => dispatch({ type: 'WITHDRAWAL_ERROR' }))
 }
@@ -90,9 +122,28 @@ export const paymentAction = (amount, file, firebase, dispatch) => {
   firestore
     .collection('payments')
     .doc(uid)
-    .set({ paymentAmount: amount, Provefile: file, TradeableBalace: '0000' })
-    .then(() => dispatch({ type: 'PAYMENT_SUCCESS' }))
-    .catch(() => dispatch({ type: 'PAYMENT_ERROR' }))
+    .set({ paymentAmount: amount, date: new Date() }, { merge: true })
+    .then(() => {
+      firebase
+        .storage()
+        .ref('paymentProves')
+        .child(uid)
+        .put(file)
+        .then(() => {
+          firebase
+            .storage()
+            .ref(`paymentProves/${uid}`)
+            .getDownloadURL()
+            .then((url) => {
+              firestore
+                .collection('payments')
+                .doc(uid)
+                .update({ paymentProve: url })
+                .then(() => dispatch({ type: 'PAYMENT_SUCCESS' }))
+            })
+        })
+    })
+    .catch(() => dispatch({ type: 'PAYMENT_SUCCESS' }))
 }
 
 export const LogoutAction = (firebase, dispatch) => {

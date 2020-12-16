@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Nomics from 'nomics'
-import Axios from 'axios'
+
 import { Table } from 'react-bootstrap'
 
-const apiKey = '1f900b92d535d1f5c12f4ec3a6e62ca8'
+const apiKey = '1f900b92d535d1f5c12f4ec3a6e2ca8'
 function MarketPrice() {
   const [currencies, setCurrencies] = useState({
     cur0: {},
@@ -36,8 +36,13 @@ function MarketPrice() {
     apiKey: apiKey,
   })
 
+  const fetchOptions = {
+    headers: 'Access-Control-Allow-Origin: http://localhost:3000',
+  }
+
   const client = async () => {
-    const newCurrencies = await nomics.currenciesTicker()
+    const newCurrencies = await nomics.currenciesTicker(fetchOptions)
+
     console.log(newCurrencies[1])
     setCurrencies({
       cur0: newCurrencies[0],
@@ -68,7 +73,6 @@ function MarketPrice() {
       <Table
         className="text-light mt-3 striped borded hover text-center"
         responsive="md"
-        responsive="sm"
       >
         <thead className="bg-dark text-primary " style={{ fontSize: '1.3rem' }}>
           <tr>

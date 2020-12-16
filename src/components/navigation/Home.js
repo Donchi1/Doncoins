@@ -11,6 +11,7 @@ import BtcCalculator from '../body/BtcCalculator'
 import { Card } from 'react-bootstrap'
 import { backgroundcolor, itemColor } from './NavBar'
 import ReactPlayer from 'react-player'
+import myvideo from '../../assets/video/btcVideo.mp4'
 
 function Home() {
   return (
@@ -88,8 +89,12 @@ function Home() {
         </section>
         <AskedQuestions />
       </div>
-      <div className="text-center py-4">
-        <ReactPlayer controls url="https://youtu.be/watch?v=Gc2en3nHxA4>" />
+      <div className=" d-flex justify-content-center align-items-center">
+        <ReactPlayer
+          controls
+          url={myvideo}
+          style={{ border: 'none', outline: 'none', width: '80%' }}
+        />
       </div>
       <BtcCalculator />
 

@@ -146,8 +146,8 @@ function AskedQuestions() {
                 <Card.Text>
                   <div>
                     <p>
-                      it take 1 week after your payment has been recieve on
-                      standard investment plans{' '}
+                      it take less than 2hours after your payment has been
+                      recieve on standard investment plans{' '}
                     </p>
                   </div>
                 </Card.Text>
@@ -157,7 +157,7 @@ function AskedQuestions() {
           <Card.Header>
             <div className="d-flex justify-content-between align-items-center">
               <h3 className="text-light" style={{ fontStyle: 'italic' }}>
-                who established coinplus
+                who established cryptogenus
               </h3>
               <Icons.Plus
                 style={{

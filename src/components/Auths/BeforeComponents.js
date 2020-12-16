@@ -41,6 +41,7 @@ function BeforeComponents({ children }) {
                 width="200px"
                 height="200px"
                 className="componentready"
+                alt="coinGold"
               />
             </div>
           </motion.div>

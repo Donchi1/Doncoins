@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Footer from '../body/Footer'
-import ReuseHero from './ReuseHero'
+
 import { Form, Button } from 'react-bootstrap'
 import * as Icons from '@material-ui/icons'
-import { bg, itemColor, backgroundcolor } from './NavBar'
+import { itemColor, backgroundcolor } from './NavBar'
 
 function Contacts() {
   const [userData, setuserData] = useState({

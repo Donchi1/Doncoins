@@ -2,9 +2,7 @@ import React from 'react'
 import { Bar } from 'react-chartjs-2'
 
 function Chart() {
-  const style = {
-    height: '60vh',
-  }
+ 
   const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'sep'],
     datasets: [
