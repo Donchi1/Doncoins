@@ -44,9 +44,9 @@ function AskedQuestions() {
                   <div>
                     <p>
                       Cryptogenus is an Investment Platform were you invest
-                      unregretably We started as a group of traders investing in{' '}
-                      <br /> Cryptography Today we are one of the known
-                      investment platforms in the world
+                      unregretably. We started as a group of young investors,
+                      investing in <br /> Cryptography. Today we are one of the
+                      known investment platforms in the world.
                     </p>
                   </div>
                 </Card.Text>

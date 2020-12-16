@@ -28,7 +28,7 @@ ReactDOM.render(
       config={{
         useFirestoreForProfile: 'true',
         userProfile: 'users',
-        attachAuthIsReady: true,
+        attachAuthIsReady: 'true',
       }}
     >
       <BeforeComponents>

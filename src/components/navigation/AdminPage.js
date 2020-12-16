@@ -6,7 +6,6 @@ import {
   SelectInput,
   Filter,
   ReferenceInput,
-  ListGuesser,
   List,
   Edit,
   SimpleForm,
@@ -20,9 +19,9 @@ import UserIcon from '@material-ui/icons/Group'
 import {
   FirebaseAuthProvider,
   FirebaseDataProvider,
-  FirebaseRealTimeSaga,
 } from 'react-admin-firebase'
 import { createHashHistory } from 'history'
+import { useHistory } from 'react-router-dom'
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -105,20 +104,24 @@ const firebaseConfig = {
 
 const dataProvider = FirebaseDataProvider(firebaseConfig)
 
-const AdminPage = () => (
-  <Admin
-    dataProvider={dataProvider}
-    title={'Welcome to cryptogenus Admin'}
-    authProvider={FirebaseAuthProvider}
-  >
-    <Resource
-      name="users"
-      list={UserList}
-      edit={UserEdit}
-      create={UserCreate}
-      icon={UserIcon}
-    />
-  </Admin>
-)
+const AdminPage = () => {
+  const history = useHistory()
+  return (
+    <Admin
+      dataProvider={dataProvider}
+      title={'Welcome to cryptogenus Admin'}
+      authProvider={FirebaseAuthProvider}
+      history={history}
+    >
+      <Resource
+        name="users"
+        list={UserList}
+        edit={UserEdit}
+        create={UserCreate}
+        icon={UserIcon}
+      />
+    </Admin>
+  )
+}
 
 export default AdminPage

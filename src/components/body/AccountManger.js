@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-
 function AccountManger() {
   return (
     <div>
@@ -17,14 +16,13 @@ function AccountManger() {
           >
             We are here to provide a means of global investments for people of
             low and high income round the whole world. Our mission is to make
-            sure no, low and high income earners make the best out of what the
+            sure all, low and high income earners make the best out of what the
             earn by investing little and earning big. We make sure your earning
-            increases prior to the choosen investment plan as our name implies.
-            We make sure people make proper use of the income, take advantage of
-            the internet and crypography tradings.We provide you a means of
-            online multicurrency investment platform base on blockchain
-            tecnology. we the are a unique plateform you can invest in crypto
-            and earn big.
+            increases prior to the choosen investment plan. We make sure people
+            make proper use of there income, take advantage of the internet and
+            crypography tradings.We provide you a means of online multicurrency
+            investment platform base on blockchain tecnology. We are a unique
+            platform you can invest in crypto and earn big and never regret.
           </p>
           <Link to="/about">
             <Button className="text-uppercase ml-4 mt-2 bg-primary">

@@ -57,48 +57,51 @@ export const forgetAction = (dispatch, firebase) => {
 export const updateProfileAction = (profile, firebase, dispatch) => {
   const uid = firebase.auth().currentUser.uid
   const userInitial = profile.firstname[0] + profile.lastname[0]
-  firebase
-    .firestore()
-    .collection('users')
-    .doc(uid)
-    .update({
-      firstname: profile.firstname,
-      lastname: profile.lastname,
-      country: profile.country,
-      phone: profile.phone,
-      state: profile.state,
-      initial: isNaN(userInitial) ? '' : userInitial.toString(),
-    })
-    .then(() => {
-      if (profile.password) {
-        firebase
-          .auth()
-          .currentUser.updatePassword(profile.password)
-          .then(() => console.log('password updated'))
-      }
-      if (profile.fileUpload) {
+  if (
+    profile.firstname ||
+    profile.lastname ||
+    profile.phone ||
+    profile.country ||
+    profile.state
+  ) {
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(uid)
+      .update({
+        firstname: profile.firstname,
+        lastname: profile.lastname,
+        country: profile.country,
+        phone: profile.phone,
+        state: profile.state,
+        initial: userInitial.toString(),
+      })
+      .then(() => dispatch({ type: 'UPLOAD_SUCCESS' }))
+      .catch(() => dispatch({ type: 'UPLOAD_ERROR' }))
+  }
+  if (profile.password) {
+    firebase.auth().currentUser.updatePassword(profile.password)
+  }
+  if (profile.fileUpload) {
+    firebase
+      .storage()
+      .ref('users')
+      .child(uid)
+      .put(profile.fileUpload)
+      .then(() =>
         firebase
           .storage()
-          .ref('users')
-          .child(uid)
-          .put(profile.fileUpload)
-          .then(() =>
+          .ref(`users/${uid}`)
+          .getDownloadURL()
+          .then((imgUrl) =>
             firebase
-              .storage()
-              .ref(`users/${uid}`)
-              .getDownloadURL()
-              .then((imgUrl) =>
-                firebase
-                  .firestore()
-                  .collection('users')
-                  .doc(uid)
-                  .update({ image: imgUrl })
-                  .then(() => dispatch({ type: 'UPLOAD_SUCCESS' })),
-              ),
-          )
-      }
-    })
-    .catch(() => dispatch({ type: 'UPLOAD_ERROR' }))
+              .firestore()
+              .collection('users')
+              .doc(uid)
+              .update({ image: imgUrl }),
+          ),
+      )
+  }
 }
 
 export const withdrawalAction = (amount, address, dispatch, firebase) => {

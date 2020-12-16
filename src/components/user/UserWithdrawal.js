@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, FormGroup, Button, Modal } from 'react-bootstrap'
 
 import Withdrawcalc from './Withdrawcalc.js'
@@ -25,6 +25,16 @@ function UserWithdrawal({ show, setShow }) {
     setShow(false)
   }
 
+  useEffect(() => {
+    checkData()
+  }, [transError])
+  const checkData = () => {
+    if (transError) {
+      alert(transError)
+    } else {
+      return ''
+    }
+  }
   return (
     <>
       <Modal show={show} onHide={() => setShow(false)}>
@@ -84,7 +94,6 @@ function UserWithdrawal({ show, setShow }) {
                 </Modal.Footer>
                 <p>Causion: Input a correct wallet address</p>
               </div>
-              <p className="text-danger">{transError ? transError : ''}</p>
             </Modal.Body>
           </>
         )}

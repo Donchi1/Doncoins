@@ -271,9 +271,8 @@ function Profile() {
         <h6 className="text-danger">
           {profile.uploadError && profile.uploadError}
         </h6>
-        <h6 className="text-secondary">
-          {profile.uploadSuccess && profile.uploadSuccess}
-        </h6>
+
+        {profile.uploadSuccess ? alert(profile.uploadSuccess) : ''}
       </form>
     </section>
   )

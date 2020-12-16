@@ -56,7 +56,7 @@ function UserNav() {
       <Navbar.Collapse id="responsive-navbar-nav" className="mynav  text-light">
         <Nav className="text-uppercase d-flex justify-content-around align-items-center">
           <NavLink to="/user" className="userlink">
-            home
+            dashboard
           </NavLink>
 
           <NavLink to="/profile" className="userlink">

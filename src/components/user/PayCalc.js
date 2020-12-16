@@ -35,6 +35,7 @@ function PayCalc({
     }
     setQrcode(true)
     setclose(false)
+    setOpencode(false)
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import * as Icons from 'react-bootstrap-icons'
@@ -24,6 +24,16 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
     (state) => state.projectReducer.paymentSuccess,
   )
 
+  useEffect(() => {
+    checkData()
+  }, [transSuccess])
+  const checkData = () => {
+    if (transSuccess) {
+      alert(transSuccess)
+    } else {
+      return ''
+    }
+  }
   const handleAmount = () => {
     if (amount === '') {
       return
@@ -43,14 +53,13 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
 
   const handleProve = (e) => {
     e.preventDefault()
-    if (paymentData.file === '') return
+    if (paymentData.file === '') {
+      return
+    } else {
+      setamountQrcode(false)
 
-    setisLoading(true)
-
-    setTimeout(() => {
       paymentAction(amount, paymentData.file, firebase, dispatch)
-      setisLoading(false)
-    }, 3000)
+    }
   }
 
   return (
@@ -59,7 +68,7 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
         {isLoading ? (
           <Modal.Body className="text-center">
             <div
-              className="spinner-border d-flex justify-content-center align-items-center text-primary "
+              className="spinner-border d-flex justify-content-center text-center align-items-center text-primary "
               style={{ width: '3rem', height: '3rem' }}
               role="status"
             >
@@ -110,7 +119,11 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">
-          <img src={require('../../assets/qrcode.jpg')} alt="Code" />
+          <img
+            src={require('../../assets/qrcode.jpg')}
+            width="300px"
+            alt="Code"
+          />
           <p>3HTAECsSnW3tjVHkEynoDkgpWL6nvf19qB</p>
           <form onSubmit={handleProve}>
             <div className="form-group">
@@ -137,9 +150,9 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
               <Button type="submit">Upload</Button>
             </Modal.Footer>
           </form>
-          <p className="text-danger">{transSuccess ? transSuccess : ''}</p>
         </Modal.Body>
       </Modal>
+
       <PayCalc
         setQrcode={setamountQrcode}
         setOpencode={setOpen}
