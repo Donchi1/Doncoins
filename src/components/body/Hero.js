@@ -24,7 +24,7 @@ function HeroComponent() {
             >
               W
             </span>
-            elcome to Coingenus
+            elcome to Cryptogenus
           </h2>
           <h5>
             World giant and genus in cryptography. Invest with a little and earn

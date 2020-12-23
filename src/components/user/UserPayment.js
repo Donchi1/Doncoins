@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import * as Icons from 'react-bootstrap-icons'
+
 import PayCalc from './PayCalc'
 import { paymentAction } from '../Auths/Action'
 import { useFirebase } from 'react-redux-firebase'
 import { useDispatch, useSelector } from 'react-redux'
+import Axios from 'axios'
 
 function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
   const [paymentData, setpaymentData] = useState({
@@ -23,6 +24,7 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
   const transSuccess = useSelector(
     (state) => state.projectReducer.paymentSuccess,
   )
+  const profileInfo = useSelector((state) => state.firebase.profile)
 
   useEffect(() => {
     checkData()
@@ -57,8 +59,11 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
       return
     } else {
       setamountQrcode(false)
-
-      paymentAction(amount, paymentData.file, firebase, dispatch)
+      setisLoading(true)
+      paymentAction(amount, profileInfo, paymentData.file, firebase, dispatch)
+      Axios.post('/api/SendpMail', profileInfo)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err))
     }
   }
 

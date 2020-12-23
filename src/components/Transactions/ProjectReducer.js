@@ -7,6 +7,8 @@ const initialAuth = {
   subcriptionError: null,
   uploadSuccess: '',
   uploadError: null,
+  contactMessageError: null,
+  contactMessageSuccess: '',
 }
 
 export const projectReducer = (state = initialAuth, action) => {
@@ -30,7 +32,7 @@ export const projectReducer = (state = initialAuth, action) => {
         ...state,
 
         subcriptionSucces:
-          'subcription successfull. You will be updated anytime there is a news',
+          'subcription successfull. Thanks for subcribing to our newsletter',
       }
     case 'SUBCRIPTION_ERROR':
       return {
@@ -47,6 +49,16 @@ export const projectReducer = (state = initialAuth, action) => {
       return {
         ...state,
         uploadError: 'upload Could not be completed',
+      }
+    case 'MESSAGE_ERROR':
+      return {
+        ...state,
+        contactMessageError: 'sorry message not sent',
+      }
+    case 'MESSAGE_SUCCESS':
+      return {
+        ...state,
+        contactMessageSuccess: 'Message was sent successfully',
       }
 
     default:

@@ -87,8 +87,8 @@ function User() {
               <h1>
                 <strong>
                   $
-                  {userProfile.initialDeposit
-                    ? userProfile.initialDeposit
+                  {userProfile.initialDeposite
+                    ? userProfile.initialDeposite
                     : '0000'}
                 </strong>
               </h1>
@@ -210,8 +210,6 @@ function User() {
           height="300px"
         />
       </div>
-
-      <MarketPrice />
 
       <Carousel controls={false} id="cplan">
         <CarouselItem>
@@ -688,7 +686,7 @@ function User() {
           size="lg"
           className="text-uppercase mb-3"
           onClick={() => setCloseModalwithdraw(true)}
-          disabled={showBtn}
+          disabled={userProfile.disbleWithdrawal}
         >
           Make Withdrawal
         </Button>

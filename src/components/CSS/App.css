@@ -55,10 +55,10 @@ body {
   font-size: 1.2rem;
 }
 .dontshow {
-  display: none;
+  display: none !important;
 }
-.dontshow {
-  display: flex;
+.shownow {
+  display: flex !important;
 }
 .about {
   background: url('../../assets/bgcoin3.png') center / cover no-repeat;
@@ -72,11 +72,6 @@ body {
 .hero {
   background: url('../../assets/images\ \(1\).jpeg') center / cover no-repeat;
   height: 90vh;
-}
-
-.componentready {
-  animation: round 0.5s linear infinite alternate;
-  background-color: 'black';
 }
 
 .cardtext {
@@ -101,18 +96,6 @@ body {
 }
 .userlink :hover {
   color: 'darkblue' !important;
-}
-
-@keyframes round {
-  0% {
-    transform: rotate(0%);
-  }
-  50% {
-    transform: rotate(180%);
-  }
-  100% {
-    transform: rotate(360%);
-  }
 }
 
 @media only screen and (min-width: 1000px) {

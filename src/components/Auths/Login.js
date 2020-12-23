@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Navbar } from 'react-bootstrap'
+import { Button, Navbar } from 'react-bootstrap'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 import { isLoaded, isEmpty, useFirebase } from 'react-redux-firebase'
 import { useSelector, useDispatch } from 'react-redux'
 import { logginAction, forgetAction } from './Action'
 import { Modal } from 'react-bootstrap'
+import { Snackbar } from '@material-ui/core'
 
 function Login() {
   const [userData, setuserData] = useState({
@@ -27,6 +28,8 @@ function Login() {
     (state) => state.firebase.auth.emailVerified,
   )
   const authError = useSelector((state) => state.authReducer.loginError)
+  const [openSnack, setopenSnack] = useState(false)
+  const [emailSnack, setemailSnack] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -53,6 +56,27 @@ function Login() {
     }
   }
 
+  useEffect(() => {
+    checkAuth()
+    checkemail()
+  }, [authError])
+
+  const checkAuth = () => {
+    if (authError) {
+      return setopenSnack(true)
+    } else {
+      return ''
+    }
+  }
+
+  const checkemail = () => {
+    if (!emailVerified) {
+      return setemailSnack(true)
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div style={{ backgroundColor: backgroundcolor, minHeight: '100vh' }}>
       <div className="container py-3 ">
@@ -65,25 +89,27 @@ function Login() {
         >
           Login now to plus your coins
         </h3>
+        <Snackbar
+          onClose={() => setopenSnack(false)}
+          open={openSnack}
+          message={authError}
+          className="text-light text-warning"
+          autoHideDuration={9000}
+          anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+        ></Snackbar>
         <form
           className="container  pb-4 pt-3"
           onSubmit={handleSubmit}
           style={{ borderRadius: '1.5rem', backgroundColor: itemColor }}
         >
-          {!emailVerified && (
-            <div
-              style={{
-                border: '1px solid red',
-                backgroundColor: 'black',
-                width: '50%',
-              }}
-              className="mx-auto mb-2"
-            >
-              <p className="text-warning text-muted text-center pt-1">
-                Make sure your email is verified to continue
-              </p>
-            </div>
-          )}
+          <Snackbar
+            open={emailSnack}
+            onClose={() => setemailSnack(false)}
+            message="make sure your email is verified to continue"
+            autoHideDuration={4000}
+            anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+          ></Snackbar>
+
           <div className="text-center">
             <img
               src={require('../../assets/avater.png')}
@@ -113,12 +139,6 @@ function Login() {
                 setuserData({ ...userData, email: e.target.value })
               }
             />
-            <Form.Control.Feedback type="invalid">
-              Email is required
-            </Form.Control.Feedback>
-            <Form.Control.Feedback type="valid">
-              Looks Nice
-            </Form.Control.Feedback>
           </div>
           <div className="form-group">
             <label
@@ -145,12 +165,6 @@ function Login() {
                 setuserData({ ...userData, password: userpass.trim() })
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              Password is required
-            </Form.Control.Feedback>
-            <Form.Control.Feedback type="valid">
-              Looks Nice
-            </Form.Control.Feedback>
           </div>
 
           <Button
@@ -166,7 +180,7 @@ function Login() {
           >
             LOGIN
           </Button>
-          <p className="text-center text-danger">{authError && authError}</p>
+
           <p className="text-uppercase text-center mt-4 text-light">
             Don't have an account? <Link to="/signup">register now</Link>
           </p>

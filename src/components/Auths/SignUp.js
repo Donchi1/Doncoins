@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MobileInput from './MobileInput'
 import { Button } from 'react-bootstrap'
 
@@ -9,6 +9,7 @@ import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 import { registerAction } from './Action'
 import { useDispatch, useSelector } from 'react-redux'
+import { Snackbar } from '@material-ui/core'
 
 function SignUp() {
   const [userData, setuserData] = useState({
@@ -23,6 +24,7 @@ function SignUp() {
     date: new Date(),
     validaty: false,
   })
+  const [openSnack, setopenSnack] = useState(false)
 
   const firebase = useFirebase()
   const { push } = useHistory()
@@ -53,6 +55,17 @@ function SignUp() {
       return <Redirect to="/signup" />
     }
   }
+  useEffect(() => {
+    checkAuth()
+  }, [authError])
+
+  const checkAuth = () => {
+    if (authError) {
+      return setopenSnack(true)
+    } else {
+      return ''
+    }
+  }
 
   return (
     <section
@@ -66,9 +79,17 @@ function SignUp() {
         className="text-light text-center mb-3 "
         style={{ fontStyle: 'italic' }}
       >
-        SignUp now and enjoy our <br />
-        unlimited membership services
+        SignUp now <br />
+        and enjoy our unlimited membership services
       </h3>
+      <Snackbar
+        onClose={() => setopenSnack(false)}
+        open={openSnack}
+        message={authError}
+        className="text-light text-warning"
+        autoHideDuration={9000}
+        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+      ></Snackbar>
       <form
         className="container text-light pb-4 pt-3"
         onSubmit={handleSubmit}
@@ -79,7 +100,6 @@ function SignUp() {
           width: '80%',
         }}
       >
-        <p className="text-danger text-center">{authError && authError}</p>
         <div className="form-group">
           <label htmlFor="name" style={{ fontSize: '1.4rem' }}>
             firstName

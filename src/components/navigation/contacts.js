@@ -4,6 +4,10 @@ import Footer from '../body/Footer'
 import { Form, Button } from 'react-bootstrap'
 import * as Icons from '@material-ui/icons'
 import { itemColor, backgroundcolor } from './NavBar'
+import { contactAction } from '../Auths/Action'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFirebase } from 'react-redux-firebase'
+import { Snackbar } from '@material-ui/core'
 
 function Contacts() {
   const [userData, setuserData] = useState({
@@ -13,16 +17,24 @@ function Contacts() {
     allData: [],
     validity: false,
   })
+  const contactSuccess = useSelector(
+    (state) => state.projectReducer.contactMessageSuccess,
+  )
+  const [openSnack, setopenSnack] = useState(false)
+
+  const dispatch = useDispatch()
+  const firebase = useFirebase()
 
   const handleSubmit = (e) => {
-    const varify = e.currentTarget
-    if (varify.checkValidity() === false) {
-      e.preventDefault()
-      e.stopPropagation()
-    }
+    e.preventDefault()
+
+    contactAction(userData, firebase, dispatch)
     setuserData(() => {
-      return { ...userData, allData: userData, validity: true }
+      return { ...userData, name: '', email: '', message: '' }
     })
+    if (contactSuccess) {
+      return setopenSnack(true)
+    }
   }
 
   return (
@@ -32,69 +44,61 @@ function Contacts() {
         <h3 className="text-light text-center text-uppercase pt-3 mb-5">
           Contact us here if you have any dought or questions
         </h3>
-        <Form
+        <form
           className="container  pb-3 thumbnail"
           style={{ backgroundColor: itemColor }}
           onSubmit={handleSubmit}
-          noValidate
-          validated={userData.validity}
         >
-          <Form.Group>
-            <Form.Label
+          <div className="form-group">
+            <label
               htmlFor="name"
               className="text-light"
               style={{ fontSize: '1.4rem' }}
             >
               Full Name
-            </Form.Label>
-            <Form.Control
+            </label>
+            <input
               type="text"
               id="name"
               size="lg"
               placeholder="Name"
               aria-describedby="inputname"
               required
-              className="formstyle text-light"
+              className="formstyle form-control text-light"
               onChange={(e) =>
                 setuserData({ ...userData, name: e.target.value })
               }
             />
-            <Form.Control.Feedback type="invalid">
-              Name is required
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label
+          </div>
+          <div className="form-group">
+            <label
               htmlFor="email"
               className="text-light"
               style={{ fontSize: '1.4rem' }}
             >
               Enter Email
-            </Form.Label>
-            <Form.Control
+            </label>
+            <input
               type="email"
               id="email"
               placeholder="Email"
               size="lg"
               aria-describedby="inputemail"
               required
-              className="formstyle text-light"
+              className="formstyle form-control text-light"
               onChange={(e) =>
                 setuserData({ ...userData, email: e.target.value })
               }
             />
-            <Form.Control.Feedback type="invalid">
-              Email is required
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label
+          </div>
+          <div className="form-group">
+            <label
               htmlFor="message"
               className="text-light"
               style={{ fontSize: '1.4rem' }}
             >
               Message Us
-            </Form.Label>
+            </label>
             <Form.Control
               as="textarea"
               type="text"
@@ -112,10 +116,7 @@ function Contacts() {
                 setuserData({ ...userData, message: e.target.value })
               }
             />
-            <Form.Control.Feedback type="invalid">
-              Message field is required
-            </Form.Control.Feedback>
-          </Form.Group>
+          </div>
           <Button
             type="submit"
             className="text-light bg-primary"
@@ -129,7 +130,15 @@ function Contacts() {
           >
             Submit Message
           </Button>
-        </Form>
+        </form>
+        <Snackbar
+          onClose={() => setopenSnack(false)}
+          open={openSnack}
+          message={contactSuccess}
+          className="text-light text-warning"
+          autoHideDuration={5000}
+          anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        ></Snackbar>
       </div>
       <div
         className="d-flex  align-items-center container my-5"
@@ -160,7 +169,7 @@ function Contacts() {
             </div>
             <div className="text-light pt-5">
               <h3>WHATSAPP NUMBER</h3>
-              <p>+061-757-12655</p>
+              <p>+44(744)837-8394</p>
             </div>
           </div>
           <div className="d-flex align-items-center">
@@ -169,7 +178,7 @@ function Contacts() {
             </div>
             <div className="text-light pt-5">
               <h3>Email ADDRESS</h3>
-              <p>Email us on cryptogenus58@gmail.com</p>
+              <p>Email us on contacts@cryptogenus.org</p>
             </div>
           </div>
         </div>

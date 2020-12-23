@@ -24,6 +24,7 @@ export const registerAction = (data, firebase, dispatch) => {
           totalBalance: '0000',
           initialDeposite: '0000',
           bonus: '20.00',
+          disbleWithdrawal: true,
         })
       return firebase.auth().currentUser.sendEmailVerification()
     })
@@ -104,7 +105,13 @@ export const updateProfileAction = (profile, firebase, dispatch) => {
   }
 }
 
-export const withdrawalAction = (amount, address, dispatch, firebase) => {
+export const withdrawalAction = (
+  amount,
+  profile,
+  address,
+  dispatch,
+  firebase,
+) => {
   const uid = firebase.auth().currentUser.uid
 
   const firestore = firebase.firestore()
@@ -112,20 +119,36 @@ export const withdrawalAction = (amount, address, dispatch, firebase) => {
     .collection('withdrawals')
     .doc(uid)
     .set(
-      { withdrawalAmount: amount, wallet: address, date: new Date() },
+      {
+        withdrawalAmount: amount,
+        wallet: address,
+        date: new Date(),
+        firstname: profile.firstname,
+        lastname: profile.lastname,
+        uid: uid,
+      },
       { merge: true },
     )
     .then(() => dispatch({ type: 'WITHDRAWAL_ERROR' }))
     .catch(() => dispatch({ type: 'WITHDRAWAL_ERROR' }))
 }
 
-export const paymentAction = (amount, file, firebase, dispatch) => {
+export const paymentAction = (amount, profile, file, firebase, dispatch) => {
   const uid = firebase.auth().currentUser.uid
   const firestore = firebase.firestore()
   firestore
     .collection('payments')
     .doc(uid)
-    .set({ paymentAmount: amount, date: new Date() }, { merge: true })
+    .set(
+      {
+        paymentAmount: amount,
+        date: new Date(),
+        firstname: profile.firstname,
+        lastname: profile.lastname,
+        uid: uid,
+      },
+      { merge: true },
+    )
     .then(() => {
       firebase
         .storage()
@@ -161,9 +184,10 @@ export const LogoutAction = (firebase, dispatch) => {
 export const newsLetterAction = (email, firebase, dispatch) => {
   firebase
     .firestore()
-    .collection('users')
+    .collection('newsletters')
     .add({
       newsLetter: email,
+      id: Date.now().toString(),
     })
     .then(() => dispatch({ type: 'SUBCRIPTION_SUCCESSFUL' }))
     .catch(() => dispatch({ type: 'SUBCRIPTION_ERROR' }))
@@ -172,3 +196,17 @@ export const newsLetterAction = (email, firebase, dispatch) => {
 //const googleSignimAction = () => {
 //  const provider = new firebase.auth().GoogleAuthProvider()
 //}
+
+export const contactAction = (contactInfo, firebase, dispatch) => {
+  firebase
+    .firestore()
+    .collection('contacts')
+    .add({
+      contactName: contactInfo.name,
+      contactEmail: contactInfo.email,
+      message: contactInfo.message,
+      id: Date.now().toString()
+    })
+    .then(() => dispatch({ type: 'MESSAGE_SUCCESS' }))
+    .catch(() => dispatch({ type: 'MESSAGE_ERROR' }))
+}

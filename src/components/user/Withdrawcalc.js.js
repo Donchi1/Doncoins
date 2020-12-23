@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import { withdrawalAction } from '../Auths/Action'
 import { useFirebase } from 'react-redux-firebase'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Withdrawcalc({
   amount,
@@ -18,6 +18,7 @@ function Withdrawcalc({
 
   const dispatch = useDispatch()
   const firebase = useFirebase()
+  const profileInfo = useSelector((state) => state.firebase.profile)
 
   useEffect(() => {
     Axios.get(`https://blockchain.info/tobtc?currency=USD&value=${amount}`)
@@ -40,8 +41,11 @@ function Withdrawcalc({
     setisloading(true)
     setTimeout(() => {
       setisloading(false)
-      withdrawalAction(amount, address, dispatch, firebase)
+      withdrawalAction(amount, profileInfo, address, dispatch, firebase)
     }, 2000)
+    Axios.post('/api/SendwMail', profileInfo)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err))
 
     setOpenModal(false)
     setamount('')

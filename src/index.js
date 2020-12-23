@@ -1,26 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import firebase from './database/firebasedb'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import BeforeComponents from './components/Auths/BeforeComponents'
-import rootReducer from './components/Auths/RootReducer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './components/CSS/App.css'
 
 import App from './App'
+import createAdminStore, { store } from './database/createAdminStore'
+import {
+  dataProvider,
+  history,
+  authProvider,
+} from '../src/components/navigation/AdminPage'
 
-const config = {}
-
-const initialState = {}
-const store = createStore(rootReducer, initialState)
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={createAdminStore(authProvider, dataProvider, history)}>
     <ReactReduxFirebaseProvider
       firebase={firebase}
       createFirestoreInstance={createFirestoreInstance}

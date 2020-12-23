@@ -36,12 +36,10 @@ function MarketPrice() {
     apiKey: apiKey,
   })
 
-  const fetchOptions = {
-    headers: 'Access-Control-Allow-Origin: http://localhost:3000',
-  }
-
   const client = async () => {
-    const newCurrencies = await nomics.currenciesTicker(fetchOptions)
+    const newCurrencies = await nomics.currenciesTicker({
+      headers: 'Access-Control-Allow-Origin: http://localhost:8888',
+    })
 
     console.log(newCurrencies[1])
     setCurrencies({

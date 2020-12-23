@@ -1,5 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import Home from './components/navigation/Home'
 import Login from './components/Auths/Login'
 import SignUp from './components/Auths/SignUp'
@@ -15,11 +20,13 @@ import User from './components/user/User'
 import ProtectedRoute from './components/user/ProtectedRoute'
 import Profile from './components/user/Profile'
 import NavRoutes from './components/user/NavRoutes'
-import { isLoaded, isEmpty } from 'react-redux-firebase'
+import { isLoaded, isEmpty, useFirebase } from 'react-redux-firebase'
 import { useSelector } from 'react-redux'
 
 function App() {
+  const firebase = useFirebase()
   const authState = useSelector((state) => state.firebase.auth)
+  const currentUser = firebase.auth().currentUser
   return (
     <Router>
       <NavRoutes />
@@ -45,7 +52,17 @@ function App() {
         <Route exact path="/about" component={About} />
 
         <Route exact path="/terms" component={Terms} />
-        <Route exact path="/admin" component={AdminPage} />
+        <Route
+          exact
+          path="/admin"
+          render={() => {
+            if (isLoaded(authState) && !isEmpty(authState)) {
+              return <AdminPage />
+            } else {
+              return <Redirect to="/" />
+            }
+          }}
+        />
         <Route component={Empty} />
       </Switch>
     </Router>

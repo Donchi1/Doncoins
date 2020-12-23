@@ -13,7 +13,6 @@ function UserNav() {
 
   const userProfile = useSelector((state) => state.firebase.profile)
   const user = useSelector((state) => state.firebase.profile)
-  console.log(user)
 
   useFirestoreConnect([
     {

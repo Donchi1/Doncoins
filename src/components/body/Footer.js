@@ -6,18 +6,26 @@ import { Navbar } from 'react-bootstrap'
 import { itemColor } from '../navigation/NavBar'
 import { newsLetterAction } from '../Auths/Action'
 import { useFirebase } from 'react-redux-firebase'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { Snackbar } from '@material-ui/core'
 
 function Footer() {
   const [input, setinput] = useState('')
   const [getData, setgetData] = useState('')
+  const [openSnack, setopenSnack] = useState(false)
   const dispatch = useDispatch()
   const firebase = useFirebase()
+  const letterSuccess = useSelector(
+    (state) => state.projectReducer.subcriptionSuccess,
+  )
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setinput('')
     newsLetterAction(getData, firebase, dispatch)
+    if (letterSuccess) {
+      return setopenSnack(true)
+    }
   }
 
   const back = () => {
@@ -78,6 +86,14 @@ function Footer() {
               </button>
             </form>
             <p>subscribe to our news channel to get updated </p>
+            <Snackbar
+              onClose={() => setopenSnack(false)}
+              open={openSnack}
+              message={letterSuccess}
+              className="text-light text-warning"
+              autoHideDuration={500}
+              anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+            ></Snackbar>
           </div>
         </div>
         <div className=" col-md-12 col-lg-3">
@@ -96,7 +112,7 @@ function Footer() {
               <Link to="login" className="text-light">
                 <h5>Login</h5>{' '}
               </Link>
-              <Link to="terms" className="text-light">
+              <Link to="" className="text-light">
                 <h5>Terms And Conditions</h5>
               </Link>
             </div>
@@ -106,7 +122,7 @@ function Footer() {
           <h1 className="text-primary pt-3 pb-3">Contact Us</h1>
 
           <div className="text-light">
-            <p>Email us on cryptogenus58@gmail.com</p>
+            <p>Email us on contacts@cryptogenus.org</p>
             <p>+44(744)837-8394</p>
 
             <p>mon 8am-4pm to friday 8am-1pm</p>
