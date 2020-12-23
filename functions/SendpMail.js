@@ -5,20 +5,18 @@ const nodemailer = require('nodemailer')
 //const gmailPassword = functions.config.gmail.password
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.zoho.com',
+  host: 'smtp.gmail.com',
   port: 587,
   secure: true,
   auth: {
-    user: 'contacts@cryptogenus.org',
-    pass: 'a1eM bbpu qKGn',
+    user: process.env.REACT_APP_EMAIL,
+    pass: process.env.REACT_APP_PASS,
   },
 })
 
 const APP_NAME = 'Cryptogenus'
 
 exports.handler = function (event, context, callback) {
-  console.log(context)
-
   const mailOptions = {
     from: `${APP_NAME} <noreply@cryptogenus.org`,
     to: 'cdclem57@gmail.com',
