@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../body/Footer'
 import ReuseHero from './ReuseHero'
 import Teams from '../body/Teams'
-import { bg, backgroundcolor } from './NavBar'
+import { backgroundcolor } from './NavBar'
 
 function About() {
   return (
@@ -18,11 +18,11 @@ function About() {
           <p className="text-light text-2">
             We are here to provide a means of global investments for people of
             low and high income round the whole world. Our mission is to make
-            sure no, low and high income earners make the best out of what the
-            earn by investing little and earning big. We make sure your earning
+            sure all, low and high income earners make the best of what the earn
+            by investing little and earning big. We make sure your earning
             increases prior to the choosen investment plan . We make sure people
             make proper use of their income, take advantage of the internet and
-            crypography tradings. Cryptogenus was establish by a group of young
+            cryptography trade. Cryptogenus was establish by a group of young
             investors based in Uk who started with a small business. As
             investors, they knew the need to invest and get additional income.
             They started a small investment platform through banks named{' '}
@@ -38,7 +38,7 @@ function About() {
             OUR <span className="text-primary">PASSION </span>
           </h2>
           <p className="text-light">
-            We are dedicated to our clients, prividing them a stable and
+            We are dedicated to our clients, providing them a stable and
             reliable means of financial stability is our major focus. We give
             our client an opportunity to get a standard profit in due time as
             per there investment status. We make sure our clients or investor
@@ -53,13 +53,14 @@ function About() {
             OUR<span className="text-primary"> MISSION</span>
           </h2>
           <p className="text-light">
-            We are here to provide a means of global investments for people of
-            low and high income round the whole world. Our mission is to make
-            sure no, low and high income earners make the best out of what the
-            earn by investing little and earning big. We make sure your earning
-            increases prior to the choosen investment plan as our name implies.
-            We make sure people make proper use of the income, take advantage of
-            the internet and crypography tradings.
+            In a world like this of low or no economic stability, people need a
+            realiable and trusted means of making life better. We are here to
+            make sure your dream of working from home is actualized by providing
+            you a standard and trusted platform for your trading.We are
+            confident in our ability to deliver as we have promised. Our genus
+            team are ever ready to assist you work from home by investing little
+            and earning big. We provide you a standard and realiable means of
+            online trading through cryptography and blockchain technology.
           </p>
         </div>
       </section>

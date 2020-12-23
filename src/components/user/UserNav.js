@@ -12,7 +12,6 @@ function UserNav() {
   const { push } = useHistory()
 
   const userProfile = useSelector((state) => state.firebase.profile)
-  const user = useSelector((state) => state.firebase.profile)
 
   useFirestoreConnect([
     {
@@ -21,8 +20,6 @@ function UserNav() {
     { collection: 'payments', doc: userProfile.uid },
     { collection: 'withdrawals', doc: userProfile.uid },
   ])
-
-  const data = useSelector((state) => state)
 
   const handleLogout = () => {
     LogoutAction(firebase, dispatch)

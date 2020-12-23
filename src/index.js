@@ -13,11 +13,8 @@ import './components/CSS/App.css'
 
 import App from './App'
 import createAdminStore, { store } from './database/createAdminStore'
-import {
-  dataProvider,
-  history,
-  authProvider,
-} from '../src/components/navigation/AdminPage'
+import { dataProvider, history } from '../src/components/navigation/AdminPage'
+import authProvider from './components/navigation/authProvider'
 
 ReactDOM.render(
   <Provider store={createAdminStore(authProvider, dataProvider, history)}>

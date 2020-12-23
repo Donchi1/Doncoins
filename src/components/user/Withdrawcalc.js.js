@@ -43,9 +43,6 @@ function Withdrawcalc({
       setisloading(false)
       withdrawalAction(amount, profileInfo, address, dispatch, firebase)
     }, 2000)
-    Axios.post('/api/SendwMail', profileInfo)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err))
 
     setOpenModal(false)
     setamount('')

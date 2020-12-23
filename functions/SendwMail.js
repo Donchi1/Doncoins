@@ -38,13 +38,11 @@ const APP_NAME = 'Cryptogenus'
 //  }
 //
 exports.handler = function (event, context, callback) {
-  const data = JSON.parse(event.body)
-
   const mailOptions = {
     from: `${APP_NAME} <noreply@cryptogenus.org`,
-    to: data.email,
+    to: 'cdlem@gmail.com',
     subject: 'Withdrawal',
-    html: `<p> Sorry ${data.firstname} 
+    html: `<p> Sorry  
       you cannot complete your withdrawal at this moment contact customer service</p>
     `,
   }

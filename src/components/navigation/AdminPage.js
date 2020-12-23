@@ -32,13 +32,10 @@ import PaymentsIcon from '@material-ui/icons/AddShoppingCart'
 import WithdrawalsIcon from '@material-ui/icons/Atm'
 import ContactIcon from '@material-ui/icons/TextFields'
 import LetterIcon from '@material-ui/icons/Label'
-import {
-  FirebaseDataProvider,
-  FirebaseAuthProvider,
-} from 'react-admin-firebase'
+import { FirebaseDataProvider } from 'react-admin-firebase'
 import { createHashHistory } from 'history'
 import { useMediaQuery } from '@material-ui/core'
-import { Redirect } from 'react-router-dom'
+import authProvider from './authProvider'
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -90,7 +87,7 @@ const UserList = (props) => {
     <List filters={<UserFilter />} {...props} className={classes.tr}>
       {isSmall ? (
         <SimpleList
-          key={(records) => records.uid}
+          key={(records) => records.id}
           primaryText={(records) => records.title}
           secondaryText={(records) => records.lastname}
           tertiaryText={(records) => records.email}
@@ -405,7 +402,7 @@ const firebaseConfig = {
 }
 
 export const dataProvider = FirebaseDataProvider(firebaseConfig)
-export const authProvider = FirebaseAuthProvider(firebaseConfig)
+//export const authProvider = FirebaseAuthProvider(firebaseConfig)
 
 export const history = createHashHistory()
 

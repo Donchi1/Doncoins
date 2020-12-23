@@ -30,18 +30,18 @@ function MarketPrice() {
 
   useEffect(() => {
     client()
-  }, [])
+  }, [client])
 
   const nomics = new Nomics({
     apiKey: apiKey,
   })
 
-  const client = async () => {
+  let client = useCallback(async () => {
     const newCurrencies = await nomics.currenciesTicker({
       headers: 'Access-Control-Allow-Origin: http://localhost:8888',
     })
 
-    console.log(newCurrencies[1])
+    
     setCurrencies({
       cur0: newCurrencies[0],
       cur1: newCurrencies[1],
@@ -64,6 +64,7 @@ function MarketPrice() {
       cur18: newCurrencies[18],
       cur19: newCurrencies[19],
     })
+  )
   }
 
   return (

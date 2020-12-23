@@ -17,7 +17,6 @@ import { Link } from 'react-router-dom'
 
 import Chart from './Chart'
 
-import MarketPrice from './MarketPrice'
 import UserPayment from './UserPayment'
 import UserWithdrawal from './UserWithdrawal'
 import { useSelector } from 'react-redux'
@@ -27,12 +26,6 @@ function User() {
   const [showModalWithdraw, setCloseModalwithdraw] = useState(false)
 
   const userProfile = useSelector((state) => state.firebase.profile)
-
-  const [showBtn, setshowBtn] = useState(false)
-
-  if (userProfile.initialDeposit === '0000') {
-    setshowBtn(true)
-  }
 
   const [amount, setAmount] = useState('')
   const [open, setopen] = useState(false)

@@ -6,7 +6,6 @@ import PayCalc from './PayCalc'
 import { paymentAction } from '../Auths/Action'
 import { useFirebase } from 'react-redux-firebase'
 import { useDispatch, useSelector } from 'react-redux'
-import Axios from 'axios'
 
 function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
   const [paymentData, setpaymentData] = useState({
@@ -29,6 +28,7 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
   useEffect(() => {
     checkData()
   }, [transSuccess])
+
   const checkData = () => {
     if (transSuccess) {
       alert(transSuccess)
@@ -61,9 +61,6 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
       setamountQrcode(false)
       setisLoading(true)
       paymentAction(amount, profileInfo, paymentData.file, firebase, dispatch)
-      Axios.post('/api/SendpMail', profileInfo)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err))
     }
   }
 
