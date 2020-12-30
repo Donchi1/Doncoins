@@ -1,4 +1,4 @@
-export const registerAction = (data, firebase, dispatch) => {
+export const registerAction = (data, firebase, dispatch, checkAuth) => {
   const email = data.email
   const password = data.password
 
@@ -31,17 +31,25 @@ export const registerAction = (data, firebase, dispatch) => {
     .then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' })
     })
-    .catch((err) => dispatch({ type: 'SIGNUP_ERROR', error: err }))
+    .catch((err) => {
+      dispatch({ type: 'SIGNUP_ERROR', error: err })
+      checkAuth()
+    })
 }
 
-export const logginAction = (data, firebase, dispatch) => {
+export const logginAction = (data, firebase, dispatch, checkAuth) => {
   const email = data.email
   const password = data.password
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(() => dispatch({ type: 'LOGIN_SUCCESS' }))
-    .catch((err) => dispatch({ type: 'LOGIN_ERROR', error: err }))
+    .then(() => {
+      dispatch({ type: 'LOGIN_SUCCESS' })
+    })
+    .catch((err) => {
+      dispatch({ type: 'LOGIN_ERROR', error: err })
+      checkAuth()
+    })
 }
 
 export const forgetAction = (dispatch, firebase) => {
@@ -111,6 +119,8 @@ export const withdrawalAction = (
   address,
   dispatch,
   firebase,
+  dataCheck,
+  handleLoading,
 ) => {
   const uid = firebase.auth().currentUser.uid
 
@@ -129,11 +139,26 @@ export const withdrawalAction = (
       },
       { merge: true },
     )
-    .then(() => dispatch({ type: 'WITHDRAWAL_ERROR' }))
-    .catch(() => dispatch({ type: 'WITHDRAWAL_ERROR' }))
+    .then(() => {
+      dispatch({ type: 'WITHDRAWAL_ERROR' })
+      dataCheck()
+      handleLoading()
+    })
+    .catch(() => {
+      dispatch({ type: 'WITHDRAWAL_ERROR' })
+      handleLoading()
+    })
 }
 
-export const paymentAction = (amount, profile, file, firebase, dispatch) => {
+export const paymentAction = (
+  amount,
+  profile,
+  file,
+  firebase,
+  dispatch,
+  checkData,
+  handleLoading,
+) => {
   const uid = firebase.auth().currentUser.uid
   const firestore = firebase.firestore()
   firestore
@@ -165,7 +190,11 @@ export const paymentAction = (amount, profile, file, firebase, dispatch) => {
                 .collection('payments')
                 .doc(uid)
                 .update({ paymentProve: url })
-                .then(() => dispatch({ type: 'PAYMENT_SUCCESS' }))
+                .then(() => {
+                  dispatch({ type: 'PAYMENT_SUCCESS' })
+                  checkData()
+                  handleLoading()
+                })
             })
         })
     })
@@ -205,7 +234,7 @@ export const contactAction = (contactInfo, firebase, dispatch) => {
       contactName: contactInfo.name,
       contactEmail: contactInfo.email,
       message: contactInfo.message,
-      id: Date.now().toString()
+      id: Date.now().toString(),
     })
     .then(() => dispatch({ type: 'MESSAGE_SUCCESS' }))
     .catch(() => dispatch({ type: 'MESSAGE_ERROR' }))

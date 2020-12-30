@@ -43,7 +43,7 @@ function HeroComponent() {
               </Button>
             </Link>
           ) : (
-            <Link to="/login">
+            <Link to="/signup">
               <Button
                 color="white"
                 size="lg"

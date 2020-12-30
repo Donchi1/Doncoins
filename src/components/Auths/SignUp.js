@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import MobileInput from './MobileInput'
 import { Button } from 'react-bootstrap'
 
@@ -32,11 +32,12 @@ function SignUp() {
   const authState = useSelector((state) => state.firebase.auth)
   const authError = useSelector((state) => state.authReducer.signupError)
 
+  const checkAuth = () => setopenSnack(true)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    e.stopPropagation()
 
-    registerAction(userData, firebase, dispatch)
+    registerAction(userData, firebase, dispatch, checkAuth)
     setuserData({
       ...userData,
       firstname: '',
@@ -49,21 +50,11 @@ function SignUp() {
       state: '',
       gender: '',
     })
+
     if (isLoaded(authState) && !isEmpty(authState)) {
       return push('/login')
     } else {
       return <Redirect to="/signup" />
-    }
-  }
-  useEffect(() => {
-    checkAuth()
-  }, [authError])
-
-  const checkAuth = () => {
-    if (authError) {
-      return setopenSnack(true)
-    } else {
-      return ''
     }
   }
 
@@ -86,7 +77,6 @@ function SignUp() {
         onClose={() => setopenSnack(false)}
         open={openSnack}
         message={authError}
-        className="text-light text-warning"
         autoHideDuration={9000}
         anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
       ></Snackbar>

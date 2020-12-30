@@ -44,7 +44,7 @@ function Plans() {
             <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
               $50 Bonus Fund
             </Card.Text>
-            <Link to="/login" className="pb-3">
+            <Link to="/signup" className="pb-3">
               <Button
                 className="p-3 text-uppercase bg-primary"
                 size="lg"
@@ -83,7 +83,7 @@ function Plans() {
               $70 Bonus fund
             </Card.Text>
 
-            <Link to="/login" className="pb-3">
+            <Link to="/signup" className="pb-3">
               <Button
                 className="p-3 bg-primary text-uppercase"
                 size="lg"
@@ -121,7 +121,7 @@ function Plans() {
             <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
               $100 Bonus fund
             </Card.Text>
-            <Link to="/login" className="pb-3">
+            <Link to="/signup" className="pb-3">
               <Button
                 className="p-3 text-uppercase bg-primary"
                 size="lg"
@@ -159,7 +159,7 @@ function Plans() {
             <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
               $150 Bonus fund
             </Card.Text>
-            <Link to="/login" className="pb-3">
+            <Link to="/signup" className="pb-3">
               <Button
                 className="p-3 text-uppercase bg-primary"
                 size="lg"

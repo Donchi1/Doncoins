@@ -13,6 +13,7 @@ import {
   CarouselItem,
 } from 'react-bootstrap'
 import * as Icons from 'react-bootstrap-icons'
+
 import { Link } from 'react-router-dom'
 
 import Chart from './Chart'
@@ -60,7 +61,7 @@ function User() {
             </Card.Body>
           </Card>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '22rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '18rem' }}>
           <CircularProgressbarWithChildren background value={percentage}>
             <div className="text-primary">
               <h3>Total Balance</h3>
@@ -70,13 +71,13 @@ function User() {
             </div>
           </CircularProgressbarWithChildren>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '22rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '18rem' }}>
           <CircularProgressbarWithChildren
-            value={userProfile.initialDeposit}
+            value={userProfile.initialDeposite}
             background
           >
             <div className="text-primary">
-              <h3>Initial Deposit</h3>
+              <h3>Initial Deposite</h3>
               <h1>
                 <strong>
                   $
@@ -88,7 +89,7 @@ function User() {
             </div>
           </CircularProgressbarWithChildren>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '22rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '18rem' }}>
           <div>
             <CircularProgressbarWithChildren
               value={userProfile.bonus}

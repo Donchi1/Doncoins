@@ -13,12 +13,17 @@ function Withdrawcalc({
   setAddress,
   setamount,
   setisloading,
+  setShow,
 }) {
   const [newAmount, setNewAmount] = useState(1)
+  const [openError, setopenError] = useState(false)
 
   const dispatch = useDispatch()
   const firebase = useFirebase()
   const profileInfo = useSelector((state) => state.firebase.profile)
+  const transError = useSelector(
+    (state) => state.projectReducer.withdrawalError,
+  )
 
   useEffect(() => {
     Axios.get(`https://blockchain.info/tobtc?currency=USD&value=${amount}`)
@@ -37,33 +42,57 @@ function Withdrawcalc({
     }
   }
 
+  const dataCheck = () => setopenError(true)
+  const handleLoading = () => setisloading(false)
+
   const handleWithdraw = () => {
     setisloading(true)
-    setTimeout(() => {
-      setisloading(false)
-      withdrawalAction(amount, profileInfo, address, dispatch, firebase)
-    }, 2000)
+    withdrawalAction(
+      amount,
+      profileInfo,
+      address,
+      dispatch,
+      firebase,
+      dataCheck,
+      handleLoading,
+    )
 
     setOpenModal(false)
     setamount('')
     setAddress('')
+    setShow(false)
   }
   return (
-    <Modal show={openModal} onHide={() => setOpenModal(false)}>
-      <Modal.Header>
-        <Modal.Title>Confirm Transaction</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <p>You want to withdraw ${amount} from your account</p>
-        <p>Bitcoin : {newAmount}</p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="danger" onClick={handleCancel}>
-          Cancel
-        </Button>
-        <Button onClick={handleWithdraw}>Confirm</Button>
-      </Modal.Footer>
-    </Modal>
+    <>
+      <Modal show={openModal} onHide={() => setOpenModal(false)} centered>
+        <Modal.Header>
+          <Modal.Title>Confirm Transaction</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>You want to withdraw ${amount} from your account</p>
+          <p>Bitcoin : {newAmount}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleCancel}>
+            Cancel
+          </Button>
+          <Button onClick={handleWithdraw}>Confirm</Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        centered
+        show={openError}
+        onHide={() => setopenError(false)}
+        contentClassName="bg-warning"
+      >
+        <Modal.Header closeButton={() => setopenError(false)}>
+          <Modal.Title className="text-danger">Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h6 className="text-danger">{transError}</h6>
+        </Modal.Body>
+      </Modal>
+    </>
   )
 }
 

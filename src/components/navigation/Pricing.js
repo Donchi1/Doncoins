@@ -49,7 +49,7 @@ function Pricing() {
               <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
                 $200 Bonus fund
               </Card.Text>
-              <Link to="/user" className="pb-3">
+              <Link to="/signup" className="pb-3">
                 <Button
                   className="p-3 text-uppercase text-primary text-light"
                   size="lg"
@@ -90,7 +90,7 @@ function Pricing() {
               <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
                 $300 Bonus fund
               </Card.Text>
-              <Link to="/user" className="pb-3">
+              <Link to="/signup" className="pb-3">
                 <Button
                   className="p-3 text-uppercase text-primary text-light"
                   size="lg"
@@ -131,7 +131,7 @@ function Pricing() {
               <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
                 $800 Bonus fund
               </Card.Text>
-              <Link to="/user">
+              <Link to="/signup">
                 <Button
                   className="p-3 text-uppercase text-primary text-light"
                   size="lg"
@@ -172,7 +172,7 @@ function Pricing() {
               <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
                 $1000 Bonus fund
               </Card.Text>
-              <Link to="/user" className="pb-3">
+              <Link to="/signup" className="pb-3">
                 <Button
                   className="p-3 text-uppercase text-light text-primary"
                   size="lg"

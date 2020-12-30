@@ -25,14 +25,14 @@ export const projectReducer = (state = initialAuth, action) => {
       return {
         ...state,
         withdrawalError:
-          'unsuccessful withdrawal check your data or contact customer service ',
+          'Unsuccessful withdrawal check your data or contact customer service ',
       }
     case 'SUBCRIPTION_SUCCESS':
       return {
         ...state,
 
         subcriptionSucces:
-          'subcription successfull. Thanks for subcribing to our newsletter',
+          'Subcription successfull. Thanks for subcribing to our newsletter',
       }
     case 'SUBCRIPTION_ERROR':
       return {

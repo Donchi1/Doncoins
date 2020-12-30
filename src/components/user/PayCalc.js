@@ -39,7 +39,7 @@ function PayCalc({
   }
 
   return (
-    <Modal show={isOpen} onHide={() => setOpencode(false)}>
+    <Modal show={isOpen} onHide={() => setOpencode(false)} centered>
       <Modal.Header>
         <Modal.Title>Confirm Transaction</Modal.Title>
       </Modal.Header>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Navbar } from 'react-bootstrap'
+import { Button, Navbar, Alert } from 'react-bootstrap'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 import { isLoaded, isEmpty, useFirebase } from 'react-redux-firebase'
@@ -31,10 +31,12 @@ function Login() {
   const [openSnack, setopenSnack] = useState(false)
   const [emailSnack, setemailSnack] = useState(false)
 
+  const checkAuth = () => setopenSnack(true)
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    logginAction(userData, firebase, dispatch)
+    logginAction(userData, firebase, dispatch, checkAuth)
 
     setuserData(() => {
       return { ...userData, email: '', password: '' }
@@ -57,17 +59,8 @@ function Login() {
   }
 
   useEffect(() => {
-    checkAuth()
     checkemail()
-  }, [authError])
-
-  const checkAuth = () => {
-    if (authError) {
-      return setopenSnack(true)
-    } else {
-      return ''
-    }
-  }
+  }, [])
 
   const checkemail = () => {
     if (!emailVerified) {
@@ -93,7 +86,6 @@ function Login() {
           onClose={() => setopenSnack(false)}
           open={openSnack}
           message={authError}
-          className="text-light text-warning"
           autoHideDuration={9000}
           anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
         ></Snackbar>
@@ -102,13 +94,17 @@ function Login() {
           onSubmit={handleSubmit}
           style={{ borderRadius: '1.5rem', backgroundColor: itemColor }}
         >
-          <Snackbar
-            open={emailSnack}
+          <Alert
+            show={emailSnack}
+            variant="warning"
+            dismissible
             onClose={() => setemailSnack(false)}
-            message="make sure your email is verified to continue"
-            autoHideDuration={4000}
-            anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-          ></Snackbar>
+          >
+            <Alert.Heading>Email Verification</Alert.Heading>
+            <p className="text-warning">
+              Make sure your email is verified to continue
+            </p>
+          </Alert>
 
           <div className="text-center">
             <img

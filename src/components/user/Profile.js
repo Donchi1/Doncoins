@@ -69,7 +69,10 @@ function Profile() {
         >
           <div className="form-group text-center">
             <div className="text-center">
-              <label htmlFor="img" style={{ fontSize: '1.4rem' }}>
+              <label
+                htmlFor="img"
+                style={{ fontSize: '1.4rem', cursor: 'pointer' }}
+              >
                 <img
                   src={userProfile.image || require('../../assets/avater.png')}
                   alt="profileimg"

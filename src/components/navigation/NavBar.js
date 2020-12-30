@@ -3,7 +3,6 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import { Navbar, Nav } from 'react-bootstrap'
 import { useLocation, NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 export const bg = 'linear-gradient(to top right, #33ccff 11%, #ff99cc 100%)'
 export const backgroundcolor = 'rgb(117, 40, 117)'
@@ -11,8 +10,7 @@ export const itemColor = 'rgba(97, 7, 100, 0.986)'
 
 function NavBar() {
   const { pathname } = useLocation()
-  const state = useSelector((state) => state)
-  console.log(state)
+
   return (
     <Navbar
       collapseOnSelect
