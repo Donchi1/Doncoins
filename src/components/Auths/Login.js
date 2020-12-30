@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Navbar, Alert } from 'react-bootstrap'
+import { Button, Navbar } from 'react-bootstrap'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 import { isLoaded, isEmpty, useFirebase } from 'react-redux-firebase'
 import { useSelector, useDispatch } from 'react-redux'
 import { logginAction, forgetAction } from './Action'
 import { Modal } from 'react-bootstrap'
-import { Snackbar } from '@material-ui/core'
+import { Snackbar, makeStyles } from '@material-ui/core'
 
 function Login() {
   const [userData, setuserData] = useState({
@@ -16,6 +16,17 @@ function Login() {
   })
 
   const [openModal, setOpenModal] = useState(false)
+
+  const useStyle = makeStyles({
+    content: {
+      backgroundColor: 'red',
+    },
+    data: {
+      backgroundColor: 'orange',
+    },
+  })
+
+  const classes = useStyle()
 
   const firebase = useFirebase()
   const dispatch = useDispatch()
@@ -87,24 +98,22 @@ function Login() {
           open={openSnack}
           message={authError}
           autoHideDuration={9000}
+          ContentProps={{ className: classes.content }}
           anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-        ></Snackbar>
+        />
         <form
           className="container  pb-4 pt-3"
           onSubmit={handleSubmit}
           style={{ borderRadius: '1.5rem', backgroundColor: itemColor }}
         >
-          <Alert
-            show={emailSnack}
-            variant="warning"
-            dismissible
+          <Snackbar
+            open={emailSnack}
+            ContentProps={{ className: classes.content }}
+            autoHideDuration={9000}
+            message="Make sure your email is verified to continue"
+            anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
             onClose={() => setemailSnack(false)}
-          >
-            <Alert.Heading>Email Verification</Alert.Heading>
-            <p className="text-warning">
-              Make sure your email is verified to continue
-            </p>
-          </Alert>
+          />
 
           <div className="text-center">
             <img

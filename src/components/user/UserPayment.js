@@ -144,7 +144,7 @@ function UserPayment({ show, setclose, amount, setAmount, open, setOpen }) {
       <Modal
         show={openError}
         onHide={() => setopenError(false)}
-        contentClassName="bg-success"
+        contentClassName="bg-info"
         centered
       >
         <Modal.Header closeButton={() => setopenError(false)}>

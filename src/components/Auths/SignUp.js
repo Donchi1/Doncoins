@@ -9,7 +9,7 @@ import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
 import { registerAction } from './Action'
 import { useDispatch, useSelector } from 'react-redux'
-import { Snackbar } from '@material-ui/core'
+import { Snackbar, makeStyles } from '@material-ui/core'
 
 function SignUp() {
   const [userData, setuserData] = useState({
@@ -25,6 +25,14 @@ function SignUp() {
     validaty: false,
   })
   const [openSnack, setopenSnack] = useState(false)
+
+  const useStyles = makeStyles({
+    content: {
+      backgroundColor: 'red',
+    },
+  })
+
+  const classes = useStyles()
 
   const firebase = useFirebase()
   const { push } = useHistory()
@@ -78,6 +86,7 @@ function SignUp() {
         open={openSnack}
         message={authError}
         autoHideDuration={9000}
+        ContentProps={{ className: classes.content }}
         anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
       ></Snackbar>
       <form

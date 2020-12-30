@@ -61,7 +61,7 @@ function User() {
             </Card.Body>
           </Card>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '18rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '16rem' }}>
           <CircularProgressbarWithChildren background value={percentage}>
             <div className="text-primary">
               <h3>Total Balance</h3>
@@ -71,7 +71,7 @@ function User() {
             </div>
           </CircularProgressbarWithChildren>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '18rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '16rem' }}>
           <CircularProgressbarWithChildren
             value={userProfile.initialDeposite}
             background
@@ -89,7 +89,7 @@ function User() {
             </div>
           </CircularProgressbarWithChildren>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '18rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '16rem' }}>
           <div>
             <CircularProgressbarWithChildren
               value={userProfile.bonus}
