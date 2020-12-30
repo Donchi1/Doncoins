@@ -43,7 +43,7 @@ function User() {
       </div>
       <div className="row text-center mb-3 d-flex justify-content-around mx-2">
         <div>
-          <Card className=" text-light bg-dark mt-3" style={{ width: '22rem' }}>
+          <Card className=" text-light bg-dark mt-3" style={{ width: '20rem' }}>
             <Card.Body style={{ backgroundColor: 'darkblue' }}>
               <Card.Title>Welcome {userProfile.firstname}</Card.Title>
               <Card.Subtitle> To CryptoGenus Int</Card.Subtitle>
@@ -61,7 +61,7 @@ function User() {
             </Card.Body>
           </Card>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '16rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '17rem' }}>
           <CircularProgressbarWithChildren background value={percentage}>
             <div className="text-primary">
               <h3>Total Balance</h3>
@@ -71,7 +71,7 @@ function User() {
             </div>
           </CircularProgressbarWithChildren>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '16rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '17rem' }}>
           <CircularProgressbarWithChildren
             value={userProfile.initialDeposite}
             background
@@ -89,7 +89,7 @@ function User() {
             </div>
           </CircularProgressbarWithChildren>
         </div>
-        <div className=" text-light mt-3 " style={{ width: '16rem' }}>
+        <div className=" text-light mt-3 " style={{ width: '17rem' }}>
           <div>
             <CircularProgressbarWithChildren
               value={userProfile.bonus}

@@ -125,7 +125,11 @@ body {
 @media only screen and (max-width: 1000px) {
   .userlink {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     align-self: flex-start !important;
+  }
+  .useravata {
+    padding-top: 0.3rem;
   }
   .link {
     margin-top: 1.5rem;

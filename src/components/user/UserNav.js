@@ -60,7 +60,7 @@ function UserNav() {
           </NavLink>
 
           <div
-            className="d-flex align-items-center justify-content-center userlink"
+            className="d-flex align-items-center justify-content-center userlink useravata"
             style={{
               height: '40px',
               width: '40px',
@@ -74,7 +74,7 @@ function UserNav() {
                 fontSize: '1.2rem',
                 paddingTop: '0.5rem',
               }}
-              className="text-primary"
+              className="text-primary "
             >
               {userProfile.initial}
             </p>
