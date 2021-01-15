@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Navbar } from 'react-bootstrap'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import { backgroundcolor, itemColor } from '../navigation/NavBar'
@@ -35,9 +35,7 @@ function Login() {
 
   const authState = useSelector((state) => state.firebase.auth)
   const auth = useSelector((state) => state.firebase.auth.isEmpty)
-  const emailVerified = useSelector(
-    (state) => state.firebase.auth.emailVerified,
-  )
+
   const authError = useSelector((state) => state.authReducer.loginError)
   const [openSnack, setopenSnack] = useState(false)
   const [emailSnack, setemailSnack] = useState(false)
@@ -53,7 +51,7 @@ function Login() {
       return { ...userData, email: '', password: '' }
     })
 
-    if (isLoaded(authState) && !isEmpty(authState) && emailVerified) {
+    if (isLoaded(authState) && !isEmpty(authState)) {
       return push('/user')
     } else {
       return <Redirect to="/login" />
@@ -66,18 +64,6 @@ function Login() {
     } else {
       setOpenModal(true)
       forgetAction(dispatch, firebase)
-    }
-  }
-
-  useEffect(() => {
-    checkemail()
-  }, [])
-
-  const checkemail = () => {
-    if (!emailVerified) {
-      return setemailSnack(true)
-    } else {
-      return ''
     }
   }
 

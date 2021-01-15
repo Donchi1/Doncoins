@@ -26,7 +26,6 @@ export const registerAction = (data, firebase, dispatch, checkAuth) => {
           bonus: '20.00',
           disbleWithdrawal: true,
         })
-      return firebase.auth().currentUser.sendEmailVerification()
     })
     .then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' })
