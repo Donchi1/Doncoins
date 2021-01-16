@@ -34,5 +34,5 @@ export default (type, params) => {
       return Promise.reject()
     }
   }
-  return Promise.reject('Unknown Method')
+  return Promise.reject('Bad Method')
 }
