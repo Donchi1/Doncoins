@@ -78,8 +78,7 @@ function SignUp() {
         className="text-light text-center mb-3 "
         style={{ fontStyle: 'italic' }}
       >
-        SignUp now <br />
-        and enjoy our unlimited membership services
+        Enjoy unlimited membership services
       </h3>
       <Snackbar
         onClose={() => setopenSnack(false)}
