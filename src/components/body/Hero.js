@@ -49,7 +49,7 @@ function HeroComponent() {
                 size="lg"
                 className="text-uppercase bg-primary"
               >
-                Learn More
+                Get Started
               </Button>
             </Link>
           )}
