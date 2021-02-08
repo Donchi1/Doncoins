@@ -178,7 +178,7 @@ function Contacts() {
             </div>
             <div className="text-light pt-5">
               <h3>Email ADDRESS</h3>
-              <p>Email us on contacts@cryptogenus.org</p>
+              <p>Email us on contact@cryptogenus.org</p>
             </div>
           </div>
         </div>

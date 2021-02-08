@@ -122,7 +122,7 @@ function Footer() {
           <h1 className="text-primary pt-3 pb-3">Contact Us</h1>
 
           <div className="text-light">
-            <p>Email us on contacts@cryptogenus.org</p>
+            <p>Email us on contact@cryptogenus.org</p>
             <p>+44(744)837-8394</p>
 
             <p>mon 8am-4pm to friday 8am-1pm</p>
