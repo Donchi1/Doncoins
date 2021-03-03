@@ -43,7 +43,7 @@ export const authReducer = (state = initialAuth, action) => {
     case 'PASSRESET_ERROR':
       return {
         ...state,
-        passError: action.error.message,
+        passResetError: action.error.message,
       }
 
     default:

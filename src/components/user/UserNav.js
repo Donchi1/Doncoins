@@ -1,101 +1,114 @@
-import React from 'react'
-import { Navbar, Nav, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
 
 import { LogoutAction } from '../Auths/Action'
 import { useFirebase, useFirestoreConnect } from 'react-redux-firebase'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Link } from 'react-router-dom'
 
 function UserNav() {
   const firebase = useFirebase()
   const dispatch = useDispatch()
-  const { push } = useHistory()
 
   const userProfile = useSelector((state) => state.firebase.profile)
+  const [openToggle, setOpenToggle] = useState(false)
 
   useFirestoreConnect([
     {
       collection: 'users',
     },
-    { collection: 'payments', doc: userProfile.uid },
-    { collection: 'withdrawals', doc: userProfile.uid },
+    {
+      collection: 'payments',
+
+      doc: userProfile.uid,
+    },
+    {
+      collection: 'withdrawals',
+
+      doc: userProfile.uid,
+    },
   ])
 
+  const handleLogoutRoute = () => window.location.assign('/')
   const handleLogout = () => {
-    LogoutAction(firebase, dispatch)
-    push('/')
+    LogoutAction(firebase, dispatch, handleLogoutRoute)
   }
+
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      style={{ backgroundColor: 'black' }}
-      variant="dark"
-      sticky="top"
-    >
-      <Link to="/">
-        <Navbar.Brand
-          className="text-uppercase font-weight-bold ml-4 profilenav"
-          style={{
-            fontSize: '2rem',
-            alignItems: 'center',
-          }}
+    <>
+      <header
+        className="transition  header-align "
+        style={{ position: 'sticky' }}
+      >
+        <div
+          className="container-fluid darkblue py-2 "
+          style={{ position: 'absolute', top: 0 }}
         >
-          Crypto
-          <span className="text-primary">genus</span>
-        </Navbar.Brand>
-      </Link>
-      <Navbar.Toggle
-        aria-controls="responsive-navbar-nav"
-        className="bg-primary userdrop"
-      />
-      <Navbar.Collapse id="responsive-navbar-nav" className="mynav  text-light">
-        <Nav className="text-uppercase d-flex justify-content-around align-items-center">
-          <NavLink to="/user" className="userlink">
-            dashboard
-          </NavLink>
+          <div className="row flex-align ">
+            <div className="col-lg-4 col-md-3 col-8">
+              <div className="logo">
+                <a href="/">
+                  <h3 className="sub-heading little-add">
+                    <span style={{ fontSize: '3rem' }}>U</span>
+                    ltimateCoins
+                  </h3>
+                </a>
+              </div>
+            </div>
+            <div className="col-lg-8 col-md-9 col-4 text-right ">
+              <div>
+                <span
+                  onClick={() => setOpenToggle((prev) => !prev)}
+                  className="toggle-span"
+                >
+                  toggle
+                </span>
+              </div>
 
-          <NavLink to="/profile" className="userlink">
-            profile
-          </NavLink>
+              <div className="toggle-menu d-flex justify-content-around align-items-center">
+                <ul className="d-flex justify-content-around align-items-center w-50 ">
+                  <li>
+                    <a className="user-anchor" href="/user">
+                      Dashboard
+                    </a>
+                  </li>
 
-          <div
-            className="d-flex align-items-center justify-content-center userlink useravata"
-            style={{
-              height: '40px',
-              width: '40px',
-              marginTop: '0.3rem',
-              border: '1px solid lightblue',
-              borderRadius: '50%',
-            }}
-          >
-            <p
-              style={{
-                fontSize: '1.2rem',
-                paddingTop: '0.5rem',
-              }}
-              className="text-primary "
-            >
-              {userProfile.initial}
-            </p>
+                  <li>
+                    <a className="user-anchor" href="/withdrawals">
+                      Withdrawals
+                    </a>
+                  </li>
+
+                  <li>
+                    <a className="user-anchor" href="/payments">
+                      Payments
+                    </a>
+                  </li>
+                  <li>
+                    <a className="user-anchor" href="/investments">
+                      Invest
+                    </a>
+                  </li>
+                </ul>
+                <ul className="d-flex justify-content-around align-items-center ">
+                  <li className="mr-4 ">
+                    <button
+                      className="btn history-info"
+                      onClick={() => window.location.assign('/profile')}
+                    >
+                      {userProfile.initial}
+                    </button>
+                  </li>
+                  <li>
+                    <button className="btn history-info" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-
-          <div className="userlink">
-            <Button
-              color="white"
-              size="lg"
-              style={{
-                background: '#002699',
-                textTransform: 'uppercase',
-              }}
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
-          </div>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+        </div>
+      </header>
+    </>
   )
 }
 

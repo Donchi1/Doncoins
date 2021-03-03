@@ -1,240 +1,237 @@
-import React, { useState } from 'react'
-import * as Icons from 'react-bootstrap-icons'
-import { Card } from 'react-bootstrap'
-import { itemColor } from '../navigation/NavBar'
+import { Link } from '@material-ui/core'
+import React from 'react'
+import NavBar from '../navigation/NavBar'
+import Footer from './Footer'
 
 function AskedQuestions() {
-  const [dropDown1, setdropDown1] = useState(false)
-  const [dropDown2, setdropDown2] = useState(false)
-  const [dropDown3, setdropDown3] = useState(false)
-  const [dropDown4, setdropDown4] = useState(false)
-  const [dropDown5, setdropDown5] = useState(false)
-  const [dropDown6, setdropDown6] = useState(false)
   return (
-    <section className="container-fluid p-5 pt-4 ">
-      <h1 className="text-center p-4 display-4 text-light">
-        Frequently Asked Questions
-      </h1>
+    <>
+      <NavBar />
 
-      <Card style={{ backgroundColor: itemColor }}>
-        <div>
-          <Card.Header>
-            <div className="d-flex justify-content-between align-items-center">
-              <h3 style={{ fontStyle: 'italic' }} className="text-light">
-                what is Cryptogenus
-              </h3>
-              <Icons.Plus
-                style={{
-                  fontSize: '1.8rem',
-                  cursor: 'pointer',
-                  color: 'white',
-                }}
-                onClick={() => setdropDown1(!dropDown1)}
-              />
+      <section className="sub-page-banner site-bg parallax" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="page-banner text-center">
+                <h1 className="sub-banner-title userTextColor">FAQ</h1>
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>FAQ</li>
+                </ul>
+              </div>
             </div>
-            {dropDown1 && (
-              <Card
-                className="p-3  text-light"
-                style={{
-                  backgroundColor: 'black',
-                  border: `1px solid #33ccff`,
-                }}
-              >
-                <Card.Text>
-                  <div>
-                    <p>
-                      Cryptogenus is an Investment Platform were you invest
-                      unregretably. We started as a group of young investors,
-                      investing in <br /> Cryptography. Today we are one of the
-                      known investment platforms in the world.
-                    </p>
-                  </div>
-                </Card.Text>
-              </Card>
-            )}
-          </Card.Header>
-          <Card.Header>
-            <div className="d-flex justify-content-between align-items-center">
-              <h3 className="text-light" style={{ fontStyle: 'italic' }}>
-                why i must choose Cryptogenus
-              </h3>
-              <Icons.Plus
-                style={{
-                  fontSize: '1.8rem',
-                  cursor: 'pointer',
-                  color: 'white',
-                }}
-                onClick={() => setdropDown2(!dropDown2)}
-              />
-            </div>
-            {dropDown2 && (
-              <Card
-                className="p-3  text-light"
-                style={{
-                  backgroundColor: 'black',
-                  border: `1px solid #33ccff`,
-                }}
-              >
-                <Card.Text>
-                  <div>
-                    <p>
-                      You need to invest with us because we are legit, experts,
-                      stable, reliable and ever ready to make our clients happy
-                      and satisfied. Helping indivituals or group of persons to
-                      make the best out of there income is our main focus.
-                    </p>
-                  </div>
-                </Card.Text>
-              </Card>
-            )}
-          </Card.Header>
-          <Card.Header>
-            <div className="d-flex justify-content-between align-items-center">
-              <h3 className="text-light" style={{ fontStyle: 'italic' }}>
-                who recieves payments
-              </h3>
-              <Icons.Plus
-                style={{
-                  fontSize: '1.8rem',
-                  cursor: 'pointer',
-                  color: 'white',
-                }}
-                onClick={() => setdropDown3(!dropDown3)}
-              />
-            </div>
-            {dropDown3 && (
-              <Card
-                className="p-3  text-light"
-                style={{
-                  backgroundColor: 'black',
-                  border: `1px solid #33ccff`,
-                }}
-              >
-                <Card.Text>
-                  <div>
-                    <p>
-                      Anyone that invest with us is aligible to get his or her
-                      payments in due time
-                    </p>
-                  </div>
-                </Card.Text>
-              </Card>
-            )}
-          </Card.Header>
-          <Card.Header>
-            <div className="d-flex justify-content-between align-items-center">
-              <h3 className="text-light" style={{ fontStyle: 'italic' }}>
-                how long will i get paid
-              </h3>
-              <Icons.Plus
-                style={{
-                  fontSize: '1.8rem',
-                  cursor: 'pointer',
-                  color: 'white',
-                }}
-                onClick={() => setdropDown4(!dropDown4)}
-              />
-            </div>
-            {dropDown4 && (
-              <Card
-                className="p-3  text-light"
-                style={{
-                  backgroundColor: 'black',
-                  border: `1px solid #33ccff`,
-                }}
-              >
-                <Card.Text>
-                  <div>
-                    <p>
-                      it take less than 2hours after your payment has been
-                      recieve on standard investment plans{' '}
-                    </p>
-                  </div>
-                </Card.Text>
-              </Card>
-            )}
-          </Card.Header>
-          <Card.Header>
-            <div className="d-flex justify-content-between align-items-center">
-              <h3 className="text-light" style={{ fontStyle: 'italic' }}>
-                who established cryptogenus
-              </h3>
-              <Icons.Plus
-                style={{
-                  fontSize: '1.8rem',
-                  cursor: 'pointer',
-                  color: 'white',
-                }}
-                onClick={() => setdropDown5(!dropDown5)}
-              />
-            </div>
-            {dropDown5 && (
-              <Card
-                className="p-3  text-light"
-                style={{
-                  backgroundColor: 'black',
-                  border: `1px solid #33ccff`,
-                }}
-              >
-                <Card.Text>
-                  <div>
-                    <p>
-                      Cryptogenus was establish by a group of young investors
-                      based in Uk who started with a small business and started{' '}
-                      <br /> thinking on how to enbroden there business. As
-                      investors, they knew the need to invest and get additional
-                      income. They started a small investment platform through
-                      banks named <strong>ADDUP</strong> to get an addition
-                      wealth in return. The emerge of Cryptography made them
-                      expand there view and vision into online Investment and a
-                      change of name. Today Cryptogenus is one top giant in
-                      Cryptography through Blockchain technology and forex
-                      trading.
-                    </p>
-                  </div>
-                </Card.Text>
-              </Card>
-            )}
-          </Card.Header>
-          <Card.Header>
-            <div className="d-flex justify-content-between align-items-center">
-              <h3 className="text-light" style={{ fontStyle: 'italic' }}>
-                what is bitcoin
-              </h3>
-              <Icons.Plus
-                style={{
-                  fontSize: '1.8rem',
-                  cursor: 'pointer',
-                  color: 'white',
-                }}
-                onClick={() => setdropDown6(!dropDown6)}
-              />
-            </div>
-            {dropDown6 && (
-              <Card
-                className="p-3 text-light "
-                style={{
-                  backgroundColor: 'black',
-                  border: `1px solid #33ccff`,
-                }}
-              >
-                <Card.Text>
-                  <div>
-                    <p>
-                      Bitcoin is a form of digital currency which is based on a
-                      created open source code held electronically. <br />
-                      Bitcoin is a decentralized form of currency meaning that
-                      it does not belong to any government and it is not
-                      controlled by one.
-                    </p>
-                  </div>
-                </Card.Text>
-              </Card>
-            )}
-          </Card.Header>
+          </div>
         </div>
-      </Card>
-    </section>
+      </section>
+
+      <div className="faq-part-2 site-bg ptb-100">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How can I participate in the UltimateCoins sale?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    The best way to participate in our platform is to buy any of
+                    the accepted cryptocurrencies and invest prior to our
+                    investment plans
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How long will i get return after UltimateCoin investment ?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    All investments are stable and transparent.You get your
+                    earning 24hour after your investment.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  What is bitcoin?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    Bitcoin is a form of digital currency which is based on a
+                    created open source code held electronically. <br />
+                    Bitcoin is a decentralized form of currency meaning that it
+                    does not belong to any government and it is not controlled
+                    by one.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  Can I make money with Bitcoin?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    You should never expect to get rich with Bitcoin or any
+                    emerging technology. It is always important to be wary of
+                    anything that sounds too good to be true or disobeys basic
+                    economic rules.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  What happens when bitcoins are lost?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    When a user loses his wallet, it has the effect of removing
+                    money out of circulation. Lost bitcoins still remain in the
+                    block chain just like any other bitcoins. However, lost
+                    bitcoins remain dormant forever because there is no way for
+                    anybody to find the private key(s) that would allow them to
+                    be spent again. Because of the law of supply and demand,
+                    when fewer bitcoins are available, the ones that are left
+                    will be in higher demand and increase in value to
+                    compensate.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  Who controls the Bitcoin network?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    Nobody owns the Bitcoin network much like no one owns the
+                    technology behind email. Bitcoin is controlled by all
+                    Bitcoin users around the world. While developers are
+                    improving the software, they can't force a change in the
+                    Bitcoin protocol because all users are free to choose what
+                    software and version they use.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInLeft">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How are bitcoins created?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    New bitcoins are generated by a competitive and
+                    decentralized process called "mining". This process involves
+                    that individuals are rewarded by the network for their
+                    services. Bitcoin miners are processing transactions and
+                    securing the network using specialized hardware and are
+                    collecting new bitcoins in exchange.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  Why do bitcoins have value?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    Bitcoins have value because they are useful as a form of
+                    money. Bitcoin has the characteristics of money (durability,
+                    portability, fungibility, scarcity, divisibility, and
+                    recognizability) based on the properties of mathematics
+                    rather than relying on physical properties (like gold and
+                    silver) or trust in central authorities (like fiat
+                    currencies). In short, Bitcoin is backed by mathematics.{' '}
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  What determines bitcoin's price?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    The price of a bitcoin is determined by supply and demand.
+                    When demand for bitcoins increases, the price increases, and
+                    when demand falls, the price falls. There is only a limited
+                    number of bitcoins in circulation and new bitcoins are
+                    created at a predictable and decreasing rate.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  Can bitcoins become worthless?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    History is littered with currencies that failed and are no
+                    longer used, such as the German Mark during the Weimar
+                    Republic and, more recently, the Zimbabwean dollar.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How can I participate in the Ultimatecoins sale?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    Typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. remaining essentially unchanged.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How does one acquire bitcoins?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    While it may be possible to find individuals who wish to
+                    sell bitcoins in exchange for a credit card or PayPal
+                    payment, most exchanges do not allow funding via these
+                    payment methods. This is due to cases where someone buys
+                    bitcoins with PayPal, and then reverses their half of the
+                    transaction. This is commonly referred to as a chargeback.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  Is Bitcoin legal?
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    To the best of our knowledge, Bitcoin has not been made
+                    illegal by legislation in most jurisdictions. However, some
+                    jurisdictions (such as Argentina and Russia) severely
+                    restrict or ban foreign currencies. Other jurisdictions
+                    (such as Thailand) may limit the licensing of certain
+                    entities such as Bitcoin exchanges.{' '}
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How can i invest in Ultimatecoins trading.
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    Register in ultimatecoins, choose an investment plan, start
+                    earning.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

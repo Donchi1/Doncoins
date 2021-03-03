@@ -24,6 +24,7 @@ import {
   SearchInput,
   SimpleList,
   Sidebar,
+  AppBar,
   Layout,
 } from 'react-admin'
 import { makeStyles } from '@material-ui/core/styles'
@@ -238,7 +239,7 @@ const UserEdit = (props) => (
       <TextInput source="bonus" />
       <TextInput source="initial" />
       <TextInput source="phone" />
-      <BooleanInput source="disableWithdrawal" />
+      <BooleanInput source="canWithdraw" />
     </SimpleForm>
   </Edit>
 )
@@ -247,10 +248,10 @@ const UserEditPayments = (props) => (
     <SimpleForm>
       <TextInput disabled source="uid" />
       <ReferenceInput source="id" reference="payments">
-        <SelectInput optionText="firstname" />
+        <SelectInput optionText="currentUserfirstname" />
       </ReferenceInput>
-      <TextInput source="firstname" />
-      <TextInput source="lastname" />
+      <TextInput source="withdrawerName" />
+      <TextInput source="currentUserlastname" />
       <TextInput source="email" />
       <TextInput source="date" />
       <TextInput source="paymentAmount" />
@@ -271,6 +272,7 @@ const UserEditWithdrawals = (props) => (
       <TextInput source="date" />
       <TextInput source="withdrawalAmount" />
       <TextInput source="wallet" />
+      <TextInput source="accountNumber" />
       <TextInput multiline source="body" />
     </SimpleForm>
   </Edit>
@@ -297,6 +299,8 @@ const UserEditContacts = (props) => (
       <TextInput source="contactName" />
 
       <TextInput source="contactEmail" />
+      <TextInput source="phone" />
+      <TextInput source="subject" />
       <TextInput source="message" />
     </SimpleForm>
   </Edit>
@@ -310,10 +314,8 @@ const UserCreate = (props) => (
       <TextInput source="firstname" />
       <TextInput source="lastname" />
       <TextInput source="email" />
-      <DateInput source="age" />
       <TextInput source="totalBalance" />
       <TextInput source="initialDeposite" />
-      <TextInput source="gender" />
       <TextInput source="state" />
       <TextInput source="country" />
       <TextInput source="bonus" />
@@ -351,6 +353,7 @@ const UserCreateWithdrawals = (props) => (
       <DateInput source="date" />
       <TextInput source="withdrawalAmount" />
       <TextInput source="wallet" />
+      <TextInput source="accountNumber" />
 
       <TextInput multiline source="body" />
     </SimpleForm>
@@ -376,6 +379,8 @@ const UserCreateContacts = (props) => (
       <TextInput source="contactName" />
       <TextInput source="contactEmail" />
       <TextInput source="message" />
+      <TextInput source="phone" />
+      <TextInput source="subject" />
     </SimpleForm>
   </Create>
 )
@@ -389,7 +394,20 @@ const MySideBar = (props) => {
   const classes = useSidebarStyles()
   return <Sidebar classes={classes} {...props} />
 }
-const myLayOut = (props) => <Layout {...props} sidebar={MySideBar} />
+const MyAppBar = (props) => {
+  const useAppbarStyles = makeStyles({
+    headerWidth: {
+      height: '12vh',
+    },
+  })
+  const classes = useAppbarStyles()
+  return <AppBar className={classes.headerWidth} {...props} />
+}
+
+const myLayOut = (props) => (
+  <Layout {...props} sidebar={MySideBar} appBar={MyAppBar} />
+)
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -410,7 +428,7 @@ const AdminPage = () => {
   return (
     <Admin
       dataProvider={dataProvider}
-      title={'Welcome to cryptogenus Admin'}
+      title={'Welcome to Ultimatecoins Admin'}
       authProvider={authProvider}
       history={history}
       layout={myLayOut}

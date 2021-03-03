@@ -1,93 +1,341 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
-import { backgroundcolor, itemColor } from '../navigation/NavBar'
+import { Link } from 'react-router-dom'
+
+import NavBar from '../navigation/NavBar'
+import Footer from './Footer'
 
 function Teams() {
   return (
-    <section
-      className="container-fluid mt-3 mb-5 text-light  "
-      style={{ backgroundColor: backgroundcolor }}
-    >
-      <h2 className="text-center text-light pt-5 pb-3">
-        CRYTOGENUS TEAMS <span className="text-primary"> MEMBERS</span>
-      </h2>
-      <h5 className="text-center pb-3">
-        Experienced leader dedicated to joint success with great skills. We are
-        multi-talented, dynamic team in mining of all crypos. we are
-        entrepreneurs, that doesn't miss opportunities to make our company and
-        team grow. We are all committed to recruitment and our client
-        satisfaction{' '}
-      </h5>
-      <div className="row mb-3 d-flex justify-content-around">
-        <Card className=" text-light mt-3" style={{ width: '18rem' }}>
-          <Card.Img
-            src={require('../../assets/ceo.jpg')}
-            alt="Member"
-            style={{ width: '100%', height: '350px' }}
-          />
-          <Card.Body style={{ backgroundColor: itemColor }}>
-            <Card.Title>lincon Jude</Card.Title>
-            <Card.Subtitle>Ceo CryptoGenus Int</Card.Subtitle>
-            <Card.Text>United States</Card.Text>
-            <Card.Text>
-              Lincon is a real genus in crypto. He is the best of all in Crypto.
-              He advices banks on the standard way to handle crypto to have a
-              top leveled bussiness
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card className="text-light mt-3" style={{ width: '18rem' }}>
-          <Card.Img
-            src={require('../../assets/teamguy.jpg')}
-            alt="Member"
-            style={{ width: '100%', height: '350px' }}
-          />
-          <Card.Body style={{ backgroundColor: itemColor }}>
-            <Card.Title>Kelvin Leo</Card.Title>
-            <Card.Subtitle>Manager CryptoGenus Int </Card.Subtitle>
-            <Card.Text>Switzeland</Card.Text>
-            <Card.Text>
-              Kelvin a passionate and a genus in crypto. About 15 years
-              experience in the financial sector.Kevin has contributed much to
-              make crypogenus what it is tody{' '}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card className="text-light mt-3" style={{ width: '18rem' }}>
-          <Card.Img
-            src={require('../../assets/teamlady.jpg')}
-            alt="Member"
-            style={{ width: '100%', height: '350px' }}
-          />
-          <Card.Body style={{ backgroundColor: itemColor }}>
-            <Card.Title>Lois Fred</Card.Title>
-            <Card.Subtitle>Accountant</Card.Subtitle>
-            <Card.Text>Canada</Card.Text>
-            <Card.Text>
-              Loise an enthuaistic,passionate and hard working woman with a
-              10years experience in accounting.A real genus in crypto
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card className=" mt-3 text-light" style={{ width: '18rem' }}>
-          <Card.Img
-            src={require('../../assets/acmanager.JPG')}
-            alt="Member"
-            style={{ width: '100%', height: '350px' }}
-          />
-          <Card.Body style={{ backgroundColor: itemColor }}>
-            <Card.Title>Mr Fredric Anderson</Card.Title>
-            <Card.Subtitle>Account Manager Crypogenus Int</Card.Subtitle>
-            <Card.Text>United Kingdom</Card.Text>
-            <Card.Text>
-              Fredric a passionate, committed and hardworking man. A real genus
-              in cryto, working to make cryptogenus a top company in the crypto
-              market. Reaching out to our client at when due{' '}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </div>
-    </section>
+    <>
+      <NavBar />
+      <section className="sub-page-banner parallax site-bg" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="page-banner text-center">
+                <h1 className="sub-banner-title userTextColor">Team</h1>
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>Team</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="team-part site-bg bg-pattern pt-100 pb-55">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="section-heading text-center pb-65">
+                <label className="sub-heading">meet the team</label>
+                <h2 className="heading-title userTextColor">Our Team</h2>
+                <p className="heading-des">
+                  Experienced leader dedicated to joint success with great
+                  skills. We are multi-talented, dynamic team in mining of all
+                  crypos. we are entrepreneurs, standing out to make our company
+                  and team grow. We are all committed to recruitment and our
+                  client satisfaction{' '}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 pb-45 wow fadeInLeft">
+              <div className="team-box flex-align">
+                <div className="team-img">
+                  <a href="clone.html">
+                    <img
+                      src="https://themes.templatescoder.com/crypton/html/demo/1-0/01-Dark-Theme/images/team-1.jpg"
+                      alt="team member"
+                    />
+                  </a>
+                </div>
+                <div className="team-des">
+                  <a href="/teams" className="member-name nav-color">
+                    Leo Kings
+                  </a>
+                  <p className="member-des">
+                    Founder of Venus Media Ltd and Owner of leading website for
+                    affiliates in the entertainment industry TakeBucks, he is a
+                    videographer, photographer and producer with a big number of
+                    successful entrepreneurships under his name over the last 18
+                    years.
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 pb-45 wow fadeInRight">
+              <div className="team-box flex-align">
+                <div className="team-img">
+                  <Link to="/teams">
+                    <img
+                      src="https://themes.templatescoder.com/crypton/html/demo/1-0/01-Dark-Theme/images/team-2.jpg"
+                      alt="team member"
+                    />
+                  </Link>
+                </div>
+                <div className="team-des">
+                  <a href="/teams" className="member-name nav-color">
+                    Loise Kelvin
+                  </a>
+                  <p className="member-des">
+                    Loise a passionate, committed and hardworking man. A real
+                    genus in cryto, working to make Ultimatecoins a top company
+                    in the crypto market. Reaching out to our client at when due{' '}
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 pb-45 wow fadeInLeft">
+              <div className="team-box flex-align">
+                <div className="team-img">
+                  <Link to="/teams">
+                    <img
+                      src="https://themes.templatescoder.com/crypton/html/demo/1-0/01-Dark-Theme/images/team-3.jpg"
+                      alt="team member"
+                    />
+                  </Link>
+                </div>
+                <div className="team-des">
+                  <Link to="/teams" className="member-name nav-color">
+                    Elvis Anthony
+                  </Link>
+                  <p className="member-des">
+                    Elvis an enthuaistic,passionate and hard working yong man
+                    with a 10years experience in accounting.A real genus in
+                    crypto
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 pb-45 wow fadeInRight">
+              <div className="team-box flex-align">
+                <div className="team-img">
+                  <Link to="/teams">
+                    <img
+                      src="https://themes.templatescoder.com/crypton/html/demo/1-0/01-Dark-Theme/images/team-4.jpg"
+                      alt="team member"
+                    />
+                  </Link>
+                </div>
+                <div className="team-des">
+                  <Link to="/teams" className="member-name nav-color">
+                    Olivia Fred
+                  </Link>
+                  <p className="member-des">
+                    Olivia a passionate and a genus in crypto. About 15 years
+                    experience in the financial sector.Kevin has contributed
+                    much to make Ultimatecoins what it is today{' '}
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row pt-100">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="section-heading text-center pb-65">
+                <label className="sub-heading ">advisors</label>
+                <h2 className="heading-title userTextColor">
+                  Our advisors and board members
+                </h2>
+                <p className="heading-des">
+                  Meet Ultimatecoins advisers contributing greatly to success of
+                  our company
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4 pb-45 wow fadeInUp">
+              <div className="team-box advisors text-center">
+                <div className="team-img">
+                  <Link to="/teams">
+                    <img
+                      src={require('../../assets/teamguy.jpg')}
+                      alt="team member"
+                    />
+                  </Link>
+                </div>
+                <div className="team-des">
+                  <Link to="/teams" className="member-name nav-color">
+                    Moris Willium
+                  </Link>
+                  <p className="member-des">
+                    CEO stanline gas ltd and top intestor in UltimateCoins
+                    plateform
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 pb-45 wow fadeInUp">
+              <div className="team-box advisors text-center">
+                <div className="team-img">
+                  <Link to="/teams">
+                    <img
+                      src={require('../../assets/teamlady.jpg')}
+                      alt="team member"
+                    />
+                  </Link>
+                </div>
+                <div className="team-des">
+                  <Link to="/teams" className="member-name nav-color">
+                    Rose Morgen
+                  </Link>
+                  <p className="member-des ">
+                    CEO element gas ltd and top investor in UltimateCoins
+                    company
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 pb-45 wow fadeInUp">
+              <div className="team-box advisors text-center">
+                <div className="team-img">
+                  <Link to="/teams">
+                    <img
+                      src={require('../../assets/teamguy1.jpg')}
+                      alt="team member"
+                    />
+                  </Link>
+                </div>
+                <div className="team-des">
+                  <Link to="/teams" className="member-name nav-color">
+                    Kent Pierce
+                  </Link>
+                  <p className="member-des">
+                    Devoted client and top investor in UltimateCoins company
+                  </p>
+                  <ul className="pt-15">
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/teams">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </>
   )
 }
 

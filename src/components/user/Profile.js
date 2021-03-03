@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
+
 import { useFirebase } from 'react-redux-firebase'
-import 'react-datepicker/dist/react-datepicker.css'
 
 import { updateProfileAction } from '../Auths/Action'
 import { useSelector, useDispatch } from 'react-redux'
+import UserNav1 from './UserNav1'
 
 function Profile() {
   const userProfile = useSelector((state) => state.firebase.profile)
@@ -18,11 +18,10 @@ function Profile() {
     lastname: '',
     password: '',
     email: '',
-    state: '',
     phone: '',
     country: '',
     fileUpload: '',
-    repeatPassword: '',
+    oldPassword: '',
   })
 
   const handleSubmit = (e) => {
@@ -33,251 +32,320 @@ function Profile() {
       userData.lastname === '' &&
       userData.phone === '' &&
       userData.country === '' &&
-      userData.state === '' &&
       userData.fileUpload === ''
     )
       return
 
-    setuserData({
-      firstname: '',
-      lastname: '',
-      password: '',
-      state: '',
-      phone: '',
-      country: '',
-    })
-    updateProfileAction(userData, firebase, dispatch)
+    updateProfileAction(userData, firebase, dispatch, setuserData)
   }
 
   return (
-    <section
-      style={{ backgroundColor: 'rgb(7, 7, 80)', minheight: '100vh' }}
-      className="pb-4"
-    >
-      <h4 className="text-center p-4 text-light text-uppercase  ">
-        <span className="text-primary">update</span> your profile
-      </h4>
+    <>
+      <UserNav1 />
+      <section className="sub-page-banner site-bg parallax" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="page-banner text-center">
+                <h1 className="sub-banner-title userTextColor">Profile</h1>
 
-      <form onSubmit={handleSubmit} autoComplete="true">
-        <div
-          style={{
-            borderRadius: '1.5rem',
+                <ul>
+                  <li>
+                    <a href="/user">Dashboard</a>
+                  </li>
+                  <li>Profile</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="authentication-bg  pb-4">
+        <div className="home-btn d-none d-sm-block">
+          <a href="/">
+            <i className="mdi mdi-home h2 text-white"></i>
+          </a>
+        </div>
 
-            width: '80%',
-          }}
-          className="container text-light pb-4 pt-3 bg-primary "
-        >
-          <div className="form-group text-center">
-            <div className="text-center">
-              <label
-                htmlFor="img"
-                style={{ fontSize: '1.4rem', cursor: 'pointer' }}
+        <div className=" height-100vh site-bg">
+          <div>
+            <div>
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-md-8 col-lg-6 col-xl-5 pt-2 ">
+                    <div className="card mb-3">
+                      <div className="text-center">
+                        <h4 className="wow userTextColor pt-1">
+                          <h4 className="wow">
+                            Welcome {userProfile.firstname}
+                          </h4>
+                          <p className="wow">Update your profile</p>
+                        </h4>
+                      </div>
+                      <div className=" text-center">
+                        <h6 className="text-light history-info">
+                          {profile.uploadError && profile.uploadError}
+                        </h6>
+
+                        <h6 className="text-light history-info">
+                          {profile.uploadSuccess ? profile.uploadSuccess : ''}
+                        </h6>
+                      </div>
+                      <div className="card-body p-4">
+                        <div className="text-center mb-4"></div>
+                        <div className="field_form authorize_form">
+                          <div>
+                            <form onSubmit={handleSubmit}>
+                              <div
+                                className="form-group text-center col-md-12 animation"
+                                data-animation="fadeInUp"
+                                data-animation-delay="0.6s"
+                              >
+                                <div className="text-center">
+                                  <label
+                                    htmlFor="img"
+                                    style={{
+                                      fontSize: '1.4rem',
+                                      cursor: 'pointer',
+                                    }}
+                                  >
+                                    <img
+                                      src={
+                                        userProfile.image ||
+                                        require('../../assets/avater.png')
+                                      }
+                                      alt="profileimg"
+                                      width="150"
+                                      height="150"
+                                      className="rounded-circle"
+                                    />
+                                  </label>
+                                </div>
+                                <input
+                                  type="file"
+                                  name="img"
+                                  id="img"
+                                  title="Upload picture"
+                                  size="sm"
+                                  placeholder=" update profile "
+                                  style={{
+                                    border: 'none',
+                                    outline: 'none',
+                                    visibility: 'hidden',
+                                  }}
+                                  onChange={(e) =>
+                                    setuserData({
+                                      ...userData,
+                                      fileUpload: e.target.files[0],
+                                    })
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-md-12 animation">
+                                <input
+                                  type="text"
+                                  name="firstname"
+                                  id="name"
+                                  size="sm"
+                                  defaultValue={userProfile.firstname}
+                                  placeholder="Enter firstname "
+                                  className="form-control"
+                                  min="2"
+                                  autoCorrect="true"
+                                  onChange={(e) =>
+                                    setuserData({
+                                      ...userData,
+                                      firstname: e.target.value,
+                                    })
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-md-12 animation">
+                                <input
+                                  type="text"
+                                  name="lastname"
+                                  id="lastname"
+                                  size="sm"
+                                  placeholder="Enter lastname "
+                                  min="2"
+                                  className="form-control"
+                                  autoCorrect="true"
+                                  defaultValue={userProfile.lastname}
+                                  onChange={(e) =>
+                                    setuserData({
+                                      ...userData,
+                                      lastname: e.target.value,
+                                    })
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-md-12 animation">
+                                <input
+                                  type="email"
+                                  name="email"
+                                  id="email"
+                                  size="sm"
+                                  className="form-control"
+                                  placeholder="Enter Email "
+                                  defaultValue={userProfile.email}
+                                  onChange={(e) =>
+                                    setuserData({
+                                      ...userData,
+                                      email: e.target.value,
+                                    })
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-md-12 animation">
+                                <input
+                                  type="tel"
+                                  name="phone"
+                                  id="phone"
+                                  size="sm"
+                                  minLength="2"
+                                  defaultValue={userProfile.phone}
+                                  placeholder="Enter phone"
+                                  autoCorrect="true"
+                                  className="form-control"
+                                  autoComplete="true"
+                                  onChange={(e) => {
+                                    const data = e.target.value
+                                    setuserData({
+                                      ...userData,
+                                      phone: data.trim(),
+                                    })
+                                  }}
+                                />
+                              </div>
+                              <div className="form-group col-md-12 wow">
+                                <input
+                                  type="text"
+                                  name="country"
+                                  id="country"
+                                  size="sm"
+                                  minLength="2"
+                                  defaultValue={userProfile.country}
+                                  placeholder="Enter country"
+                                  autoCorrect="true"
+                                  className="form-control"
+                                  autoComplete="true"
+                                  onChange={(e) => {
+                                    const data = e.target.value
+                                    setuserData({
+                                      ...userData,
+                                      country: data.trim(),
+                                    })
+                                  }}
+                                  required
+                                />
+                              </div>
+                              <h4 className="text-center userTextColor">
+                                CHANGE PASSWORD
+                              </h4>
+                              <div className="form-group col-md-12 wow">
+                                <input
+                                  type="password"
+                                  name="password"
+                                  id="password"
+                                  size="sm"
+                                  min="2"
+                                  defaultValue="******"
+                                  className="form-control"
+                                  security="true"
+                                  autoComplete="true"
+                                  placeholder="Enter old password "
+                                  onChange={(e) => {
+                                    const data = e.target.value
+                                    setuserData({
+                                      ...userData,
+                                      oldPassword: data.trim(),
+                                    })
+                                  }}
+                                />
+                              </div>
+                              <div className="form-group col-md-12 animation">
+                                <input
+                                  type="password"
+                                  name="password"
+                                  id="password"
+                                  size="sm"
+                                  title="password must be 6 characters or more and contain at least 1 lower case letter"
+                                  min="2"
+                                  className="form-control"
+                                  defaultValue="******"
+                                  security="true"
+                                  autoComplete="true"
+                                  placeholder="Enter new password "
+                                  onChange={(e) => {
+                                    const data = e.target.value
+                                    setuserData({
+                                      ...userData,
+                                      password: data.trim(),
+                                    })
+                                  }}
+                                />
+                              </div>
+
+                              <div
+                                className="form-group col-md-12 text-center animation"
+                                data-animation="fadeInUp"
+                                data-animation-delay="0.8s"
+                              >
+                                <button
+                                  className="btn history-info"
+                                  type="submit"
+                                >
+                                  Save
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section className="mt-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-9">
+              <div className="action-content res_md_mb_20">
+                <h3 className="wow">
+                  Let Us Help You to Find a Solution That Meets Your Needs
+                </h3>
+                <p className="m-0 wow">
+                  contact our team for any more information
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-3 text-lg-right">
+              <a
+                href="/contacts"
+                className="btn btn-default btn-radius wow history-info"
               >
-                <img
-                  src={userProfile.image || require('../../assets/avater.png')}
-                  alt="profileimg"
-                  width="150"
-                  height="150"
-                  className="rounded-circle"
-                />
-              </label>
-            </div>
-            <input
-              type="file"
-              name="img"
-              id="img"
-              size="sm"
-              placeholder=" update profile "
-              style={{ border: 'none', outline: 'none', visibility: 'hidden' }}
-              onChange={(e) =>
-                setuserData({
-                  ...userData,
-                  fileUpload: e.target.files[0],
-                })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="name" style={{ fontSize: '1.4rem' }}>
-              firstName
-            </label>
-            <input
-              type="text"
-              name="firstname"
-              id="name"
-              size="sm"
-              defaultValue={userProfile.firstname}
-              placeholder="Enter firstname "
-              min="2"
-              autoCorrect="true"
-              className="formstyle form-control text-light"
-              onChange={(e) =>
-                setuserData({ ...userData, firstname: e.target.value })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="Lastname" style={{ fontSize: '1.4rem' }}>
-              Lastname
-            </label>
-            <input
-              type="text"
-              name="lastname"
-              id="lastname"
-              size="sm"
-              placeholder="Enter lastname "
-              min="2"
-              autoCorrect="true"
-              defaultValue={userProfile.lastname}
-              className="formstyle form-control text-light"
-              onChange={(e) =>
-                setuserData({ ...userData, lastname: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="phone" style={{ fontSize: '1.4rem' }}>
-              Number
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              size="sm"
-              minLength="2"
-              defaultValue={userProfile.phone}
-              placeholder="Enter phone"
-              autoCorrect="true"
-              autoComplete="true"
-              className="formstyle form-control text-light"
-              onChange={(e) => {
-                const data = e.target.value
-                setuserData({ ...userData, phone: data.trim() })
-              }}
-            />
-          </div>
-          <div className="form-group row">
-            <div className="col-6">
-              <label htmlFor="country" style={{ fontSize: '1.4rem' }}>
-                Country
-              </label>
-              <input
-                type="text"
-                name="country"
-                id="country"
-                size="sm"
-                minLength="2"
-                defaultValue={userProfile.country}
-                placeholder="Enter country"
-                autoCorrect="true"
-                autoComplete="true"
-                className="formstyle form-control text-light"
-                onChange={(e) => {
-                  const data = e.target.value
-                  setuserData({ ...userData, country: data.trim() })
-                }}
-                required
-              />
-            </div>
-            <div className="col-6">
-              <label htmlFor="state" style={{ fontSize: '1.4rem' }}>
-                State
-              </label>
-              <input
-                type="text"
-                name="state"
-                id="state"
-                size="sm"
-                minLength="2"
-                defaultValue={userProfile.state}
-                placeholder="Enter state"
-                autoCorrect="true"
-                autoComplete="true"
-                className="formstyle form-control text-light"
-                onChange={(e) => {
-                  const data = e.target.value
-                  setuserData({ ...userData, state: data.trim() })
-                }}
-                required
-              />
+                Contact Us <i className="fa fa-long-arrow-right"></i>
+              </a>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            borderRadius: '1.5rem',
-
-            width: '80%',
-          }}
-          className="container text-light pb-4 pt-3 bg-primary "
-        >
-          <h4 className="text-center text-light">CHANGE PASSWORD</h4>
-          <div className="form-group">
-            <label htmlFor="password" style={{ fontSize: '1.4rem' }}>
-              password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              size="sm"
-              title="password must be 6 characters or more and contain at least 1 lower case letter"
-              className="formstyle form-control text-light"
-              min="2"
-              defaultValue="******"
-              security="true"
-              autoComplete="true"
-              placeholder="Enter password "
-              onChange={(e) => {
-                const data = e.target.value
-                setuserData({ ...userData, password: data.trim() })
-              }}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="repeatpwd" style={{ fontSize: '1.4rem' }}>
-              Repeat Password
-            </label>
-            <input
-              type="password"
-              name="repeatpwd"
-              id="repeatpwd"
-              security="true"
-              placeholder="Repeat password "
-              size="sm"
-              min="2"
-              defaultValue="******"
-              autoComplete="true"
-              className="formstyle form-control text-light"
-              onChange={(e) => {
-                const data = e.target.value
-                setuserData({ ...userData, repeatPassword: data.trim() })
-              }}
-            />
-            {userData.repeatIncorect ? <p>passord didn't match</p> : null}
-
-            <Button
-              type="submit"
-              size="sm"
-              className="text-uppercase text-light mt-2"
-              style={{
-                width: '30%',
-                borderRadius: '1.2rem',
-                backgroundColor: 'darkblue',
-              }}
-            >
-              Save
-            </Button>
+      </section>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <p className="copyright">
+              Copyright &copy; UltimateCoins {new Date().getFullYear()} All
+              Rights Reserved.
+            </p>
           </div>
         </div>
-        <h6 className="text-danger">
-          {profile.uploadError && profile.uploadError}
-        </h6>
-
-        {profile.uploadSuccess ? alert(profile.uploadSuccess) : ''}
-      </form>
-    </section>
+      </div>
+    </>
   )
 }
 

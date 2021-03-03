@@ -1,209 +1,200 @@
 import React, { useState } from 'react'
-import { Button, Navbar } from 'react-bootstrap'
-import { Link, Redirect, useHistory } from 'react-router-dom'
-import { backgroundcolor, itemColor } from '../navigation/NavBar'
-import { isLoaded, isEmpty, useFirebase } from 'react-redux-firebase'
+
+import { useFirebase } from 'react-redux-firebase'
 import { useSelector, useDispatch } from 'react-redux'
-import { logginAction, forgetAction } from './Action'
-import { Modal } from 'react-bootstrap'
+import { logginAction } from './Action'
+
 import { Snackbar, makeStyles } from '@material-ui/core'
+import Footer from '../body/Footer'
+import NavBar from '../navigation/NavBar'
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    backgroundColor: 'red',
+  },
+}))
 
 function Login() {
   const [userData, setuserData] = useState({
     password: '',
     email: '',
+    remember: '',
     validity: false,
   })
 
-  const [openModal, setOpenModal] = useState(false)
-
-  const useStyle = makeStyles({
-    content: {
-      backgroundColor: 'red',
-    },
-    data: {
-      backgroundColor: 'orange',
-    },
-  })
-
-  const classes = useStyle()
+  const classes = useStyles()
 
   const firebase = useFirebase()
   const dispatch = useDispatch()
 
-  const { push } = useHistory()
-
-  const authState = useSelector((state) => state.firebase.auth)
-  const auth = useSelector((state) => state.firebase.auth.isEmpty)
-
   const authError = useSelector((state) => state.authReducer.loginError)
   const [openSnack, setopenSnack] = useState(false)
-  const [emailSnack, setemailSnack] = useState(false)
 
   const checkAuth = () => setopenSnack(true)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    logginAction(userData, firebase, dispatch, checkAuth)
-
-    setuserData(() => {
-      return { ...userData, email: '', password: '' }
-    })
-
-    if (isLoaded(authState) && !isEmpty(authState)) {
-      return push('/user')
-    } else {
-      return <Redirect to="/login" />
-    }
-  }
-
-  const handleReset = () => {
-    if (auth) {
-      return
-    } else {
-      setOpenModal(true)
-      forgetAction(dispatch, firebase)
-    }
+    logginAction(userData, firebase, dispatch, checkAuth, setuserData)
   }
 
   return (
-    <div style={{ backgroundColor: backgroundcolor, minHeight: '100vh' }}>
-      <div className="container py-3 ">
-        <h4 className="text-center p-4 text-light text-uppercase  ">
-          <span className="text-primary">Login</span> form
-        </h4>
-        <h3
-          className="text-light text-center mb-3 "
-          style={{ fontStyle: 'italic' }}
-        >
-          Login now to plus your coins
-        </h3>
+    <>
+      <NavBar />
+      <section className="sub-page-banner site-bg parallax" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="page-banner text-center">
+                <h1 className="sub-banner-title userTextColor">Login</h1>
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>Login</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="authentication-bg site-bg ">
+        <div className="home-btn d-none d-sm-block">
+          <a href="/">
+            <i className="mdi mdi-home h2 text-white"></i>
+          </a>
+        </div>
+
         <Snackbar
           onClose={() => setopenSnack(false)}
           open={openSnack}
           message={authError}
           autoHideDuration={9000}
           ContentProps={{ className: classes.content }}
-          anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+          className="transition"
         />
-        <form
-          className="container  pb-4 pt-3"
-          onSubmit={handleSubmit}
-          style={{ borderRadius: '1.5rem', backgroundColor: itemColor }}
-        >
-          <Snackbar
-            open={emailSnack}
-            ContentProps={{ className: classes.content }}
-            autoHideDuration={9000}
-            message="Make sure your email is verified to continue"
-            anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-            onClose={() => setemailSnack(false)}
-          />
+        <div className=" height-100vh ">
+          <div>
+            <div>
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-md-8 col-lg-6 col-xl-5 pt-2 ">
+                    <div className="card wow fadeInUp">
+                      <div className="card-body p-4">
+                        <div className="text-center mb-4">
+                          <h4 className="text-uppercase mt-0 userTextColor">
+                            Login to get started
+                          </h4>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                          <div className="form-group form-focus mb-4">
+                            <label
+                              htmlFor="emailaddress "
+                              className="text-dark text-bold"
+                            >
+                              Email address
+                            </label>
+                            <input
+                              className="form-control"
+                              type="email"
+                              id="emailaddress"
+                              required
+                              placeholder="Enter your email"
+                              value={userData.email}
+                              onChange={(e) =>
+                                setuserData({
+                                  ...userData,
+                                  email: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
 
-          <div className="text-center">
-            <img
-              src={require('../../assets/avater.png')}
-              alt="avater"
-              width="180"
-              style={{ borderRadius: '50%' }}
-            />
-          </div>
-          <div className=" form-group">
-            <label
-              htmlFor="email"
-              style={{ fontSize: '1.4rem' }}
-              className="text-light"
-            >
-              Enter your email
-            </label>
+                          <div className="form-group mb-4">
+                            <label htmlFor="password " className="text-dark ">
+                              Password
+                            </label>
+                            <input
+                              className="form-control"
+                              type="password"
+                              required
+                              security="true"
+                              id="password"
+                              placeholder="Enter your password"
+                              value={userData.password}
+                              onChange={(e) =>
+                                setuserData({
+                                  ...userData,
+                                  password: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
 
-            <input
-              type="email"
-              id="email"
-              size="sm"
-              placeholder="Email"
-              aria-describedby="inputemail"
-              required
-              className="formstyle text-light form-control"
-              onChange={(e) =>
-                setuserData({ ...userData, email: e.target.value })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label
-              htmlFor="password"
-              style={{ fontSize: '1.4rem' }}
-              className="text-light"
-            >
-              Enter your password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="password"
-              aria-describedby="inputpassword"
-              required
-              security="true"
-              minLength="6"
-              title="password must be greater than 6 characters one uppercase"
-              size="sm"
-              autoComplete="true"
-              className="formstyle text-light form-control"
-              onChange={(e) => {
-                const userpass = e.target.value
-                setuserData({ ...userData, password: userpass.trim() })
-              }}
-            />
-          </div>
+                          <div className="form-group mb-4">
+                            <div className="custom-control custom-checkbox">
+                              <input
+                                type="checkbox"
+                                className="custom-control-input"
+                                id="checkbox-signin"
+                                checked={userData.remember}
+                                onChange={() =>
+                                  setuserData({
+                                    ...userData,
+                                    remember: !userData.remember,
+                                  })
+                                }
+                              />
+                              <label
+                                className="custom-control-label text-dark"
+                                htmlFor="checkbox-signin"
+                              >
+                                Remember me
+                              </label>
+                            </div>
+                          </div>
 
-          <Button
-            type="submit"
-            className="text-light bg-primary"
-            style={{
-              width: '100%',
-              textTransform: 'uppercase',
+                          <div className="form-group mb-0 text-center">
+                            <button
+                              className="btn  history-info w-100"
+                              type="submit"
+                            >
+                              {' '}
+                              Log In{' '}
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
 
-              borderRadius: '1.2rem',
-            }}
-            size="sm"
-          >
-            LOGIN
-          </Button>
-
-          <p className="text-uppercase text-center mt-4 text-light">
-            Don't have an account? <Link to="/signup">register now</Link>
-          </p>
-          <div className="text-primary" style={{ cursor: 'pointer' }}>
-            <h5 onClick={handleReset}>Forgot Password</h5>
+                    <div className="row mt-3">
+                      <div className="col-12 text-center link-resize pb-2 pt-2 ">
+                        <p>
+                          {' '}
+                          <a href="/passReset" className="text-primary ml-1">
+                            <i className="fa fa-lock mr-1"></i>Forgot your
+                            password?
+                          </a>
+                        </p>
+                        <p>
+                          Don't have an account?{' '}
+                          <a href="/signup" className=" ml-1">
+                            <b className="text-primary">Sign Up</b>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="text-center text-light pt-3">
-            <span>©copywrite CoinPlus 2020 all right reserved</span>
-            <Navbar.Brand
-              className="text-uppercase ml-5 mt-4 font-weight-bold"
-              style={{
-                fontSize: '2rem',
-                alignItems: 'center',
-              }}
-            >
-              Crypto<span className="text-primary">genus</span>
-            </Navbar.Brand>
-          </div>
-        </form>
+        </div>
       </div>
-      <Modal show={openModal} onHide={() => setOpenModal(false)}>
-        <Modal.Header>
-          <h3 className="text-center text-danger">Password Reset Email</h3>
-        </Modal.Header>
-        <Modal.Body>
-          A password reset email was sent to you, check it out and continue
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setOpenModal(false)}>ok</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+      <Footer />
+    </>
   )
 }
 

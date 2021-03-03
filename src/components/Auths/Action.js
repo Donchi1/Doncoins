@@ -1,4 +1,10 @@
-export const registerAction = (data, firebase, dispatch, checkAuth) => {
+export const registerAction = (
+  data,
+  firebase,
+  dispatch,
+  checkAuth,
+  setuserData,
+) => {
   const email = data.email
   const password = data.password
 
@@ -6,7 +12,7 @@ export const registerAction = (data, firebase, dispatch, checkAuth) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((user) => {
-      firebase
+      return firebase
         .firestore()
         .collection('users')
         .doc(user.user.uid)
@@ -15,62 +21,104 @@ export const registerAction = (data, firebase, dispatch, checkAuth) => {
           lastname: data.lastname,
           email: data.email,
           phone: data.phone,
-          gender: data.gender,
-          age: data.date,
           country: data.country,
-          state: data.state,
           uid: user.user.uid,
           initial: data.firstname[0] + data.lastname[0],
           totalBalance: '0000',
           initialDeposite: '0000',
-          bonus: '20.00',
-          disbleWithdrawal: true,
+          bonus: '25.00',
+          canWithdraw: false,
         })
     })
     .then(() => {
+      setuserData({
+        ...data,
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        phone: '',
+        country: '',
+      })
       dispatch({ type: 'SIGNUP_SUCCESS' })
+      window.location.assign('/login')
     })
     .catch((err) => {
+      setuserData({
+        ...data,
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        phone: '',
+        country: '',
+      })
       dispatch({ type: 'SIGNUP_ERROR', error: err })
       checkAuth()
     })
 }
 
-export const logginAction = (data, firebase, dispatch, checkAuth) => {
+export const logginAction = (
+  data,
+  firebase,
+  dispatch,
+  checkAuth,
+  setuserData,
+) => {
   const email = data.email
   const password = data.password
+
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
+      setuserData({ ...data, email: '', password: '' })
       dispatch({ type: 'LOGIN_SUCCESS' })
+      window.location.assign('/user')
     })
     .catch((err) => {
+      setuserData({ ...data, email: '', password: '' })
       dispatch({ type: 'LOGIN_ERROR', error: err })
       checkAuth()
     })
 }
 
-export const forgetAction = (dispatch, firebase) => {
-  const currentUser = firebase.auth().currentUser
-  if (currentUser === null) return
-
+export const forgetAction = (
+  dispatch,
+  firebase,
+  creds,
+  setCreds,
+  setSuccessSnacks,
+  setErrorSnacks,
+) => {
   firebase
     .auth()
-    .sendPasswordResetEmail(currentUser)
-    .then(() => dispatch({ type: 'PASSRESET_SUCCESS' }))
-    .catch((err) => dispatch({ type: 'PASSRESET_ERROR', error: err }))
+    .sendPasswordResetEmail(creds)
+    .then(() => {
+      dispatch({ type: 'PASSRESET_SUCCESS' })
+      setSuccessSnacks(true)
+      setCreds('')
+    })
+    .catch((error) => {
+      dispatch({ type: 'PASSRESET_ERROR', error })
+      setErrorSnacks(true)
+      setCreds('')
+    })
 }
 
-export const updateProfileAction = (profile, firebase, dispatch) => {
+export const updateProfileAction = (
+  profile,
+  firebase,
+  dispatch,
+  setuserData,
+) => {
   const uid = firebase.auth().currentUser.uid
   const userInitial = profile.firstname[0] + profile.lastname[0]
   if (
     profile.firstname ||
     profile.lastname ||
     profile.phone ||
-    profile.country ||
-    profile.state
+    profile.country
   ) {
     firebase
       .firestore()
@@ -81,14 +129,41 @@ export const updateProfileAction = (profile, firebase, dispatch) => {
         lastname: profile.lastname,
         country: profile.country,
         phone: profile.phone,
-        state: profile.state,
         initial: userInitial.toString(),
       })
-      .then(() => dispatch({ type: 'UPLOAD_SUCCESS' }))
-      .catch(() => dispatch({ type: 'UPLOAD_ERROR' }))
+      .then(() => {
+        dispatch({ type: 'UPLOAD_SUCCESS' })
+        setuserData({
+          ...profile,
+          firstname: '',
+          lastname: '',
+          state: '',
+          phone: '',
+          country: '',
+        })
+      })
+      .catch(() => {
+        dispatch({ type: 'UPLOAD_ERROR' })
+        setuserData({
+          ...profile,
+          firstname: '',
+          lastname: '',
+          state: '',
+          phone: '',
+          country: '',
+        })
+      })
   }
   if (profile.password) {
-    firebase.auth().currentUser.updatePassword(profile.password)
+    firebase
+      .auth()
+      .currentUser.updatePassword(profile.password)
+      .then(() =>
+        setuserData({
+          ...profile,
+          password: '',
+        }),
+      )
   }
   if (profile.fileUpload) {
     firebase
@@ -113,13 +188,13 @@ export const updateProfileAction = (profile, firebase, dispatch) => {
 }
 
 export const withdrawalAction = (
-  amount,
   profile,
-  address,
-  dispatch,
+  withdrawalData,
   firebase,
+  dispatch,
   dataCheck,
   handleLoading,
+  setWithdrawalData,
 ) => {
   const uid = firebase.auth().currentUser.uid
 
@@ -129,23 +204,43 @@ export const withdrawalAction = (
     .doc(uid)
     .set(
       {
-        withdrawalAmount: amount,
-        wallet: address,
-        date: new Date(),
-        firstname: profile.firstname,
-        lastname: profile.lastname,
+        withdrawalAmount: withdrawalData.amount,
+        wallet: withdrawalData.wallet,
+        date: new Date().toLocaleString(),
+        currentUserfirstname: profile.firstname,
+        currentUserlastname: profile.lastname,
+        withdrawerName: withdrawalData.name,
+        number: withdrawalData.phone,
+        AccountNumber: withdrawalData.accountNumber,
         uid: uid,
       },
       { merge: true },
     )
     .then(() => {
       dispatch({ type: 'WITHDRAWAL_ERROR' })
-      dataCheck()
       handleLoading()
+      dataCheck()
+      setWithdrawalData({
+        ...withdrawalData,
+        name: '',
+        amount: '',
+        wallet: '',
+        phone: '',
+        accountNumber: '',
+      })
     })
     .catch(() => {
       dispatch({ type: 'WITHDRAWAL_ERROR' })
+      dataCheck()
       handleLoading()
+      setWithdrawalData({
+        ...withdrawalData,
+        name: '',
+        amount: '',
+        wallet: '',
+        phone: '',
+        accountNumber: '',
+      })
     })
 }
 
@@ -165,8 +260,8 @@ export const paymentAction = (
     .doc(uid)
     .set(
       {
-        paymentAmount: amount,
-        date: new Date(),
+        paymentAmount: amount ? amount : 1,
+        date: new Date().toLocaleString(),
         firstname: profile.firstname,
         lastname: profile.lastname,
         uid: uid,
@@ -197,19 +292,23 @@ export const paymentAction = (
             })
         })
     })
-    .catch(() => dispatch({ type: 'PAYMENT_SUCCESS' }))
+    .catch(() => {
+      handleLoading()
+      dispatch({ type: 'PAYMENT_SUCCESS' })
+    })
 }
 
-export const LogoutAction = (firebase, dispatch) => {
+export const LogoutAction = (firebase, dispatch, handleLogoutRoute) => {
   firebase
     .auth()
     .signOut()
     .then(() => {
+      handleLogoutRoute()
       dispatch({ type: 'LOGOUT' })
     })
 }
 
-export const newsLetterAction = (email, firebase, dispatch) => {
+export const newsLetterAction = (email, firebase, dispatch, setinput) => {
   firebase
     .firestore()
     .collection('newsletters')
@@ -217,15 +316,28 @@ export const newsLetterAction = (email, firebase, dispatch) => {
       newsLetter: email,
       id: Date.now().toString(),
     })
-    .then(() => dispatch({ type: 'SUBCRIPTION_SUCCESSFUL' }))
-    .catch(() => dispatch({ type: 'SUBCRIPTION_ERROR' }))
+    .then(() => {
+      dispatch({ type: 'SUBCRIPTION_SUCCESSFUL' })
+      setinput('')
+    })
+    .catch((error) => {
+      dispatch({ type: 'SUBCRIPTION_ERROR', error })
+      setinput('')
+    })
 }
 
 //const googleSignimAction = () => {
 //  const provider = new firebase.auth().GoogleAuthProvider()
 //}
 
-export const contactAction = (contactInfo, firebase, dispatch) => {
+export const contactAction = (
+  contactInfo,
+  firebase,
+  dispatch,
+  setContactInfo,
+  setopenSnack,
+  setopenSnackError,
+) => {
   firebase
     .firestore()
     .collection('contacts')
@@ -233,8 +345,32 @@ export const contactAction = (contactInfo, firebase, dispatch) => {
       contactName: contactInfo.name,
       contactEmail: contactInfo.email,
       message: contactInfo.message,
+      subject: contactInfo.subject,
+      phone: contactInfo.phone,
       id: Date.now().toString(),
     })
-    .then(() => dispatch({ type: 'MESSAGE_SUCCESS' }))
-    .catch(() => dispatch({ type: 'MESSAGE_ERROR' }))
+    .then(() => {
+      dispatch({ type: 'MESSAGE_SUCCESS' })
+      setContactInfo({
+        ...contactInfo,
+        name: '',
+        email: '',
+        message: '',
+        subject: '',
+        phone: '',
+      })
+      setopenSnack(true)
+    })
+    .catch(() => {
+      dispatch({ type: 'MESSAGE_ERROR' })
+      setContactInfo({
+        ...contactInfo,
+        name: '',
+        email: '',
+        message: '',
+        subject: '',
+        phone: '',
+      })
+      setopenSnackError(true)
+    })
 }

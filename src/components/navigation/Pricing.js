@@ -1,192 +1,228 @@
 import React from 'react'
 import Footer from '../body/Footer'
-import ReuseHero from './ReuseHero'
-import Plans from '../body/Plans'
-import { Row, Card, Button, Col, Container } from 'react-bootstrap'
-import { itemColor, backgroundcolor } from './NavBar'
-import { Link } from 'react-router-dom'
+import NavBar from '../navigation/NavBar'
 
 function Pricing() {
   return (
-    <div style={{ backgroundColor: backgroundcolor }}>
-      <ReuseHero currentClass="services" />
-      <Plans />
-      <Container fluid className=" pb-5 testimony">
-        <Card.Title
-          as="h1"
-          className="text-bold text-light text-center text-uppercase pt-4 "
-        >
-          Special plans
-        </Card.Title>
-        <Row>
-          <Col sm="10" md="6" lg="3" className="text-center mt-3 plans">
-            <Card style={{ backgroundColor: itemColor }}>
-              <Card.Header
-                className="text-bold bg-primary text-light "
-                style={{
-                  fontFamily: 'fantasy',
+    <>
+      <NavBar />
+      <section className="sub-page-banner site-bg parallax" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="page-banner text-center wow fadeInUp">
+                <h1 className="sub-banner-title">Pricing</h1>
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>Pricing Table</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                  fontSize: '1.5rem',
-                  borderRadius: '0 0 1.2rem 1.2rem',
-                }}
-              >
-                Standard plus
-              </Card.Header>
-              <Card.Text
-                className="cardtext mt-2"
-                style={{ fontSize: '1.7rem' }}
-              >
-                $1,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial deposit</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $1,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial Witdrawal</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $15,000.00
-              </Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
-                $200 Bonus fund
-              </Card.Text>
-              <Link to="/signup" className="pb-3">
-                <Button
-                  className="p-3 text-uppercase text-primary text-light"
-                  size="lg"
-                  style={{ borderRadius: '1.2rem' }}
-                >
-                  Get Started
-                </Button>
-              </Link>
-            </Card>
-          </Col>
-          <Col sm="10" md="6" lg="3" className="text-center mt-3 plans">
-            <Card style={{ backgroundColor: itemColor }}>
-              <Card.Header
-                className="text-bold bg-primary text-light "
-                style={{
-                  fontFamily: 'fantasy',
+      <section className="site-bg">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-md-12 offset-lg-2">
+              <div className=" text-center">
+                <h4 className="wow py-4">Choose Your Plan</h4>
+              </div>
+            </div>
+          </div>
+          <div className="row small_space">
+            <div className="col-lg-4 col-md-4">
+              <div className=" text-center card site-bg">
+                <div className="card-header history-info">
+                  <h3>Basic</h3>
+                  <div className="price_tage">
+                    <h3>$3000.00</h3>
+                    <span>Token plan</span>
+                  </div>
+                </div>
+                <div className="pr_content">
+                  <ul className="list_none ">
+                    <li className="py-2">Normal Deposit</li>
+                    <li className="py-2">$200</li>
+                    <li className="py-2">Initial Withdrawal</li>
+                    <li className="py-2">$3900</li>
+                    <li className="py-2">Bonus</li>
+                    <li className="py-2">$50</li>
+                  </ul>
+                </div>
+                <div className="py-4">
+                  <a
+                    href="/login"
+                    className="btn btn-default btn-radius history-info"
+                  >
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div className=" text-center card site-bg">
+                <div className=" card-header history-info">
+                  <h3>Standard</h3>
+                  <div className="price_tage">
+                    <h3>$4000.00</h3>
+                    <span>Token plan</span>
+                  </div>
+                </div>
+                <div className="pr_content">
+                  <ul className="list_none ">
+                    <li className="py-2">Normal Deposit</li>
+                    <li className="py-2">$400</li>
+                    <li className="py-2">Initial Withdrawal</li>
+                    <li className="py-2">$5900</li>
+                    <li className="py-2">Bonus</li>
+                    <li className="py-2">$100</li>
+                  </ul>
+                </div>
+                <div className="py-4">
+                  <a
+                    href="/login"
+                    className="btn btn-default btn-radius history-info"
+                  >
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div className="text-center card site-bg">
+                <div className=" card-header history-info">
+                  <h3>Untimate</h3>
+                  <div className="price_tage">
+                    <h3>$5000.00</h3>
+                    <span>Token Plan</span>
+                  </div>
+                </div>
+                <div className="pr_content">
+                  <ul className="list_none ">
+                    <li className="py-2">Normal Deposit</li>
+                    <li className="py-2">$1000</li>
+                    <li className="py-2">Initial Withdrawal</li>
+                    <li className="py-2">$7800</li>
+                    <li className="py-2">Bonus</li>
+                    <li className="py-2">$200</li>
+                  </ul>
+                </div>
+                <div className="py-4">
+                  <a
+                    href="/login"
+                    className="btn btn-default btn-radius history-info"
+                  >
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="site-bg">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-md-12 offset-lg-2">
+              <div className="title_default_dark title_border text-center">
+                <h4 className="wow fadeInLeft py-4">Special Plans</h4>
+              </div>
+            </div>
+          </div>
+          <div className="row small_space">
+            <div className="col-lg-4 col-md-4">
+              <div className="text-center card site-bg mb-2 wow fadeInLeft">
+                <div className="card-header history-info">
+                  <h3>Basic</h3>
+                  <div className="price_tage">
+                    <h3>$8000.00</h3>
+                    <span>Token plan</span>
+                  </div>
+                </div>
+                <div className="pr_content">
+                  <ul className="list_none ">
+                    <li className="py-2">Normal Deposit</li>
+                    <li className="py-2">$900</li>
+                    <li className="py-2">Initial Withdrawal</li>
+                    <li className="py-2">$9900</li>
+                    <li className="py-2">Bonus</li>
+                    <li className="py-2">$150</li>
+                  </ul>
+                </div>
+                <div className="py-4">
+                  <a href="/login" className="btn btn-default history-info">
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div className="text-center card site-bg mb-2 wow fadeInRight">
+                <div className="card-header history-info">
+                  <h3>Standard</h3>
+                  <div className="price_tage">
+                    <h3>$12000.00</h3>
+                    <span>Token plan</span>
+                  </div>
+                </div>
+                <div className="pr_content">
+                  <ul className="list_none ">
+                    <li className="py-2">Normal Deposit</li>
+                    <li className="py-2">$1000</li>
+                    <li className="py-2">Initial Withdrawal</li>
+                    <li className="py-2">$12900</li>
+                    <li className="py-2">Bonus</li>
+                    <li className="py-2">$250</li>
+                  </ul>
+                </div>
+                <div className="py-4">
+                  <a href="/login" className="btn btn-default history-info">
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div className="card text-center site-bg mb-2 wow fadeInUp">
+                <div className="card-header history-info">
+                  <h3>Untimate</h3>
+                  <div className="price_tage">
+                    <h3>$15000.00</h3>
+                    <span>Token Plan</span>
+                  </div>
+                </div>
+                <div className="pr_content">
+                  <ul className="list_none ">
+                    <li className="py-2">Normal Deposit</li>
+                    <li className="py-2">$1200</li>
+                    <li className="py-2">Initial Withdrawal</li>
+                    <li className="py-2">$12800</li>
+                    <li className="py-2">Bonus</li>
+                    <li className="py-2">$300</li>
+                  </ul>
+                </div>
+                <div className="py-4">
+                  <a
+                    href="/login"
+                    className="btn btn-default history-info btn-radius-5"
+                  >
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                  fontSize: '1.5rem',
-                  borderRadius: '0 0 1.2rem 1.2rem',
-                }}
-              >
-                Premium
-              </Card.Header>
-              <Card.Text
-                className="cardtext mt-2"
-                style={{ fontSize: '1.7rem' }}
-              >
-                $2,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial deposit</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $2,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial Witdrawal</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $20,000.00
-              </Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
-                $300 Bonus fund
-              </Card.Text>
-              <Link to="/signup" className="pb-3">
-                <Button
-                  className="p-3 text-uppercase text-primary text-light"
-                  size="lg"
-                  style={{ borderRadius: '1.2rem' }}
-                >
-                  Get Started
-                </Button>
-              </Link>
-            </Card>
-          </Col>
-          <Col sm="10" md="6" lg="3" className="text-center mt-3 plans">
-            <Card style={{ backgroundColor: itemColor }}>
-              <Card.Header
-                className="text-bold bg-primary text-light "
-                style={{
-                  fontFamily: 'fantasy',
+      {/* END SECTION PRICING TABLE- */}
 
-                  fontSize: '1.5rem',
-                  borderRadius: '0 0 1.2rem 1.2rem',
-                }}
-              >
-                Premium plus
-              </Card.Header>
-              <Card.Text
-                className="cardtext mt-2"
-                style={{ fontSize: '1.7rem' }}
-              >
-                $3,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial deposit</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $3,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial Witdrawal</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $25,000.00
-              </Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
-                $800 Bonus fund
-              </Card.Text>
-              <Link to="/signup">
-                <Button
-                  className="p-3 text-uppercase text-primary text-light"
-                  size="lg"
-                  style={{ borderRadius: '1.2rem' }}
-                >
-                  Get Started
-                </Button>
-              </Link>
-            </Card>
-          </Col>
-          <Col sm="10" md="6" lg="3" className="text-center mt-3 plans">
-            <Card style={{ backgroundColor: itemColor }}>
-              <Card.Header
-                className="text-bold bg-primary text-light "
-                style={{
-                  fontFamily: 'fantasy',
-
-                  fontSize: '1.5rem',
-                  borderRadius: '0 0 1.2rem 1.2rem',
-                }}
-              >
-                Ultimate
-              </Card.Header>
-              <Card.Text
-                className="cardtext mt-2"
-                style={{ fontSize: '1.7rem' }}
-              >
-                $5,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial deposit</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $5,000.00
-              </Card.Text>
-              <Card.Text className="cardtext">initial Witdrawal</Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.2rem' }}>
-                $35,000.00
-              </Card.Text>
-              <Card.Text className="cardtext" style={{ fontSize: '1.5rem' }}>
-                $1000 Bonus fund
-              </Card.Text>
-              <Link to="/signup" className="pb-3">
-                <Button
-                  className="p-3 text-uppercase text-light text-primary"
-                  size="lg"
-                  style={{ borderRadius: '1.2rem' }}
-                >
-                  Get Started
-                </Button>
-              </Link>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
       <Footer />
-    </div>
+    </>
   )
 }
 

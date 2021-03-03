@@ -1,22 +1,40 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
-import * as Icons from 'react-bootstrap-icons'
+
+import NavBar from './NavBar'
 
 function Empty() {
-  const { pathname } = useLocation()
   return (
-    <div className="bg-dark" style={{ minHeight: '100vh' }}>
-      <div className="text-center ">
-        <Icons.EmojiAngry size="4rem" color="red" className="mt-5" />
-      </div>
-      <div className="text-center text-light mt-2">
-        <h1>
-          Sorry your request to access
-          <span style={{ color: 'red' }}>{pathname}</span> page was not found,
-          check url
-        </h1>
-      </div>
-    </div>
+    <>
+      <NavBar />
+      <section className="sub-page-banner site-bg parallax" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="page-banner text-center wow fadeInUp">
+                <h1 className="sub-banner-title userTextColor">404</h1>
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>404</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="site-bg ptb-100">
+        <div className="row">
+          <div className="col-md-12 wow fadeInUp animated">
+            <div className="section-heading text-center">
+              <h2 className="heading-title">404</h2>
+              <p className="heading-des">Ooops! 404 - Page Not Found</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 

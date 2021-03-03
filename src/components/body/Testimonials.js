@@ -1,146 +1,155 @@
-import React from 'react'
-import { Carousel } from 'react-bootstrap'
+import React, { useState } from 'react'
+import ReactPlayer from 'react-player'
+import { Dialog, Link } from '@material-ui/core'
+import testimony1 from '../../assets/video/mantest1.mp4'
+import testimony from '../../assets/video/mantest.mp4'
+import testimony2 from '../../assets/video/womantest.mp4'
 
 function Testimonials() {
+  const [openVideo, setOpenVideo] = useState({
+    video1: false,
+    video2: false,
+    video3: false,
+  })
   return (
     <>
-      <Carousel className=" pt-4" controls={false} indicators={false}>
-        <Carousel.Item className="pt-3">
-          <section>
-            <div className=" text-center d-flex justify-content-around flex-wrap align-items-center pt-3 pb-3">
-              <div className="pb-5">
-                <img
-                  src={require('../../assets/testlady3.jpg')}
-                  alt="testimony"
-                  style={{ width: '400px', height: '400px' }}
-                  className="rounded-circle testmon"
-                />
-              </div>
-              <div style={{ width: '50%' }}>
-                <h3 className="text-light">Lois Luke</h3>
-                <h2 className="text-light">Ceo Ecoms Global Consultant </h2>
-                <h2 className="text-light">United Kingdom</h2>
-                <p className="text-center text-light pb-5">
-                  Earning with out investing is another problem of our present
-                  age cryptogenus has made me understand the need to invest.
-                  They really changed my life, i wish all will join this life
-                  changing platform .
-                </p>
-              </div>
-            </div>
-          </section>
-        </Carousel.Item>
-        <Carousel.Item className="pt-3">
-          <section>
-            <div className=" text-center d-flex flex-wrap justify-content-around align-items-center pt-3 pb-3">
-              <div className="pb-5">
-                <img
-                  src={require('../../assets/testlady1.jpg')}
-                  alt="testimony"
-                  style={{ width: '400px', height: '400px' }}
-                  className="rounded-circle testmon"
-                />
-              </div>
-              <div style={{ width: '50%' }}>
-                <h3 className="text-light"> Lucas Harry</h3>
-                <h2 className="text-light">
-                  Medical Doctor Emik Medical Center
+      <section className="blog-part site-bg ptb-100">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="section-heading text-center pb-65">
+                <label className="sub-heading">Testimomials</label>
+                <h2 className="heading-title userTextColor">
+                  Our Testimonials
                 </h2>
-                <h2 className="text-light">United Kingdom</h2>
-                <p className="text-center text-light pb-5 ">
-                  Am so please trading unreagretably with cryptogenus meeting
-                  them was never a coincidents and am so happy trading with then
+                <p className="heading-des">
+                  Ultimatecoins has really changed the life of many. Checkout
+                  our what our clients has to say
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="blog-slider owl-carousel">
+            <div className="blog-box wow fadeInUp">
+              <div className="blog-img mb-15 work-box">
+                <img
+                  src={require('../../assets/test1.jpg')}
+                  alt="Work Process"
+                />
+                <Link
+                  to="#"
+                  className="play-icon text-center"
+                  onClick={() =>
+                    setOpenVideo({ ...openVideo, video1: !openVideo.video1 })
+                  }
+                >
+                  <span>
+                    <i className="fa fa-play" aria-hidden="true"></i>
+                  </span>
+                </Link>
+              </div>
+              <Dialog
+                open={openVideo.video1}
+                onClose={() => setOpenVideo({ ...openVideo, video1: false })}
+                maxWidth="xl"
+              >
+                <ReactPlayer
+                  controls
+                  playing
+                  url={testimony}
+                  style={{ border: 'none', outline: 'none' }}
+                />
+              </Dialog>
+              <div className="blog-des-box">
+                <p className="blog-date">
+                  Am so please trading unreagretably with Ultimatecoins meeting
+                  them was never a coincident and am so happy trading with then
                   because they have increased my fund and changed my life
-                  totaly.
+                  totally.
                 </p>
               </div>
             </div>
-          </section>
-        </Carousel.Item>
-        <Carousel.Item className="pt-3">
-          <section>
-            <div>
-              <div className=" text-center d-flex flex-wrap justify-content-around align-items-center pt-3 pb-3">
-                <div className="pb-5 ">
-                  <img
-                    src={require('../../assets/testlady.jpg')}
-                    alt="testimony"
-                    style={{ width: '400px', height: '400px' }}
-                    className="rounded-circle testmon"
-                  />
-                </div>
-                <div style={{ width: '50%' }}>
-                  <h3 className="text-light">Sophi Elvis</h3>
-                  <h2
-                    className="text-light
-                  "
-                  >
-                    Manager juilice ceramics{' '}
-                  </h2>
-                  <h2 className="text-light">United States</h2>
-                  <p className="text-center text-light pb-5">
-                    Getting in touch with this company made me understand the
-                    meaning of team work.I invested very little but there team
-                    guided to make the best out of this platform, and am so
-                    happy to be an investor here.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </Carousel.Item>
-        <Carousel.Item className="pt-3">
-          <section>
-            <div className=" text-center d-flex flex-wrap justify-content-around align-items-center pt-3 pb-3">
-              <div className="pb-5">
+            <div className="blog-box wow fadeInUp">
+              <div className="blog-img mb-15 work-box">
                 <img
-                  src={require('../../assets/testguy.jpg')}
-                  alt="testimony"
-                  style={{ width: '400px', height: '400px' }}
-                  className="rounded-circle testmon"
+                  src={require('../../assets/test2.jpg')}
+                  alt="Work Process"
                 />
+                <Link
+                  to="#"
+                  className="play-icon text-center"
+                  onClick={() =>
+                    setOpenVideo({ ...openVideo, video2: !openVideo.video2 })
+                  }
+                >
+                  <span>
+                    <i className="fa fa-play" aria-hidden="true"></i>
+                  </span>
+                </Link>
               </div>
-              <div style={{ width: '50%' }}>
-                <h3 className="text-light">Leo kelvin</h3>
-                <h2 className="text-light">Ceo Dolfine Gas Ltd</h2>
-                <h2 className="text-light">Australia</h2>
-                <p className="text-center text-light pb-5 ">
-                  Am so please trading unreagretably with cryptogenus meeting
-                  them is never a coincients and am so happy trading with then
-                  am so please trading unreagretably with coinplus meeting them
-                  is never a coincients and am so happy trading with thenm
+              <Dialog
+                open={openVideo.video2}
+                onClose={() => setOpenVideo({ ...openVideo, video2: false })}
+                maxWidth="xl"
+              >
+                <ReactPlayer
+                  controls
+                  playing
+                  url={testimony2}
+                  style={{ border: 'none', outline: 'none' }}
+                />
+              </Dialog>
+              <div className="blog-des-box">
+                <p className="blog-date">
+                  Am so please trading unreagretably with Ultimatecoins meeting
+                  them was never a coincident and am so happy trading with then
+                  because they have increased my fund and changed my life
+                  totally.
                 </p>
               </div>
             </div>
-          </section>
-        </Carousel.Item>
-        <Carousel.Item className="pt-3">
-          <section>
-            <div className=" text-center d-flex flex-wrap justify-content-around align-items-center pt-3 pb-3">
-              <div className="pb-5">
+            <div className="blog-box wow fadeInRight">
+              <div className="blog-img mb-15 work-box">
                 <img
-                  src={require('../../assets/testguy1.jpg')}
-                  alt="testimony"
-                  style={{ width: '400px', height: '400px' }}
-                  className="rounded-circle testmon"
+                  src={require('../../assets/test3.jpg')}
+                  alt="Work Process"
                 />
+                <Link
+                  to="#"
+                  className="play-icon text-center"
+                  onClick={() =>
+                    setOpenVideo({ ...openVideo, video3: !openVideo.video3 })
+                  }
+                >
+                  <span>
+                    <i className="fa fa-play" aria-hidden="true"></i>
+                  </span>
+                </Link>
               </div>
-              <div style={{ width: '50%' }}>
-                <h3 className="text-light">Don Jack</h3>
-                <h2 className="text-light">Manager donland estates </h2>
-                <h2 className="text-light">United States</h2>
-                <p className="text-center text-light pb-5 ">
-                  In the last few year i don"t know what investment means till i
-                  got intouch with this company. With the the help of there team
-                  members i was able to learn all that helped me during my
-                  investment to dificulty. Thanks to cryptogenus that has really
-                  changed my life.
+              <Dialog
+                open={openVideo.video3}
+                onClose={() => setOpenVideo({ ...openVideo, video3: false })}
+                maxWidth="xl"
+              >
+                <ReactPlayer
+                  controls
+                  playing
+                  url={testimony1}
+                  style={{ border: 'none', outline: 'none' }}
+                />
+              </Dialog>
+              <div className="blog-des-box">
+                <p className="blog-date">
+                  Getting in touch with this company made me understand the
+                  meaning of team work.I invested very little but there team
+                  guided me to make the best out of this platform, and am so
+                  happy to be an investor here.
                 </p>
               </div>
             </div>
-          </section>
-        </Carousel.Item>
-      </Carousel>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

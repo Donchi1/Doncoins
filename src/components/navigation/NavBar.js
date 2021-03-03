@@ -1,80 +1,91 @@
 import React from 'react'
-
-import Button from 'react-bootstrap/Button'
-import { Navbar, Nav } from 'react-bootstrap'
-import { useLocation, NavLink } from 'react-router-dom'
-
-export const bg = 'linear-gradient(to top right, #33ccff 11%, #ff99cc 100%)'
-export const backgroundcolor = 'rgb(117, 40, 117)'
-export const itemColor = 'rgba(97, 7, 100, 0.986)'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function NavBar() {
-  const { pathname } = useLocation()
-
+  const authState = useSelector((state) => state.firebase)
+  console.log(authState)
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      style={{ backgroundColor: itemColor }}
-      variant="dark"
-      sticky="top"
-      className={
-        pathname === '/admin' || pathname === '/login' || pathname === '/signup'
-          ? 'dontshow'
-          : 'shownow'
-      }
+    <header
+      className="transition  header-align wow fadeInUp"
+      style={{ position: 'sticky' }}
     >
-      <Navbar.Brand
-        className="text-uppercase font-weight-bold mynav-logo ml-4"
-        style={{
-          fontSize: '2rem',
-          alignItems: 'center',
-        }}
-        href="/"
+      <div
+        className="container-fluid darkblue py-2  "
+        style={{ position: 'absolute', top: 0 }}
       >
-        Crypto
-        <span className="text-primary">genus</span>
-      </Navbar.Brand>
-      <Navbar.Toggle
-        aria-controls="responsive-navbar-nav"
-        className="dropnav bg-primary"
-      />
-      <Navbar.Collapse id="responsive-navbar-nav" className="mynav text-white">
-        <Nav
-          className="mr-auto align-items-center text-white 
-       "
-        >
-          <NavLink to="/" className="link mr-3">
-            Home
-          </NavLink>
-          <NavLink to="/about" className="link mr-3">
-            About
-          </NavLink>
-
-          <NavLink to="/pricing" className="link mr-3">
-            Pricing
-          </NavLink>
-
-          <NavLink to="/contacts" className="link mr-3">
-            Contacts
-          </NavLink>
-          <NavLink to="/login" className="link mr-3">
-            <div className="text-center">
-              <Button
-                color="white"
-                className="text-light bg-primary"
-                size="lg"
-                style={{
-                  textTransform: 'uppercase',
-                }}
-              >
-                Login
-              </Button>
+        <div className="row flex-align">
+          <div className="col-lg-4 col-md-3 col-8">
+            <div className="logo">
+              <a href="/">
+                <h3 className="sub-heading  little-add ml-3">
+                  <span style={{ fontSize: '3rem' }}>U</span>
+                  ltimateCoins
+                </h3>
+              </a>
             </div>
-          </NavLink>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+          </div>
+          <div className="col-lg-8 col-md-9 col-4 text-right">
+            <div className="menu-toggle">
+              <span></span>
+            </div>
+            <div className="menu">
+              <ul className="d-inline-block">
+                <li>
+                  <a href="/" className="nav-color">
+                    Home
+                  </a>
+                </li>
+                <li className="mega-menu">
+                  <span className="opener plus"></span>
+                  <Link to="#" className="nav-color">
+                    Pages
+                  </Link>
+                  <ul className="transition">
+                    <li>
+                      <a href="/about" className="userTextColor">
+                        About
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/pricing" className="userTextColor">
+                        Pricing
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/contacts" className="userTextColor">
+                        Contact
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/faq" className="userTextColor">
+                        FAQ
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/features" className="nav-color">
+                    Feature
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/teams" className="nav-color">
+                    Team
+                  </a>
+                </li>
+              </ul>
+              <div className="signin d-inline-block">
+                <a href="/login" className="btn history-info">
+                  Sign in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   )
 }
 

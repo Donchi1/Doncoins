@@ -6,9 +6,7 @@ import { Provider } from 'react-redux'
 import firebase from './database/firebasedb'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
-import BeforeComponents from './components/Auths/BeforeComponents'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './components/CSS/App.css'
 
 import App from './App'
@@ -23,14 +21,12 @@ ReactDOM.render(
       createFirestoreInstance={createFirestoreInstance}
       dispatch={store.dispatch}
       config={{
-        useFirestoreForProfile: 'true',
+        useFirestoreForProfile: true,
         userProfile: 'users',
-        attachAuthIsReady: 'true',
+        attachAuthIsReady: true,
       }}
     >
-      <BeforeComponents>
-        <App />
-      </BeforeComponents>
+      <App />
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root'),

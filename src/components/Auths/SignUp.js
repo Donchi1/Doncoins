@@ -1,288 +1,285 @@
 import React, { useState } from 'react'
-import MobileInput from './MobileInput'
-import { Button } from 'react-bootstrap'
 
-import Datepicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import { Link, Redirect, useHistory } from 'react-router-dom'
-import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
-import { backgroundcolor, itemColor } from '../navigation/NavBar'
+//import { RegionDropdown, CountryDropdown } from 'react-country-region-selector'
+
+import { useFirebase } from 'react-redux-firebase'
+
 import { registerAction } from './Action'
 import { useDispatch, useSelector } from 'react-redux'
 import { Snackbar, makeStyles } from '@material-ui/core'
 
+import Footer from '../body/Footer'
+import NavBar from '../navigation/NavBar'
+import { Link } from 'react-router-dom'
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    backgroundColor: 'red',
+  },
+}))
+
 function SignUp() {
+  const classes = useStyles()
   const [userData, setuserData] = useState({
     firstname: '',
     lastname: '',
     password: '',
-    gender: '',
     email: '',
-    state: '',
     phone: '',
     country: '',
-    date: new Date(),
-    validaty: false,
   })
   const [openSnack, setopenSnack] = useState(false)
-
-  const useStyles = makeStyles({
-    content: {
-      backgroundColor: 'red',
-    },
-  })
-
-  const classes = useStyles()
-
   const firebase = useFirebase()
-  const { push } = useHistory()
+
   const dispatch = useDispatch()
-  const authState = useSelector((state) => state.firebase.auth)
+
   const authError = useSelector((state) => state.authReducer.signupError)
+  const [numberError, setNumberError] = useState(false)
+  const [numberErrorMessage, setNumberErrorMessage] = useState('')
 
   const checkAuth = () => setopenSnack(true)
 
+  const validity = () => {
+    setNumberErrorMessage('Invalid number')
+    setNumberError(true)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    registerAction(userData, firebase, dispatch, checkAuth)
-    setuserData({
-      ...userData,
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: '',
-      date: new Date(),
-      country: '',
-      phone: '',
-      state: '',
-      gender: '',
-    })
-
-    if (isLoaded(authState) && !isEmpty(authState)) {
-      return push('/login')
-    } else {
-      return <Redirect to="/signup" />
+    if (userData.phone.match(/12345/) || userData.phone.match(/1234/)) {
+      return validity()
     }
+
+    registerAction(userData, firebase, dispatch, checkAuth, setuserData)
   }
 
   return (
-    <section
-      style={{ backgroundColor: backgroundcolor, minheight: '100vh' }}
-      className="pb-4"
-    >
-      <h4 className="text-center p-4 text-light text-uppercase  ">
-        <span className="text-primary">Register</span> for membership
-      </h4>
-      <h3
-        className="text-light text-center mb-3 "
-        style={{ fontStyle: 'italic' }}
-      >
-        Enjoy unlimited membership services
-      </h3>
-      <Snackbar
-        onClose={() => setopenSnack(false)}
-        open={openSnack}
-        message={authError}
-        autoHideDuration={9000}
-        ContentProps={{ className: classes.content }}
-        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-      ></Snackbar>
-      <form
-        className="container text-light pb-4 pt-3"
-        onSubmit={handleSubmit}
-        autoComplete="true"
-        style={{
-          borderRadius: '1.5rem',
-          backgroundColor: itemColor,
-          width: '80%',
-        }}
-      >
-        <div className="form-group">
-          <label htmlFor="name" style={{ fontSize: '1.4rem' }}>
-            firstName
-          </label>
-          <input
-            type="text"
-            name="firstname"
-            id="name"
-            size="sm"
-            placeholder="Enter firstname "
-            min="2"
-            autoCorrect="true"
-            className="formstyle text-light form-control"
-            required
-            onChange={(e) =>
-              setuserData({ ...userData, firstname: e.target.value })
-            }
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="Lastname" style={{ fontSize: '1.4rem' }}>
-            Lastname
-          </label>
-          <input
-            type="text"
-            name="lastname"
-            id="lastname"
-            size="sm"
-            placeholder="Enter lastname "
-            min="2"
-            autoCorrect="true"
-            className="formstyle text-light form-control"
-            onChange={(e) =>
-              setuserData({ ...userData, lastname: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone" style={{ fontSize: '1.4rem' }}>
-            Number
-          </label>
-          <MobileInput user={userData} changeUser={setuserData} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email" style={{ fontSize: '1.4rem' }}>
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            size="sm"
-            min="2"
-            placeholder="Enter email "
-            autoCorrect="true"
-            className="formstyle text-light form-control"
-            onChange={(e) => {
-              const data = e.target.value
-              setuserData({ ...userData, email: data.trim() })
-            }}
-            required
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            We will never share your email with anyone
-          </small>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password" style={{ fontSize: '1.4rem' }}>
-            password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            size="sm"
-            title="password must be 6 characters or more and contain at least 1 lower case letter"
-            className="formstyle text-light form-control"
-            min="2"
-            autoComplete="true"
-            security="true"
-            placeholder="Enter password "
-            onChange={(e) => {
-              const data = e.target.value
-              setuserData({ ...userData, password: data.trim() })
-            }}
-            required
-          />
-        </div>
-
-        <h5>Gender</h5>
-        <div className="form-group">
-          <input
-            type="radio"
-            id="male"
-            className="formstyle text-light "
-            checked={userData.gender === 'male' ? true : false}
-            onChange={(e) => setuserData({ ...userData, gender: 'male' })}
-            required
-          />
-          <label htmlFor="male" className="form-check-label ml-2">
-            Male
-          </label>
-        </div>
-        <div className="form-group">
-          <input
-            type="radio"
-            id="female"
-            checked={userData.gender === 'female' ? true : false}
-            className="formstyle text-light"
-            value={userData.gender}
-            onChange={() => setuserData({ ...userData, gender: 'female' })}
-            required
-          />
-          <label htmlFor="female" className="form-check-label ml-2">
-            Female
-          </label>
-        </div>
-
-        <div>
-          <h5>Date of birth</h5>
-          <Datepicker
-            selected={userData.date}
-            onChange={(date) => setuserData({ ...userData, date: date })}
-            adjustDateOnChange
-            className="formstyle text-light"
-          />
-        </div>
-
-        <div className="row">
-          <div className="col-6 form-group">
-            <label htmlFor="country" style={{ fontSize: '1.4rem' }}>
-              Country
-            </label>
-            <input
-              type="text"
-              id="country"
-              name="country"
-              autoCorrect="true"
-              size="sm"
-              className="formstyle text-light form-control"
-              required
-              placeholder="Enter country "
-              onChange={(e) => {
-                const data = e.target.value
-                setuserData({ ...userData, country: data.trim() })
-              }}
-            />
-          </div>
-          <div className="col-6 form-group">
-            <label htmlFor="state" style={{ fontSize: '1.4rem' }}>
-              State
-            </label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              autoCorrect="true"
-              size="sm"
-              className="formstyle text-light form-control"
-              required
-              placeholder="Enter State "
-              onChange={(e) => {
-                const data = e.target.value
-                setuserData({ ...userData, state: data.trim() })
-              }}
-            />
+    <>
+      <NavBar />
+      <section className="sub-page-banner site-bg parallax" id="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 wow fadeInUp">
+              <div className="page-banner text-center">
+                <h1 className="sub-banner-title userTextColor">Register</h1>
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>Register</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <Button
-          type="submit"
-          size="sm"
-          className="text-uppercase text-light bg-primary"
-          style={{ width: '30%', borderRadius: '1.2rem' }}
-        >
-          Submit
-        </Button>
-        <p className="text-uppercase text-center mt-4 text-light">
-          Already have an account?{' '}
-          <Link to="/login" className="text-primary">
-            Login now
-          </Link>
-        </p>
-      </form>
-    </section>
+      </section>
+      <div className="account-pages site-bg height-100vh">
+        <div className="home-center">
+          <div className="home-desc-center">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-md-8 col-lg-6 col-xl-5 ">
+                  <Snackbar
+                    onClose={() => setopenSnack(false)}
+                    open={openSnack}
+                    message={authError}
+                    autoHideDuration={9000}
+                    ContentProps={{ className: classes.content }}
+                    anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+                    className="transition"
+                  ></Snackbar>
+                  <Snackbar
+                    onClose={() => setNumberError(false)}
+                    open={numberError}
+                    message={numberErrorMessage}
+                    autoHideDuration={9000}
+                    ContentProps={{ className: classes.content }}
+                    anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+                    className="transition"
+                  ></Snackbar>
+                  <div className="card wow fadeInUp">
+                    <div className="card-body p-4 ">
+                      <div className="text-center mb-4">
+                        <h4 className="text-uppercase mt-0 userTextColor">
+                          Register for membership
+                        </h4>
+                      </div>
+
+                      <form className="login-form" onSubmit={handleSubmit}>
+                        <div className="form-group mb-4">
+                          <label htmlFor="firstname " className="text-dark">
+                            First Name
+                          </label>
+                          <input
+                            type="text"
+                            name="firstname"
+                            id="firstname"
+                            className="form-control "
+                            autoCorrect="true"
+                            required
+                            placeholder="Enter your firstname"
+                            onChange={(e) =>
+                              setuserData({
+                                ...userData,
+                                firstname: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                        <div className="form-group mb-4">
+                          <label htmlFor="lastname" className="text-dark">
+                            Last Name
+                          </label>
+                          <input
+                            type="text"
+                            name="lastname"
+                            id="lastname"
+                            placeholder="Enter your lastname"
+                            className="form-control"
+                            required
+                            autoCorrect="true"
+                            onChange={(e) =>
+                              setuserData({
+                                ...userData,
+                                lastname: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+
+                        <div className="form-group mb-4">
+                          <label htmlFor="emailaddress" className="text-dark">
+                            Email address
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            id="emailaddress"
+                            className="form-control"
+                            placeholder="Enter your email"
+                            autoCorrect="true"
+                            required
+                            onChange={(e) =>
+                              setuserData({
+                                ...userData,
+                                email: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+
+                        <div className="form-group mb-4">
+                          <label htmlFor="password" className="text-dark">
+                            Password
+                          </label>
+                          <input
+                            name="password"
+                            autoCorrect="true"
+                            className="form-control"
+                            type="password"
+                            required
+                            security="true"
+                            id="password"
+                            placeholder="Enter your password"
+                            onChange={(e) =>
+                              setuserData({
+                                ...userData,
+                                password: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                        <div className="form-group mb-4">
+                          <label htmlFor="country" className="text-dark">
+                            Country
+                          </label>
+                          <input
+                            name="country"
+                            autoCorrect="true"
+                            className="form-control"
+                            type="text"
+                            id="country"
+                            placeholder="Enter your country"
+                            required
+                            onChange={(e) =>
+                              setuserData({
+                                ...userData,
+                                country: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                        <div className="form-group mb-4">
+                          <label htmlFor="phone" className="text-dark">
+                            Number
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            id="phone"
+                            className="form-control"
+                            autoCorrect="true"
+                            placeholder="Enter your number"
+                            required
+                            onChange={(e) =>
+                              setuserData({
+                                ...userData,
+                                phone: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+
+                        <div className="form-group mb-4">
+                          <div className="custom-control custom-checkbox">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="checkbox-signin"
+                            />
+                            <label
+                              className="custom-control-label text-dark"
+                              htmlFor="checkbox-signin"
+                            >
+                              I accept{' '}
+                              <Link to="/signup" className="text-primary">
+                                Terms and Conditions
+                              </Link>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="form-group mb-0 text-center">
+                          <button
+                            className="btn w-100 history-info"
+                            type="submit"
+                          >
+                            {' '}
+                            Sign Up{' '}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div className="row mt-3">
+                    <div className="col-12 text-center link-resize">
+                      <p className="text-white">
+                        Already have account?{' '}
+                        <a href="/login" className="text-white ml-1">
+                          <b>Sign In</b>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

@@ -2,7 +2,8 @@ const initialAuth = {
   paymentError: null,
   paymentSuccess: '',
   withdrawalError: null,
-
+  paymentAmount: '',
+  qrCode: false,
   subcriptionSuccess: '',
   subcriptionError: null,
   uploadSuccess: '',
@@ -18,7 +19,7 @@ export const projectReducer = (state = initialAuth, action) => {
         ...state,
 
         paymentSuccess:
-          'Wait for less than 2hours while we review your payment prove',
+          'Wait for less than 24hours while we review your payment prove',
       }
 
     case 'WITHDRAWAL_ERROR':
@@ -27,18 +28,23 @@ export const projectReducer = (state = initialAuth, action) => {
         withdrawalError:
           'Unsuccessful withdrawal check your data or contact customer service ',
       }
+
     case 'SUBCRIPTION_SUCCESS':
       return {
         ...state,
-
-        subcriptionSucces:
+        subcriptionSuccess:
           'Subcription successfull. Thanks for subcribing to our newsletter',
       }
     case 'SUBCRIPTION_ERROR':
       return {
         ...state,
-
-        subcriptionError: 'Subcription unsuccessful',
+        subcriptionError: action.error.message,
+      }
+    case 'PAYMENT_SET':
+      return {
+        ...state,
+        paymentAmountData: action.amount,
+        qrCode: action.qrcode,
       }
     case 'UPLOAD_SUCCESS':
       return {

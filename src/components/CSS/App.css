@@ -1,102 +1,48 @@
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  width: 100%;
 }
 
-.dropnav {
-  outline: none !important;
-  color: rgb(117, 40, 117);
+.site-bg {
+  background-color: rgba(0, 0, 0, 0.6) !important;
 }
-.gradcolor {
-  background: linear-gradient(to top right, #3bccff 11%, #ff99cc 100%);
+.site-bg2 {
+  background-color: rgb(26, 19, 31) !important;
+}
+.userTextColor {
+  background: linear-gradient(to right, #f87d18, purple) !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.history-info {
+  background: linear-gradient(to right, #f87d18, purple) !important;
+}
+
+.nav-color {
+  background-color: #f87d18;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.link {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #fff !important;
-  text-decoration: none !important;
+.little-add {
+  color: #f87d18;
 }
 
-.plans:hover {
-  transform: scale(1.03);
-  transition: all 0.5s linear;
-  z-index: 10;
-}
 .backtop {
   position: fixed;
-  right: 0.7rem;
-  left: 0;
-  bottom: 2rem;
+  right: 2rem;
+  height: 4%;
+  bottom: 5rem;
   z-index: 20;
+  border-radius: 5rem;
+  width: 3%;
+  text-align: center;
 }
-.subBtn {
-  outline: none !important;
-  border: none !important;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.subInput {
-  border-right: hidden !important;
-  border-left: hidden !important;
-  background-color: black !important;
-  border-top: hidden !important;
-  outline: none;
-  font-size: 1.2rem;
-}
+
 .dontshow {
   display: none !important;
 }
-.shownow {
-  display: flex !important;
-}
-.about {
-  background: url('../../assets/bgcoin3.png') center / cover no-repeat;
-  height: 60vh;
-}
-.services {
-  background: url('../../assets/bgcoin.png') center / cover no-repeat;
-  height: 60vh;
-}
 
-.hero {
-  background: url('../../assets/images\ \(1\).jpeg') center / cover no-repeat;
-  height: 90vh;
-}
-
-.cardtext {
-  display: inline !important;
-  font-size: 1.7rem;
-  background-color: black;
-  color: white;
-  border: 1px solid #33ccff;
-  border-radius: 1.2rem;
-}
-.formstyle {
-  border: 1px solid #33ccff !important;
-  border-radius: 1.2rem !important;
-  background-color: black !important;
-}
-.userlink {
-  font-size: 1.5rem !important;
-  color: white !important;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  text-decoration: none !important;
-}
-.userlink :hover {
-  color: 'darkblue' !important;
-}
 .loading {
   width: 100%;
   height: 100vh;
@@ -107,7 +53,6 @@ body {
   z-index: 10000;
   position: fixed;
   background-color: black;
-
   opacity: 0.7;
   top: 0px;
   bottom: 0px;
@@ -115,33 +60,27 @@ body {
   left: 0;
   opacity: 0.8;
 }
-
-@media only screen and (min-width: 1000px) {
-  .mynav {
-    position: absolute;
-    right: 7%;
-  }
+.toggle-menu {
 }
+.user-anchor {
+  font-size: 1.1rem !important;
+  text-transform: uppercase !important;
+}
+.toggle-span {
+  display: none !important;
+}
+
 @media only screen and (max-width: 1000px) {
-  .userlink {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    align-self: flex-start !important;
+  .header-align {
+    min-width: 100%;
   }
-  .useravata {
-    padding-top: 0.3rem;
+  .backtop {
+    width: 10%;
+    height: 5%;
+    right: 2.5rem;
   }
-  .link {
-    margin-top: 1.5rem;
-  }
-  .mynav-logo {
-    margin-left: 0.8rem !important;
-  }
-  .testmon {
-    width: 350px !important;
-    height: 350px !important;
-  }
-  .profilenav {
-    margin-left: 0.6rem !important;
+
+  .toggle-span {
+    display: inline !important;
   }
 }
