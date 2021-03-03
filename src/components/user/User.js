@@ -4,12 +4,9 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import { Card } from 'react-bootstrap'
 import * as Icons from 'react-bootstrap-icons'
+import { useSelector } from 'react-redux'
 
 import Chart from './Chart'
-
-import { useSelector } from 'react-redux'
-import UserNav from './UserNav'
-
 import MarketPrice from './MarketPrice'
 import UserNav1 from './UserNav1'
 

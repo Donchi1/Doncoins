@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { LogoutAction } from '../Auths/Action'
 import { useFirebase, useFirestoreConnect } from 'react-redux-firebase'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function UserNav1() {
   const firebase = useFirebase()
   const dispatch = useDispatch()
 
   const userProfile = useSelector((state) => state.firebase.profile)
-  const [openToggle, setOpenToggle] = useState(false)
 
   useFirestoreConnect([
     {
@@ -53,7 +53,7 @@ function UserNav1() {
               </span>
             </a>
             <button
-              className="navbar-toggler animation"
+              className="navbar-toggler animation  history-info"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -61,7 +61,7 @@ function UserNav1() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="fa fa-bars"></span>
+              <span className="fa fa-bars text-light"></span>
             </button>
             <div
               className="collapse navbar-collapse "
@@ -91,16 +91,17 @@ function UserNav1() {
                   </a>
                 </li>
               </ul>
-              <ul className="navbar-nav nav_btn align-items-center">
-                <li className="mr-4 ">
-                  <a
+              <ul className="navbar-nav  align-items-center">
+                <li className=" nav-link">
+                  <Link
+                    to="#"
                     className="btn history-info "
                     onClick={() => window.location.assign('/profile')}
                   >
                     {userProfile.initial}
-                  </a>
+                  </Link>
                 </li>
-                <li className="ml-4">
+                <li className=" nav-link">
                   <button className="btn history-info " onClick={handleLogout}>
                     Logout
                   </button>
