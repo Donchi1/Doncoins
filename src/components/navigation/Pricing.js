@@ -11,7 +11,7 @@ function Pricing() {
           <div className="row">
             <div className="col-md-12">
               <div className="page-banner text-center wow fadeInUp">
-                <h1 className="sub-banner-title">Pricing</h1>
+                <h1 className="sub-banner-title userTextColor">Pricing</h1>
                 <ul>
                   <li>
                     <a href="/">Home</a>

@@ -239,7 +239,7 @@ const UserEdit = (props) => (
       <TextInput source="bonus" />
       <TextInput source="initial" />
       <TextInput source="phone" />
-      <BooleanInput source="canWithdraw" />
+      <BooleanInput source="disableWithdrawal" />
     </SimpleForm>
   </Edit>
 )

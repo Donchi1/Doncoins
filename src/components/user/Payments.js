@@ -150,7 +150,7 @@ function Payments() {
                         <div className="card mb-3">
                           <div className="text-center">
                             <h4 className="wow userTextColor py-1">
-                              choose your investment method
+                              Choose your investment method
                             </h4>
                           </div>
                           <div className="card-body p-4">

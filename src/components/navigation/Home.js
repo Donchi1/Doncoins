@@ -1,13 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../body/Footer'
 import { Link } from 'react-router-dom'
 import NavBar from './NavBar'
 import Testimonials from '../body/Testimonials'
-import { isEmpty, isLoaded } from 'react-redux-firebase'
-import { useSelector } from 'react-redux'
+import { isEmpty, isLoaded, useFirebase } from 'react-redux-firebase'
+import { contactAction } from '../Auths/Action'
+import { useDispatch, useSelector } from 'react-redux'
+import { Snackbar } from '@material-ui/core'
 
 function Home() {
   const authState = useSelector((state) => state.firebase.auth)
+  const [userData, setuserData] = useState({
+    name: '',
+    email: '',
+    message: '',
+    subject: '',
+    phone: '',
+  })
+  const contactSuccess = useSelector(
+    (state) => state.projectReducer.contactMessageSuccess,
+  )
+  const contactError = useSelector(
+    (state) => state.projectReducer.contactMessageError,
+  )
+  const [openSnack, setopenSnack] = useState(false)
+  const [openSnackError, setopenSnackError] = useState(false)
+
+  const dispatch = useDispatch()
+  const firebase = useFirebase()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    contactAction(
+      userData,
+      firebase,
+      dispatch,
+      setuserData,
+      setopenSnack,
+      setopenSnackError,
+    )
+  }
   return (
     <>
       <NavBar />
@@ -1359,6 +1391,142 @@ function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="contact-form site-bg ptb-100">
+        <Snackbar
+          onClose={() => setopenSnack(false)}
+          open={openSnack}
+          message={contactSuccess}
+          className="text-light text-warning"
+          autoHideDuration={5000}
+          anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        ></Snackbar>
+        <Snackbar
+          onClose={() => setopenSnack(false)}
+          open={openSnackError}
+          message={contactError}
+          className="text-light text-warning"
+          autoHideDuration={5000}
+          anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        ></Snackbar>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 wow fadeInLeft">
+              <div className="section-heading">
+                <h2 className="heading-title-2 pb-20 userTextColor">
+                  Contact Us
+                </h2>
+                <p className="heading-des">
+                  We standout firm and strong to reach out to our
+                  clients.Contact us if you have any issue,complain or confusion
+                </p>
+              </div>
+              <ul className="contact-detail">
+                <li>
+                  <i className="fa fa-phone" aria-hidden="true"></i>{' '}
+                  <a href="tel:+1(453)945-8896">+1(453)945-8896</a>
+                </li>
+                <li>
+                  <i className="fa fa-whatsapp" aria-hidden="true"></i>{' '}
+                  <span>+1(423)900-8606</span>
+                </li>
+                <li>
+                  <i className="fa fa-envelope" aria-hidden="true"></i>{' '}
+                  <a href="mailto:support@ultimatecoins.info">
+                    support@ultimatecoins.info
+                  </a>
+                </li>
+                <li>
+                  <i className="fa fa-map-marker" aria-hidden="true"></i>{' '}
+                  <span>
+                    Headley Ln, Dorking RH5 6DF, US 7M7P+96 Taxes, United States
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="col-md-6 wow fadeInRight">
+              <h3 className="blog-comment-heading userTextColor">
+                Leave a message here
+              </h3>
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Name*"
+                        onChange={(e) =>
+                          setuserData({ ...userData, name: e.target.value })
+                        }
+                        value={userData.name}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Email*"
+                        required
+                        onChange={(e) =>
+                          setuserData({ ...userData, email: e.target.value })
+                        }
+                        value={userData.email}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Subject*"
+                        required
+                        onChange={(e) =>
+                          setuserData({ ...userData, subject: e.target.value })
+                        }
+                        value={userData.subject}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Phone*"
+                        onChange={(e) =>
+                          setuserData({ ...userData, phone: e.target.value })
+                        }
+                        value={userData.phone}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <textarea
+                        className="form-control"
+                        placeholder="Massage*"
+                        onChange={(e) =>
+                          setuserData({ ...userData, message: e.target.value })
+                        }
+                        value={userData.message}
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <button className="btn history-info">submit</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

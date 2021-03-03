@@ -29,13 +29,7 @@ function Chat() {
             {
               id: '2',
               user: true,
-              validator: (value) => {
-                if (/^[A-Za-z]+$/.test(value).test(value)) {
-                  return true
-                } else {
-                  return 'please input alphabet character only.'
-                }
-              },
+
               trigger: 'q_name',
             },
             {
@@ -46,13 +40,6 @@ function Chat() {
             {
               id: 'name',
               user: true,
-              validator: (value) => {
-                if (/^[A-Za-z]+$/.test(value)) {
-                  return true
-                } else {
-                  return 'please input alphabet character only.'
-                }
-              },
               trigger: 'hi',
             },
 
