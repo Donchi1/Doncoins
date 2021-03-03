@@ -8,7 +8,7 @@ function NavBar() {
       style={{ position: 'sticky' }}
     >
       <div
-        className="container-fluid darkblue py-2  "
+        className="container-fluid darkblue py-2"
         style={{ position: 'absolute', top: 0 }}
       >
         <div className="row flex-align">
