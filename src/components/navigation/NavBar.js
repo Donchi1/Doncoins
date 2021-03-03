@@ -1,10 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 function NavBar() {
-  const authState = useSelector((state) => state.firebase)
-  console.log(authState)
   return (
     <header
       className="transition  header-align wow fadeInUp"
