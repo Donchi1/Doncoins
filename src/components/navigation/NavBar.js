@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function NavBar() {
   return (
     <header
-      className="transition  header-align wow fadeInUp"
+      className="transition  header-align "
       style={{ position: 'sticky' }}
     >
       <div

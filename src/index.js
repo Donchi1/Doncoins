@@ -13,7 +13,6 @@ import App from './App'
 import createAdminStore, { store } from './database/createAdminStore'
 import { dataProvider, history } from '../src/components/navigation/AdminPage'
 import authProvider from './components/navigation/authProvider'
-import ComponentReady from './components/Auths/ComponentReady'
 
 ReactDOM.render(
   <Provider store={createAdminStore(authProvider, dataProvider, history)}>
@@ -27,9 +26,7 @@ ReactDOM.render(
         attachAuthIsReady: true,
       }}
     >
-      <ComponentReady>
-        <App />
-      </ComponentReady>
+      <App />
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root'),
