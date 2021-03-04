@@ -46,7 +46,7 @@ function UserNav1() {
               <span>
                 <span className="btn-default backtext">
                   <h3 className="sub-heading little-add">
-                    <span style={{ fontSize: '3rem' }}>U</span>
+                    <span className="u-design">U</span>
                     ltimateCoins
                   </h3>
                 </span>

@@ -16,7 +16,7 @@ function NavBar() {
             <div className="logo">
               <a href="/">
                 <h3 className="sub-heading  little-add ml-3">
-                  <span style={{ fontSize: '3rem' }}>U</span>
+                  <span className="u-design">U</span>
                   ltimateCoins
                 </h3>
               </a>

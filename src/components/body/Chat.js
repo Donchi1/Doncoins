@@ -110,12 +110,20 @@ function Chat() {
             {
               id: 'compo',
               component: (
-                <a
-                  href="viber://chat?number=01234567890"
-                  className="btn w-100 history-info"
-                >
-                  Viber
-                </a>
+                <>
+                  <a
+                    href="viber://chat?number=01234567890"
+                    className="btn w-100 history-info mobile-viber"
+                  >
+                    Viber
+                  </a>
+                  <a
+                    href="viber://chat?number=01234567890"
+                    className="btn w-100 history-info destop-viber"
+                  >
+                    Viber
+                  </a>
+                </>
               ),
               end: true,
             },

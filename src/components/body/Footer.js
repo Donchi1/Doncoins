@@ -35,7 +35,7 @@ function Footer() {
                 <div className="footer-logo pb-25">
                   <a href="/">
                     <h3 className="sub-heading userTextColor">
-                      <span style={{ fontSize: '3rem' }}>U</span>
+                      <span className="u-design">U</span>
                       ltimateCoins
                     </h3>
                   </a>
