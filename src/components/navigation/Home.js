@@ -415,7 +415,7 @@ function Home() {
           </div>
           <div className="row small_space">
             <div className="col-lg-4 col-md-4">
-              <div className=" text-center card site-bg wow fadeInLeft">
+              <div className=" text-center card site-bg wow fadeInLeft ">
                 <div className="card-header history-info">
                   <h3>Basic</h3>
                   <div className="price_tage">
@@ -444,7 +444,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
-              <div className=" text-center card site-bg wow fadeInUp ">
+              <div className=" text-center card site-bg wow fadeInUp price-pd">
                 <div className=" card-header history-info">
                   <h3>Standard</h3>
                   <div className="price_tage">
@@ -473,7 +473,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
-              <div className="text-center card site-bg wow fadeInRight">
+              <div className="text-center card site-bg wow fadeInRight price-pd">
                 <div className=" card-header history-info">
                   <h3>Untimate</h3>
                   <div className="price_tage">
@@ -1531,6 +1531,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   )

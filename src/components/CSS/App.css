@@ -75,35 +75,25 @@ html {
 
 .u-design {
   font-family: 'Helvetica';
-  font-size: 3.5rem;
-  display: inline-block;
+  font-size: 2.5rem;
+  display: inline;
   text-shadow: 2px 2px 0px #f87d18, 3px 3px 0px #fff,
     4px 4px 0px rgb(128, 0, 128);
+}
+.chat-bg {
+  background-color: green;
 }
 
 @media only screen and (max-width: 1000px) {
   .header-align {
     min-width: 100%;
   }
+  .price-pd {
+    margin-top: 1.2rem;
+  }
   .backtop {
     width: 10%;
     height: 5%;
     right: 2.5rem;
-  }
-}
-@media only screen and (max-width: 1024px) {
-  .destop-viber {
-    display: none !important;
-  }
-  .mobile-viber {
-    display: inline-block !important;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .destop-viber {
-    display: inline-block !important;
-  }
-  .mobile-viber {
-    display: none !important;
   }
 }

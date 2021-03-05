@@ -226,6 +226,25 @@ function AskedQuestions() {
                   </p>
                 </div>
               </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  How long will i get paid.
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>
+                    It takes 24 hours to recieve your payment on a standard
+                    investment plan.
+                  </p>
+                </div>
+              </div>
+              <div className="accordion-faq-box mb-20 wow fadeInRight">
+                <Link to="/faq" className="accordion-faq-title userTextColor">
+                  Who can get paid.
+                </Link>
+                <div className="accordion-faq-content transition">
+                  <p>Anyone can get paid after investing in our platform.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

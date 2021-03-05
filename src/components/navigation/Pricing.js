@@ -64,7 +64,7 @@ function Pricing() {
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
-              <div className=" text-center card site-bg">
+              <div className=" text-center card site-bg price-pd wow fadeInDown">
                 <div className=" card-header history-info">
                   <h3>Standard</h3>
                   <div className="price_tage">
@@ -93,7 +93,7 @@ function Pricing() {
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
-              <div className="text-center card site-bg">
+              <div className="text-center card site-bg price-pd wow fadeInRight">
                 <div className=" card-header history-info">
                   <h3>Untimate</h3>
                   <div className="price_tage">
@@ -161,7 +161,7 @@ function Pricing() {
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
-              <div className="text-center card site-bg mb-2 wow fadeInRight">
+              <div className="text-center card site-bg mb-2 wow fadeInRight price-pd">
                 <div className="card-header history-info">
                   <h3>Standard</h3>
                   <div className="price_tage">
@@ -187,7 +187,7 @@ function Pricing() {
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
-              <div className="card text-center site-bg mb-2 wow fadeInUp">
+              <div className="card text-center site-bg mb-2 wow fadeInUp price-pd">
                 <div className="card-header history-info">
                   <h3>Untimate</h3>
                   <div className="price_tage">

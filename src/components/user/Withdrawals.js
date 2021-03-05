@@ -680,7 +680,7 @@ function Withdrawals() {
                       Let Us Help You to Find a Solution That Meets Your Needs
                     </h3>
                     <p className="m-0 wow">
-                      contact our team for more withdrawal methods
+                      Contact our team for more withdrawal methods
                     </p>
                   </div>
                 </div>
@@ -688,8 +688,6 @@ function Withdrawals() {
                   <a
                     href="/contacts"
                     className="btn btn-default btn-radius wow history-info"
-                    data-animation="fadeInUp"
-                    data-animation-delay="0.45"
                   >
                     Contact Us <i className="fa fa-long-arrow-right"></i>
                   </a>

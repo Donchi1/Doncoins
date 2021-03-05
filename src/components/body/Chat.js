@@ -104,7 +104,7 @@ function Chat() {
             {
               id: 'intouch',
               message:
-                'Sorry no customer service member available at this moment. Contact us directly on Viber for quick and easier response thanks',
+                'Sorry no customer service member available at this moment. Contact us directly on Whatsapp for quick and easier response or email us thanks',
               trigger: 'compo',
             },
             {
@@ -112,16 +112,11 @@ function Chat() {
               component: (
                 <>
                   <a
-                    href="viber://chat?number=01234567890"
-                    className="btn w-100 history-info mobile-viber"
+                    href="https://wa.me/+1(423)900-8606"
+                    className="btn w-100 chat-bg "
                   >
-                    Viber
-                  </a>
-                  <a
-                    href="viber://chat?number=01234567890"
-                    className="btn w-100 history-info destop-viber"
-                  >
-                    Viber
+                    <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                    Whatsapp
                   </a>
                 </>
               ),

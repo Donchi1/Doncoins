@@ -254,8 +254,7 @@ function SignUp() {
                             className="btn w-100 history-info"
                             type="submit"
                           >
-                            {' '}
-                            Sign Up{' '}
+                            Sign Up
                           </button>
                         </div>
                       </form>
