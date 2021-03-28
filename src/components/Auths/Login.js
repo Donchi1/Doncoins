@@ -4,7 +4,7 @@ import { useFirebase } from 'react-redux-firebase'
 import { useSelector, useDispatch } from 'react-redux'
 import { logginAction } from './Action'
 
-import { Snackbar, makeStyles } from '@material-ui/core'
+import { Snackbar, makeStyles, CircularProgress } from '@material-ui/core'
 import Footer from '../body/Footer'
 import NavBar from '../navigation/NavBar'
 
@@ -20,6 +20,9 @@ function Login() {
     email: '',
     remember: '',
     validity: false,
+    checked: false,
+    loading: false,
+    disableBtn: false,
   })
 
   const classes = useStyles()
@@ -35,37 +38,15 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    setuserData({ ...userData, loading: true, disableBtn: true })
+
     logginAction(userData, firebase, dispatch, checkAuth, setuserData)
   }
 
   return (
     <>
       <NavBar />
-      <section className="sub-page-banner site-bg parallax" id="banner">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 wow fadeInUp">
-              <div className="page-banner text-center">
-                <h1 className="sub-banner-title userTextColor">Login</h1>
-                <ul>
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>Login</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="authentication-bg site-bg ">
-        <div className="home-btn d-none d-sm-block">
-          <a href="/">
-            <i className="mdi mdi-home h2 text-white"></i>
-          </a>
-        </div>
-
+      <div className="1-column undefined  page-animated svg-wrapper ">
         <Snackbar
           onClose={() => setopenSnack(false)}
           open={openSnack}
@@ -75,125 +56,135 @@ function Login() {
           anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
           className="transition"
         />
-        <div className=" height-100vh ">
+        <section className="container pt-5">
           <div>
-            <div>
-              <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col-md-8 col-lg-6 col-xl-5 pt-2 ">
-                    <div className="card wow fadeInUp">
-                      <div className="card-body p-4">
-                        <div className="text-center mb-4">
-                          <h4 className="text-uppercase mt-0 userTextColor">
-                            Login to get started
-                          </h4>
-                        </div>
-                        <form onSubmit={handleSubmit}>
-                          <div className="form-group form-focus mb-4">
-                            <label
-                              htmlFor="emailaddress "
-                              className="text-dark text-bold"
-                            >
-                              Email address
-                            </label>
+            <div className="row">
+              <div className="col-md-12 ">
+                <div
+                  className="page-banner text-center animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.3s"
+                >
+                  <h1 className="banner-content pt-5 nav-color text-bold text-uppercase btn-gradient-purple">
+                    login
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="account-login" className="flexbox-container">
+          <div className="col-12 d-flex align-items-center justify-content-center ">
+            {/* login form */}
+            <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-12 p-0">
+              <div
+                className="card border-grey to-action-bg animated border-lighten-3 m-0 box-shadow-0 card-account-right height-400"
+                data-animation="fadeInUpShorter"
+                data-animation-delay="0.3s"
+              >
+                <div className="card-content">
+                  <div className="card-body p-3">
+                    <p className="text-center h5 text-capitalize text-light">
+                      Welcome to Doncoins!
+                    </p>
+                    <p className="mb-3 text-center text-light">
+                      Please enter your login details
+                    </p>
+                    <form
+                      className="form-horizontal form-signin"
+                      onSubmit={handleSubmit}
+                    >
+                      <fieldset className="form-label-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="userEmail"
+                          placeholder="Your Email"
+                          value={userData.email}
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              email: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <fieldset className="form-label-group">
+                        <input
+                          type="password"
+                          className="form-control"
+                          autoComplete="true"
+                          id="user-password"
+                          placeholder="Enter Password"
+                          value={userData.password}
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              password: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <div className="form-group row">
+                        <div className="col-md-6 col-12 text-center text-sm-left">
+                          <fieldset>
                             <input
-                              className="form-control"
-                              type="email"
-                              id="emailaddress"
-                              required
-                              placeholder="Enter your email"
-                              value={userData.email}
-                              onChange={(e) =>
+                              type="checkbox"
+                              id="remember-me"
+                              className="chk-remember"
+                              checked={userData.checked}
+                              onChange={() =>
                                 setuserData({
                                   ...userData,
-                                  email: e.target.value,
+                                  checked: !userData.checked,
                                 })
                               }
                             />
-                          </div>
-
-                          <div className="form-group mb-4">
-                            <label htmlFor="password " className="text-dark ">
-                              Password
-                            </label>
-                            <input
-                              className="form-control"
-                              type="password"
-                              required
-                              security="true"
-                              id="password"
-                              placeholder="Enter your password"
-                              value={userData.password}
-                              onChange={(e) =>
-                                setuserData({
-                                  ...userData,
-                                  password: e.target.value,
-                                })
-                              }
-                            />
-                          </div>
-
-                          <div className="form-group mb-4">
-                            <div className="custom-control custom-checkbox">
-                              <input
-                                type="checkbox"
-                                className="custom-control-input"
-                                id="checkbox-signin"
-                                checked={userData.remember}
-                                onChange={() =>
-                                  setuserData({
-                                    ...userData,
-                                    remember: !userData.remember,
-                                  })
-                                }
-                              />
-                              <label
-                                className="custom-control-label text-dark"
-                                htmlFor="checkbox-signin"
-                              >
-                                Remember me
-                              </label>
-                            </div>
-                          </div>
-
-                          <div className="form-group mb-0 text-center">
-                            <button
-                              className="btn  history-info w-100"
-                              type="submit"
-                            >
+                            <label htmlFor="remember-me" className="text-light">
                               {' '}
-                              Log In{' '}
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-
-                    <div className="row mt-3">
-                      <div className="col-12 text-center link-resize pb-2 pt-2 ">
-                        <p>
-                          {' '}
-                          <a href="/passReset" className="text-primary ml-1">
-                            <i className="fa fa-lock mr-1"></i>Forgot your
-                            password?
+                              Remember
+                            </label>
+                          </fieldset>
+                        </div>
+                        <div className="col-md-6 col-12 float-sm-left text-center text-sm-right">
+                          <a href="/passReset" className="card-link">
+                            Forgot Password?
                           </a>
-                        </p>
-                        <p>
-                          Don't have an account?{' '}
-                          <a href="/signup" className=" ml-1">
-                            <b className="text-primary">Sign Up</b>
-                          </a>
-                        </p>
+                        </div>
                       </div>
-                    </div>
+                      <button
+                        type="submit"
+                        className="btn btn-lg btn-gradient-purple btn-glow btn-round mb-2 animated w-100"
+                        disabled={userData.disableBtn}
+                      >
+                        {userData.loading && (
+                          <CircularProgress
+                            variant="indeterminate"
+                            color="primary"
+                            size={20}
+                            style={{ marginRight: '5px' }}
+                          />
+                        )}
+                        Log In
+                      </button>
+                      <p className="text-center">
+                        <a href="/signup" className="card-link">
+                          Register
+                        </a>
+                      </p>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        <Footer />
       </div>
-      <Footer />
     </>
   )
 }

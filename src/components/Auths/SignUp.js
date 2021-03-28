@@ -6,11 +6,10 @@ import { useFirebase } from 'react-redux-firebase'
 
 import { registerAction } from './Action'
 import { useDispatch, useSelector } from 'react-redux'
-import { Snackbar, makeStyles } from '@material-ui/core'
+import { Snackbar, makeStyles, CircularProgress } from '@material-ui/core'
 
 import Footer from '../body/Footer'
 import NavBar from '../navigation/NavBar'
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -27,6 +26,9 @@ function SignUp() {
     email: '',
     phone: '',
     country: '',
+    checked: false,
+    loading: false,
+    disableBtn: false,
   })
   const [openSnack, setopenSnack] = useState(false)
   const firebase = useFirebase()
@@ -50,234 +52,218 @@ function SignUp() {
       return validity()
     }
 
+    setuserData({ ...userData, loading: true, disableBtn: true })
+
     registerAction(userData, firebase, dispatch, checkAuth, setuserData)
   }
 
   return (
     <>
       <NavBar />
-      <section className="sub-page-banner site-bg parallax" id="banner">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 wow fadeInUp">
-              <div className="page-banner text-center">
-                <h1 className="sub-banner-title userTextColor">Register</h1>
-                <ul>
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>Register</li>
-                </ul>
+
+      <section className=" 1-column undefined  page-animated svg-wrapper ">
+        <section className="container pt-5 ">
+          <Snackbar
+            onClose={() => setopenSnack(false)}
+            open={openSnack}
+            message={authError}
+            autoHideDuration={9000}
+            ContentProps={{ className: classes.content }}
+            anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+            className="transition"
+          ></Snackbar>
+          <Snackbar
+            onClose={() => setNumberError(false)}
+            open={numberError}
+            message={numberErrorMessage}
+            autoHideDuration={9000}
+            ContentProps={{ className: classes.content }}
+            anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+            className="transition"
+          ></Snackbar>
+
+          <div>
+            <div className="row">
+              <div className="col-md-12 ">
+                <div className="page-banner text-center">
+                  <h1
+                    className="banner-content pt-5 nav-color text-uppercase text-bold btn-gradient-purple animated"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    Register
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <div className="account-pages site-bg height-100vh">
-        <div className="home-center">
-          <div className="home-desc-center">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-md-8 col-lg-6 col-xl-5 ">
-                  <Snackbar
-                    onClose={() => setopenSnack(false)}
-                    open={openSnack}
-                    message={authError}
-                    autoHideDuration={9000}
-                    ContentProps={{ className: classes.content }}
-                    anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-                    className="transition"
-                  ></Snackbar>
-                  <Snackbar
-                    onClose={() => setNumberError(false)}
-                    open={numberError}
-                    message={numberErrorMessage}
-                    autoHideDuration={9000}
-                    ContentProps={{ className: classes.content }}
-                    anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-                    className="transition"
-                  ></Snackbar>
-                  <div className="card wow fadeInUp">
-                    <div className="card-body p-4 ">
-                      <div className="text-center mb-4">
-                        <h4 className="text-uppercase mt-0 userTextColor">
-                          Register for membership
-                        </h4>
-                      </div>
-
-                      <form className="login-form" onSubmit={handleSubmit}>
-                        <div className="form-group mb-4">
-                          <label htmlFor="firstname " className="text-dark">
-                            First Name
-                          </label>
-                          <input
-                            type="text"
-                            name="firstname"
-                            id="firstname"
-                            className="form-control "
-                            autoCorrect="true"
-                            required
-                            placeholder="Enter your firstname"
-                            onChange={(e) =>
-                              setuserData({
-                                ...userData,
-                                firstname: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className="form-group mb-4">
-                          <label htmlFor="lastname" className="text-dark">
-                            Last Name
-                          </label>
-                          <input
-                            type="text"
-                            name="lastname"
-                            id="lastname"
-                            placeholder="Enter your lastname"
-                            className="form-control"
-                            required
-                            autoCorrect="true"
-                            onChange={(e) =>
-                              setuserData({
-                                ...userData,
-                                lastname: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-
-                        <div className="form-group mb-4">
-                          <label htmlFor="emailaddress" className="text-dark">
-                            Email address
-                          </label>
-                          <input
-                            type="email"
-                            name="email"
-                            id="emailaddress"
-                            className="form-control"
-                            placeholder="Enter your email"
-                            autoCorrect="true"
-                            required
-                            onChange={(e) =>
-                              setuserData({
-                                ...userData,
-                                email: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-
-                        <div className="form-group mb-4">
-                          <label htmlFor="password" className="text-dark">
-                            Password
-                          </label>
-                          <input
-                            name="password"
-                            autoCorrect="true"
-                            className="form-control"
-                            type="password"
-                            required
-                            security="true"
-                            id="password"
-                            placeholder="Enter your password"
-                            onChange={(e) =>
-                              setuserData({
-                                ...userData,
-                                password: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className="form-group mb-4">
-                          <label htmlFor="country" className="text-dark">
-                            Country
-                          </label>
-                          <input
-                            name="country"
-                            autoCorrect="true"
-                            className="form-control"
-                            type="text"
-                            id="country"
-                            placeholder="Enter your country"
-                            required
-                            onChange={(e) =>
-                              setuserData({
-                                ...userData,
-                                country: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className="form-group mb-4">
-                          <label htmlFor="phone" className="text-dark">
-                            Number
-                          </label>
-                          <input
-                            type="tel"
-                            name="phone"
-                            id="phone"
-                            className="form-control"
-                            autoCorrect="true"
-                            placeholder="Enter your number"
-                            required
-                            onChange={(e) =>
-                              setuserData({
-                                ...userData,
-                                phone: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-
-                        <div className="form-group mb-4">
-                          <div className="custom-control custom-checkbox">
+        </section>
+        <section id="account-register" className="flexbox-container">
+          <div className="col-12 d-flex align-items-center justify-content-center">
+            <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-12 p-0">
+              <div
+                className="card animated border-grey to-action-bg border-lighten-3 m-0 box-shadow-1 card-account-right height-400"
+                data-animation="fadeInUpShorter"
+                data-animation-delay="0.3s"
+              >
+                <div className="card-content">
+                  <div className="card-body p-3">
+                    <p className="text-center h5 text-capitalize  text-light">
+                      Get Started with Doncoins
+                    </p>
+                    <p className="mb-3 text-center text-light">
+                      Create your free account
+                    </p>
+                    <form
+                      className="form-horizontal form-signin"
+                      onSubmit={handleSubmit}
+                    >
+                      <fieldset className="form-label-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="fname"
+                          placeholder="Your Firstname"
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              firstname: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <fieldset className="form-label-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="lname"
+                          placeholder="Your Lastname"
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              lastname: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <fieldset className="form-label-group">
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="email"
+                          placeholder="Your Email"
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              email: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <fieldset className="form-label-group">
+                        <input
+                          type="password"
+                          autoCorrect="true"
+                          className="form-control"
+                          id="user-password"
+                          placeholder="Your Password"
+                          security="true"
+                          autoComplete="true"
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              password: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <fieldset className="form-label-group">
+                        <input
+                          type="tel"
+                          autoCorrect="true"
+                          className="form-control"
+                          id="phone"
+                          placeholder="Your Mobile Number"
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              phone: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <fieldset className="form-label-group">
+                        <input
+                          type="text"
+                          autoCorrect="true"
+                          className="form-control"
+                          id="country"
+                          placeholder="Your Country"
+                          required
+                          onChange={(e) =>
+                            setuserData({
+                              ...userData,
+                              country: e.target.value,
+                            })
+                          }
+                        />
+                      </fieldset>
+                      <div className="form-group row">
+                        <div className="col-12 text-center text-sm-left">
+                          <fieldset>
                             <input
                               type="checkbox"
-                              className="custom-control-input"
-                              id="checkbox-signin"
+                              id="remember-me"
+                              className="chk-remember"
+                              checked={userData.checked}
+                              onChange={() =>
+                                setuserData({
+                                  ...userData,
+                                  checked: !userData.checked,
+                                })
+                              }
                             />
-                            <label
-                              className="custom-control-label text-dark"
-                              htmlFor="checkbox-signin"
-                            >
-                              I accept{' '}
-                              <Link to="/signup" className="text-primary">
-                                Terms and Conditions
-                              </Link>
+                            <label htmlFor="remember-me" className="text-light">
+                              {' '}
+                              I agree to Doncoins terms
                             </label>
-                          </div>
+                          </fieldset>
                         </div>
-
-                        <div className="form-group mb-0 text-center">
-                          <button
-                            className="btn w-100 history-info"
-                            type="submit"
-                          >
-                            Sign Up
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-                  <div className="row mt-3">
-                    <div className="col-12 text-center link-resize">
-                      <p className="text-white">
-                        Already have account?{' '}
-                        <a href="/login" className="text-white ml-1">
-                          <b>Sign In</b>
+                      </div>
+                      <button
+                        type="submit"
+                        className="btn btn-lg btn-gradient-purple btn-glow btn-round mb-2 animated w-100"
+                        disabled={userData.disableBtn}
+                      >
+                        {userData.loading && (
+                          <CircularProgress
+                            variant="indeterminate"
+                            color="primary"
+                            size={20}
+                            style={{ marginRight: '5px' }}
+                          />
+                        )}
+                        Sign Up
+                      </button>
+                      <p className="text-center">
+                        <a href="/login" className="card-link">
+                          Log In
                         </a>
                       </p>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
+        </section>
+        <Footer />
+      </section>
     </>
   )
 }

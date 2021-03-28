@@ -3,13 +3,16 @@ import React, { useState } from 'react'
 import { newsLetterAction } from '../Auths/Action'
 import { useFirebase } from 'react-redux-firebase'
 import { useDispatch, useSelector } from 'react-redux'
-import { Typography } from '@material-ui/core'
+import { CircularProgress, Typography } from '@material-ui/core'
 
 import { Link } from 'react-router-dom'
-import Chat from './Chat'
 
 function Footer() {
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState({
+    email: '',
+    loading: false,
+    disableBtn: false,
+  })
 
   const dispatch = useDispatch()
   const firebase = useFirebase()
@@ -22,146 +25,242 @@ function Footer() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setInput({ ...input, loading: true, disableBtn: true })
     newsLetterAction(input, firebase, dispatch, setInput)
   }
 
   return (
     <>
-      <footer className="bg-pattern site-bg2 ptb-100">
+      <footer
+        className="footer static-bottom footer-dark footer-custom-class"
+        data-midnight="white"
+      >
         <div className="container">
-          <div className="footer">
+          <div className="footer-wrapper">
             <div className="row">
-              <div className="col-lg-4 col-md-6">
-                <div className="footer-logo pb-25">
-                  <a href="/">
-                    <h3 className="sub-heading userTextColor">
-                      <span className="u-design">U</span>
-                      ltimateCoins
-                    </h3>
-                  </a>
-                </div>
-                <div className="footer-icon">
-                  <ul>
-                    <li>
-                      <Link to="/faq">
-                        <i className="fa fa-facebook" aria-hidden="true"></i>
+              <div className="col-md-4">
+                <div className="about">
+                  <div
+                    className="title animated"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.2s"
+                  >
+                    <img
+                      src="https://pixinvent.com/demo/crypto-ico/theme-assets/images-3d-animation/logo.png"
+                      alt="Logo"
+                    />
+                    <span className="logo-text">Doncoins</span>
+                  </div>
+                  <div
+                    className="about-text animated"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    <p className="grey-accent2">
+                      Doincoins is a blockchain platform that allows users to
+                      make to make cryptocurrency investment for there future
+                      and life establishments.
+                    </p>
+                  </div>
+                  <div className="subscribe">
+                    <form onSubmit={handleSubmit}>
+                      {letterSuccess && (
+                        <Typography color="info" component="h5">
+                          letterSuccess
+                        </Typography>
+                      )}
+                      {letterError && (
+                        <Typography color="info" component="h5">
+                          letterError
+                        </Typography>
+                      )}
+                      <div className="form-group">
+                        <label className="text-light" htmlFor="newsletter">
+                          Subscribe to our Newsleter
+                        </label>
+                        <input
+                          type="email"
+                          id="newsletter"
+                          className="form-control"
+                          value={input.email}
+                          placeholder="Enter your email Address"
+                          required
+                          onChange={(e) => {
+                            setInput({ ...input, email: e.target.value })
+                          }}
+                        />
+                        <button
+                          type="submit"
+                          disabled={input.disableBtn}
+                          className="submit btn btn-gradient-purple btn-round mb-2 animated w-100"
+                        >
+                          {input.loading && (
+                            <CircularProgress
+                              variant="indeterminate"
+                              color="primary"
+                              size={20}
+                              style={{ marginRight: '5px' }}
+                            />
+                          )}
+                          Subscribe
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <ul className="social-buttons list-unstyled mb-5">
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.4s"
+                    >
+                      <Link to="#" title="Facebook" className="btn font-medium">
+                        <i className="fa fa-facebook"></i>
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/faq">
-                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.5s"
+                    >
+                      <Link to="" title="Twitter" className="btn font-medium">
+                        <i className="fa fa-twitter"></i>
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/faq">
-                        <i className="fa fa-linkedin" aria-hidden="true"></i>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.6s"
+                    >
+                      <Link to="#" title="LinkedIn" className="btn font-medium">
+                        <i className="fa fa-linkedin"></i>
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/faq">
-                        <i className="fa fa-instagram" aria-hidden="true"></i>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.7s"
+                    >
+                      <Link to="#" title="GitHub" className="btn font-medium">
+                        <i className="fa fa-github"></i>
+                      </Link>
+                    </li>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.8s"
+                    >
+                      <Link to="#" title="Pintrest" className="btn font-medium">
+                        <i className="fa fa-pinterest"></i>
                       </Link>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6">
-                <div className="footer-link">
-                  <ul className="nav-color">
-                    <li>
+              <div className="col-md-4">
+                <div className="links">
+                  <h5
+                    className="title animated"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.5s"
+                  >
+                    Useful Links
+                  </h5>
+                  <ul className="useful-links float-left mr-5">
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.6s"
+                    >
+                      <a href="/">Home</a>
+                    </li>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.7s"
+                    >
                       <a href="/about">About</a>
                     </li>
-                    <li>
-                      <a href="/teams">Teams</a>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.8s"
+                    >
+                      <a href="/features">Feature</a>
                     </li>
-                    <li>
-                      <a href="/signup">Join Us</a>
-                    </li>
-
-                    <li>
+                  </ul>
+                  <ul className="useful-links">
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="0.9s"
+                    >
                       <a href="/contact">Contact</a>
                     </li>
-
-                    <li>
-                      <a href="/teams">Teams</a>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="1.0s"
+                    >
+                      <a href="/team">Team</a>
                     </li>
-                    <li>
-                      <a href="/faq">Faq</a>
+                    <li
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="1.1s"
+                    >
+                      <a href="/login">Sign in</a>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6">
-                <div className="subscribe">
-                  <form onSubmit={handleSubmit}>
-                    {letterSuccess && (
-                      <Typography color="info" component="h5">
-                        letterSuccess
-                      </Typography>
-                    )}
-                    {letterError && (
-                      <Typography color="info" component="h5">
-                        letterError
-                      </Typography>
-                    )}
-                    <div className="form-group">
-                      <label className="userTextColor" htmlFor="newsletter">
-                        Subscribe to our Newsleter
-                      </label>
-                      <input
-                        type="email"
-                        id="newsletter"
-                        className="form-control"
-                        value={input}
-                        placeholder="Enter your email Address"
-                        required
-                        onChange={(e) => {
-                          setInput(e.target.value)
-                        }}
-                      />
-                      <input
-                        type="submit"
-                        name="submit"
-                        value="Subscribe"
-                        className="submit history-info"
-                      />
-                    </div>
-                  </form>
+              <div className="col-md-4">
+                <div className="feed">
+                  <h5
+                    className="title animated"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.8s"
+                  >
+                    Smart Feed
+                  </h5>
+                  <div className="tweets">
+                    <span
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="1.0s"
+                    >
+                      More about Doncoin features, services and other crypto
+                      related events:
+                      <a href="https://doncoins.info" className="ml-2">
+                        Here
+                      </a>
+                    </span>
+                    <span
+                      className="animated"
+                      data-animation="fadeInUpShorter"
+                      data-animation-delay="1.2s"
+                    >
+                      More infotamation about Doncoin CIC Coin,trading and
+                      pricing
+                      <a href="https://doncoins.info/pricing" className="ml-2">
+                        Here
+                      </a>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="copyright">
-            <div className="row">
-              <div className="col-lg-6">
-                <p>
-                  © UltimateCoin {new Date().getFullYear()} all Rights Reserved.
-                </p>
-              </div>
-              <div className="col-lg-6">
-                <ul>
-                  <li>
-                    <Link to="#">Terms & Condition</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Privacy Policy</Link>
-                  </li>
-                  <li>
-                    <a href="/contacts">Contact Us</a>
-                  </li>
-                </ul>
-              </div>
+            <div className="copy-right mx-auto text-center">
+              <span className="copyright">
+                Copyright © Doncoins {new Date().getFullYear()} all Rights
+                Reserved.
+                <a href="/" title="Doncoins" className="white">
+                  Doncoins
+                </a>
+              </span>
             </div>
           </div>
         </div>
-
-        <Chat />
       </footer>
-      <div className="transition text-right ">
-        <a href="#banner" className="history-info backtop scrollTo">
-          <i className="fa fa-long-arrow-up" aria-hidden="true"></i>
-        </a>
-      </div>
     </>
   )
 }

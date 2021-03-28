@@ -6,222 +6,261 @@ function Pricing() {
   return (
     <>
       <NavBar />
-      <section className="sub-page-banner site-bg parallax" id="banner">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="page-banner text-center wow fadeInUp">
-                <h1 className="sub-banner-title userTextColor">Pricing</h1>
-                <ul>
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>Pricing Table</li>
-                </ul>
+      <section className="1-column undefined  page-animated svg-wrapper ">
+        <section className="container pt-5 ">
+          <div>
+            <div className="row">
+              <div className="col-md-12 ">
+                <div className="page-banner text-center">
+                  <div
+                    className=" animated banner-content pt-5 nav-color text-uppercase text-bold btn-gradient-purple"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.2s"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="site-bg">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8 col-md-12 offset-lg-2">
-              <div className=" text-center">
-                <h4 className="wow py-4">Choose Your Plan</h4>
+        <section>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 col-md-12 offset-lg-2">
+                <div
+                  className=" text-center animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <h2 className=" py-4 title">Choose Your Plan</h2>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="row small_space">
-            <div className="col-lg-4 col-md-4">
-              <div className=" text-center card site-bg">
-                <div className="card-header history-info">
-                  <h3>Basic</h3>
-                  <div className="price_tage">
-                    <h3>$3000.00</h3>
-                    <span>Token plan</span>
+            <div className="row small_space">
+              <div className="col-lg-4 col-md-4">
+                <div
+                  className=" text-center card site-bg2 animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <div className="card-header btn-gradient-purple">
+                    <h3>Basic</h3>
+                    <div className="price_tage">
+                      <h3>$3000.00</h3>
+                      <span>Token price</span>
+                    </div>
+                  </div>
+                  <div className=" text-center">
+                    <ul className="text-center list-unstyled text-light">
+                      <li className="py-2  border">Normal Deposit</li>
+                      <li className="py-2 mt-1 border">$200</li>
+                      <li className="py-2 mt-1 border">Initial Withdrawal</li>
+                      <li className="py-2 mt-1 border">$3900</li>
+                      <li className="py-2 mt-1 border">Bonus</li>
+                      <li className="py-2 mt-1 border">$50</li>
+                    </ul>
+                  </div>
+                  <div className="py-4">
+                    <a
+                      href="/login"
+                      className="btn btn-gradient-purple btn-round "
+                    >
+                      Buy Now
+                    </a>
                   </div>
                 </div>
-                <div className="pr_content">
-                  <ul className="list_none ">
-                    <li className="py-2">Normal Deposit</li>
-                    <li className="py-2">$200</li>
-                    <li className="py-2">Initial Withdrawal</li>
-                    <li className="py-2">$3900</li>
-                    <li className="py-2">Bonus</li>
-                    <li className="py-2">$50</li>
-                  </ul>
-                </div>
-                <div className="py-4">
-                  <a
-                    href="/login"
-                    className="btn btn-default btn-radius history-info"
-                  >
-                    Buy Now
-                  </a>
-                </div>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-4">
-              <div className=" text-center card site-bg price-pd wow fadeInDown">
-                <div className=" card-header history-info">
-                  <h3>Standard</h3>
-                  <div className="price_tage">
-                    <h3>$4000.00</h3>
-                    <span>Token plan</span>
+              <div className="col-lg-4 col-md-4">
+                <div
+                  className=" text-center card site-bg2 animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <div className=" card-header btn-gradient-purple">
+                    <h3>Standard</h3>
+                    <div className="price_tage">
+                      <h3>$4000.00</h3>
+                      <span>Token plan</span>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <ul className="text-center list-unstyled text-light">
+                      <li className="py-2 border">Normal Deposit</li>
+                      <li className="py-2 mt-1 border">$400</li>
+                      <li className="py-2 mt-1 border">Initial Withdrawal</li>
+                      <li className="py-2 mt-1 border">$5900</li>
+                      <li className="py-2 mt-1 border">Bonus</li>
+                      <li className="py-2 mt-1 border">$100</li>
+                    </ul>
+                  </div>
+                  <div className="py-4">
+                    <a
+                      href="/login"
+                      className="btn btn-gradient-purple btn-round "
+                    >
+                      Buy Now
+                    </a>
                   </div>
                 </div>
-                <div className="pr_content">
-                  <ul className="list_none ">
-                    <li className="py-2">Normal Deposit</li>
-                    <li className="py-2">$400</li>
-                    <li className="py-2">Initial Withdrawal</li>
-                    <li className="py-2">$5900</li>
-                    <li className="py-2">Bonus</li>
-                    <li className="py-2">$100</li>
-                  </ul>
-                </div>
-                <div className="py-4">
-                  <a
-                    href="/login"
-                    className="btn btn-default btn-radius history-info"
-                  >
-                    Buy Now
-                  </a>
-                </div>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-4">
-              <div className="text-center card site-bg price-pd wow fadeInRight">
-                <div className=" card-header history-info">
-                  <h3>Untimate</h3>
-                  <div className="price_tage">
-                    <h3>$5000.00</h3>
-                    <span>Token Plan</span>
+              <div className="col-lg-4 col-md-4">
+                <div
+                  className="text-center card site-bg2 animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <div className=" card-header btn-gradient-purple">
+                    <h3>Untimate</h3>
+                    <div className="price_tage">
+                      <h3>$5000.00</h3>
+                      <span>Token Price</span>
+                    </div>
                   </div>
-                </div>
-                <div className="pr_content">
-                  <ul className="list_none ">
-                    <li className="py-2">Normal Deposit</li>
-                    <li className="py-2">$1000</li>
-                    <li className="py-2">Initial Withdrawal</li>
-                    <li className="py-2">$7800</li>
-                    <li className="py-2">Bonus</li>
-                    <li className="py-2">$200</li>
-                  </ul>
-                </div>
-                <div className="py-4">
-                  <a
-                    href="/login"
-                    className="btn btn-default btn-radius history-info"
-                  >
-                    Buy Now
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="site-bg">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8 col-md-12 offset-lg-2">
-              <div className="title_default_dark title_border text-center">
-                <h4 className="wow fadeInLeft py-4">Special Plans</h4>
-              </div>
-            </div>
-          </div>
-          <div className="row small_space">
-            <div className="col-lg-4 col-md-4">
-              <div className="text-center card site-bg mb-2 wow fadeInLeft">
-                <div className="card-header history-info">
-                  <h3>Basic</h3>
-                  <div className="price_tage">
-                    <h3>$8000.00</h3>
-                    <span>Token plan</span>
+                  <div className="text-center ">
+                    <ul className=" text-center list-unstyled text-light">
+                      <li className="py-2 border">Normal Deposit</li>
+                      <li className="py-2 mt-1 border">$1000</li>
+                      <li className="py-2 mt-1 border">Initial Withdrawal</li>
+                      <li className="py-2 mt-1 border">$7800</li>
+                      <li className="py-2 mt-1 border">Bonus</li>
+                      <li className="py-2 mt-1 border">$200</li>
+                    </ul>
                   </div>
-                </div>
-                <div className="pr_content">
-                  <ul className="list_none ">
-                    <li className="py-2">Normal Deposit</li>
-                    <li className="py-2">$900</li>
-                    <li className="py-2">Initial Withdrawal</li>
-                    <li className="py-2">$9900</li>
-                    <li className="py-2">Bonus</li>
-                    <li className="py-2">$150</li>
-                  </ul>
-                </div>
-                <div className="py-4">
-                  <a href="/login" className="btn btn-default history-info">
-                    Buy Now
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-4">
-              <div className="text-center card site-bg mb-2 wow fadeInRight price-pd">
-                <div className="card-header history-info">
-                  <h3>Standard</h3>
-                  <div className="price_tage">
-                    <h3>$12000.00</h3>
-                    <span>Token plan</span>
+                  <div className="py-4">
+                    <a
+                      href="/login"
+                      className="btn btn-gradient-purple btn-round "
+                    >
+                      Buy Now
+                    </a>
                   </div>
-                </div>
-                <div className="pr_content">
-                  <ul className="list_none ">
-                    <li className="py-2">Normal Deposit</li>
-                    <li className="py-2">$1000</li>
-                    <li className="py-2">Initial Withdrawal</li>
-                    <li className="py-2">$12900</li>
-                    <li className="py-2">Bonus</li>
-                    <li className="py-2">$250</li>
-                  </ul>
-                </div>
-                <div className="py-4">
-                  <a href="/login" className="btn btn-default history-info">
-                    Buy Now
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-4">
-              <div className="card text-center site-bg mb-2 wow fadeInUp price-pd">
-                <div className="card-header history-info">
-                  <h3>Untimate</h3>
-                  <div className="price_tage">
-                    <h3>$15000.00</h3>
-                    <span>Token Plan</span>
-                  </div>
-                </div>
-                <div className="pr_content">
-                  <ul className="list_none ">
-                    <li className="py-2">Normal Deposit</li>
-                    <li className="py-2">$1200</li>
-                    <li className="py-2">Initial Withdrawal</li>
-                    <li className="py-2">$12800</li>
-                    <li className="py-2">Bonus</li>
-                    <li className="py-2">$300</li>
-                  </ul>
-                </div>
-                <div className="py-4">
-                  <a
-                    href="/login"
-                    className="btn btn-default history-info btn-radius-5"
-                  >
-                    Buy Now
-                  </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 col-md-12 offset-lg-2">
+                <div className="title_default_dark title_border text-center">
+                  <h2
+                    className="animated py-4 title"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.2s"
+                  >
+                    Special Plans
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div className="row small_space">
+              <div className="col-lg-4 col-md-4">
+                <div
+                  className="text-center card site-bg2 mb-2 animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <div className="card-header btn-gradient-purple">
+                    <h3>Basic</h3>
+                    <div className="price_tage">
+                      <h3>$8000.00</h3>
+                      <span>Token Price</span>
+                    </div>
+                  </div>
+                  <div>
+                    <ul className=" text-center list-unstyled text-light">
+                      <li className="py-2 border">Normal Deposit</li>
+                      <li className="py-2 border mt-1">$900</li>
+                      <li className="py-2 border mt-1">Initial Withdrawal</li>
+                      <li className="py-2 border mt-1">$9900</li>
+                      <li className="py-2 border mt-1">Bonus</li>
+                      <li className="py-2 border mt-1">$150</li>
+                    </ul>
+                  </div>
+                  <div className="py-4">
+                    <a
+                      href="/login"
+                      className="btn btn-gradient-purple btn-round  "
+                    >
+                      Buy Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-4">
+                <div
+                  className="text-center card site-bg2 mb-2 animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <div className="card-header btn-gradient-purple">
+                    <h3>Standard</h3>
+                    <div className="price_tage">
+                      <h3>$12000.00</h3>
+                      <span>Token Price</span>
+                    </div>
+                  </div>
+                  <div>
+                    <ul className=" text-center list-unstyled text-light">
+                      <li className="py-2 border">Normal Deposit</li>
+                      <li className="py-2 mt-1 border">$1000</li>
+                      <li className="py-2 mt-1 border">Initial Withdrawal</li>
+                      <li className="py-2 mt-1 border">$12900</li>
+                      <li className="py-2 mt-1 border">Bonus</li>
+                      <li className="py-2 mt-1 border">$250</li>
+                    </ul>
+                  </div>
+                  <div className="py-4">
+                    <a
+                      href="/login"
+                      className="btn btn-gradient-purple btn-round "
+                    >
+                      Buy Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-4">
+                <div
+                  className="card text-center site-bg2 mb-2 animated"
+                  data-animation="fadeInUpShorter"
+                  data-animation-delay="0.2s"
+                >
+                  <div className="card-header btn-gradient-purple">
+                    <h3>Untimate</h3>
+                    <div className="price_tage">
+                      <h3>$15000.00</h3>
+                      <span>Token Price</span>
+                    </div>
+                  </div>
+                  <div>
+                    <ul className=" text-center text-light list-unstyled ">
+                      <li className="py-2  border">Normal Deposit</li>
+                      <li className="py-2 mt-1 border">$1200</li>
+                      <li className="py-2 mt-1 border">Initial Withdrawal</li>
+                      <li className="py-2 mt-1 border">$12800</li>
+                      <li className="py-2 mt-1 border">Bonus</li>
+                      <li className="py-2 mt-1 border">$300</li>
+                    </ul>
+                  </div>
+                  <div className="py-4">
+                    <a
+                      href="/login"
+                      className="btn btn-gradient-purple btn-round "
+                    >
+                      Buy Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* END SECTION PRICING TABLE- */}
-
-      <Footer />
+        {/* END SECTION PRICING TABLE- */}
+        <Footer />
+      </section>
     </>
   )
 }

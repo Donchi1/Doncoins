@@ -2,11 +2,8 @@ html {
   scroll-behavior: smooth;
 }
 
-.site-bg {
-  background-color: rgba(0, 0, 0, 0.6) !important;
-}
 .site-bg2 {
-  background-color: rgb(26, 19, 31) !important;
+  background-color: rgb(22, 4, 71) !important;
 }
 .userTextColor {
   background: linear-gradient(to right, #f87d18, purple) !important;
@@ -14,12 +11,7 @@ html {
   -webkit-text-fill-color: transparent !important;
 }
 
-.history-info {
-  background: linear-gradient(to right, #f87d18, purple) !important;
-}
-
 .nav-color {
-  background-color: #f87d18;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -83,11 +75,19 @@ html {
 .chat-bg {
   background-color: green;
 }
+.to-action-bg {
+  background-color: rgb(40, 30, 82);
+  border-radius: 1.2rem;
+}
 
 @media only screen and (max-width: 1000px) {
   .header-align {
     min-width: 100%;
   }
+  .collapse-color {
+    background-color: rgb(13, 6, 48);
+  }
+
   .price-pd {
     margin-top: 1.2rem;
   }
@@ -95,5 +95,12 @@ html {
     width: 10%;
     height: 5%;
     right: 2.5rem;
+  }
+  .pad-on-small {
+    padding-bottom: 10px !important;
+  }
+  .pad-around {
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }

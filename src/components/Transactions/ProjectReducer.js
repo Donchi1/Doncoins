@@ -3,7 +3,10 @@ const initialAuth = {
   paymentSuccess: '',
   withdrawalError: null,
   paymentAmount: '',
+  paymentAmountData: '',
+  paymentAmountData1: '',
   qrCode: false,
+  qrCode1: false,
   subcriptionSuccess: '',
   subcriptionError: null,
   uploadSuccess: '',
@@ -43,8 +46,10 @@ export const projectReducer = (state = initialAuth, action) => {
     case 'PAYMENT_SET':
       return {
         ...state,
+        paymentAmountData1: action.amount1,
         paymentAmountData: action.amount,
         qrCode: action.qrcode,
+        qrCode1: action.qrcode1,
       }
     case 'UPLOAD_SUCCESS':
       return {

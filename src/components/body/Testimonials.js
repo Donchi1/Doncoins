@@ -1,156 +1,133 @@
-import React, { useState } from 'react'
-import ReactPlayer from 'react-player'
-import { Dialog, Link } from '@material-ui/core'
-import testimony1 from '../../assets/video/mantest1.mp4'
-import testimony from '../../assets/video/mantest.mp4'
-import testimony2 from '../../assets/video/womantest.mp4'
+import React from 'react'
+import { Carousel } from 'react-bootstrap'
 
 function Testimonials() {
-  const [openVideo, setOpenVideo] = useState({
-    video1: false,
-    video2: false,
-    video3: false,
-  })
   return (
-    <>
-      <section className="blog-part site-bg ptb-100">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 wow fadeInUp">
-              <div className="section-heading text-center pb-65">
-                <label className="sub-heading">Testimomials</label>
-                <h2 className="heading-title userTextColor">
-                  Our Testimonials
-                </h2>
-                <p className="heading-des">
-                  Ultimatecoins has really changed the life of many. Checkout
-                  our what our clients has to say
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="blog-slider owl-carousel">
-            <div className="blog-box wow fadeInUp">
-              <div className="blog-img mb-15 work-box">
-                <img
-                  src={require('../../assets/test1.jpg')}
-                  alt="Work Process"
-                />
-                <Link
-                  to="#"
-                  className="play-icon text-center"
-                  onClick={() =>
-                    setOpenVideo({ ...openVideo, video1: !openVideo.video1 })
-                  }
-                >
-                  <span>
-                    <i className="fa fa-play" aria-hidden="true"></i>
-                  </span>
-                </Link>
-              </div>
-              <Dialog
-                open={openVideo.video1}
-                onClose={() => setOpenVideo({ ...openVideo, video1: false })}
-                maxWidth="xl"
+    <section className="pt-3">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8 col-md-12 offset-lg-2">
+            <div className="title_default_dark title_border text-center ">
+              <h2
+                className="animated title mb-4"
+                data-animation="fadeInUpShorter"
+                data-animation-delay="0.3s"
               >
-                <ReactPlayer
-                  controls
-                  playing
-                  url={testimony}
-                  style={{ border: 'none', outline: 'none' }}
-                />
-              </Dialog>
-              <div className="blog-des-box">
-                <p className="blog-date">
-                  Am so please trading unreagretably with Ultimatecoins meeting
-                  them was never a coincident and am so happy trading with then
-                  because they have increased my fund and changed my life
-                  totally.
-                </p>
-              </div>
-            </div>
-            <div className="blog-box wow fadeInUp">
-              <div className="blog-img mb-15 work-box">
-                <img
-                  src={require('../../assets/test2.jpg')}
-                  alt="Work Process"
-                />
-                <Link
-                  to="#"
-                  className="play-icon text-center"
-                  onClick={() =>
-                    setOpenVideo({ ...openVideo, video2: !openVideo.video2 })
-                  }
-                >
-                  <span>
-                    <i className="fa fa-play" aria-hidden="true"></i>
-                  </span>
-                </Link>
-              </div>
-              <Dialog
-                open={openVideo.video2}
-                onClose={() => setOpenVideo({ ...openVideo, video2: false })}
-                maxWidth="xl"
-              >
-                <ReactPlayer
-                  controls
-                  playing
-                  url={testimony2}
-                  style={{ border: 'none', outline: 'none' }}
-                />
-              </Dialog>
-              <div className="blog-des-box">
-                <p className="blog-date">
-                  Am so please trading unreagretably with Ultimatecoins meeting
-                  them was never a coincident and am so happy trading with then
-                  because they have increased my fund and changed my life
-                  totally.
-                </p>
-              </div>
-            </div>
-            <div className="blog-box wow fadeInRight">
-              <div className="blog-img mb-15 work-box">
-                <img
-                  src={require('../../assets/test3.jpg')}
-                  alt="Work Process"
-                />
-                <Link
-                  to="#"
-                  className="play-icon text-center"
-                  onClick={() =>
-                    setOpenVideo({ ...openVideo, video3: !openVideo.video3 })
-                  }
-                >
-                  <span>
-                    <i className="fa fa-play" aria-hidden="true"></i>
-                  </span>
-                </Link>
-              </div>
-              <Dialog
-                open={openVideo.video3}
-                onClose={() => setOpenVideo({ ...openVideo, video3: false })}
-                maxWidth="xl"
-              >
-                <ReactPlayer
-                  controls
-                  playing
-                  url={testimony1}
-                  style={{ border: 'none', outline: 'none' }}
-                />
-              </Dialog>
-              <div className="blog-des-box">
-                <p className="blog-date">
-                  Getting in touch with this company made me understand the
-                  meaning of team work.I invested very little but there team
-                  guided me to make the best out of this platform, and am so
-                  happy to be an investor here.
-                </p>
-              </div>
+                Testimonial
+              </h2>
             </div>
           </div>
         </div>
-      </section>
-    </>
+        <div className="row small_space">
+          <div className="col-lg-12 col-md-12 col-sm-12">
+            <Carousel controls={false} indicators={false}>
+              <Carousel.Item>
+                <div className="testimonial_wrap  animated text-center">
+                  <img
+                    src="https://bestwebcreator.com/cryptocash/demo/assets/images/testmonial_client1.jpg"
+                    data-animation="fadeInUpShorter"
+                    className="rounded-circle"
+                    data-animation-delay="0.3s"
+                    alt="testmonial_client1"
+                  />
+                  <h5
+                    className="animated btn-gradient-purple nav-color "
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    Kerri Reece
+                  </h5>
+                  <span
+                    className="animated text-light text-center"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    CEO Company
+                  </span>
+                  <p
+                    className="animated text-center"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    You should not expect anything more. This is a fantastic
+                    program, punctual paying, thanks a lot. I recommend this
+                    hyip!
+                  </p>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className="testimonial_wrap  item animated text-center">
+                  <img
+                    src="https://bestwebcreator.com/cryptocash/demo/assets/images/testmonial_client2.jpg"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                    className="rounded-circle"
+                    alt="testmonial_client2"
+                  />
+                  <h5
+                    className="animated btn-gradient-purple nav-color"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    Alvaro Martin
+                  </h5>
+                  <span
+                    className="animated text-light"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    CEO Company
+                  </span>
+                  <p
+                    className="animated text-center"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    This is a realistic program for anyone looking for site to
+                    invest. Paid to me regularly, keep up good work.This is a
+                    realistic program for anyone looking{' '}
+                  </p>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className="testimonial_wrap  animated text-center">
+                  <img
+                    src="https://bestwebcreator.com/cryptocash/demo/assets/images/testmonial_client3.jpg"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                    className="rounded-circle"
+                    alt="testmonial_client3"
+                  />
+                  <h5
+                    className="animated btn-gradient-purple nav-color"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    Jessica Bell
+                  </h5>
+                  <span
+                    className="animated text-light"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    Head Of Sale
+                  </span>
+                  <p
+                    className="animated text-center"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.3s"
+                  >
+                    This is a realistic program for anyone looking for site to
+                    invest. Paid to me regularly, keep up good work.This is a
+                    realistic program for anyone looking{' '}
+                  </p>
+                </div>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

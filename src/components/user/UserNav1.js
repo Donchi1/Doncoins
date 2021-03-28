@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { LogoutAction } from '../Auths/Action'
 import { useFirebase, useFirestoreConnect } from 'react-redux-firebase'
@@ -9,21 +9,42 @@ function UserNav1() {
   const firebase = useFirebase()
   const dispatch = useDispatch()
 
-  const userProfile = useSelector((state) => state.firebase.profile)
+  const userProfile = useSelector((state) => state.firebase.auth)
+
+  const [collections, setCollections] = useState({
+    users: 'user',
+    payments: 'withdrawal',
+    withdrawals: 'payment',
+  })
+
+  useEffect(() => {
+    setCollections({
+      ...collections,
+      users: 'users',
+      payments: 'payments',
+      withdrawals: 'withdrawals',
+    })
+  }, [])
 
   useFirestoreConnect([
     {
-      collection: 'users',
+      collection: collections.users,
     },
     {
-      collection: 'payments',
-
+      collection: collections.payments,
       doc: userProfile.uid,
+      subcollections: [
+        { collection: 'paymentData', orderBy: ['date', 'desc'], limit: 5 },
+      ],
+      storeAs: 'paymentInDatabase',
     },
     {
-      collection: 'withdrawals',
-
+      collection: collections.withdrawals,
       doc: userProfile.uid,
+      subcollections: [
+        { collection: 'withdrawalData', orderBy: ['date', 'desc'], limit: 5 },
+      ],
+      storeAs: 'withdrawalInDatabase',
     },
   ])
 
@@ -32,86 +53,94 @@ function UserNav1() {
     LogoutAction(firebase, dispatch, handleLogoutRoute)
   }
   return (
-    <>
-      <header
-        className="header_wrap fixed-top  "
-        style={{ position: 'sticky' }}
-      >
-        <div
-          className="container-fluid darkblue py-2 "
-          style={{ position: 'absolute', top: 0 }}
-        >
-          <nav className="navbar navbar-expand-lg">
-            <a className="navbar-brand animation" href="/">
-              <span>
-                <span className="btn-default backtext">
-                  <h3 className="sub-heading little-add">
-                    <span className="u-design">U</span>
-                    ltimateCoins
-                  </h3>
-                </span>
-              </span>
-            </a>
-            <button
-              className="navbar-toggler animation  history-info"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="fa fa-bars text-light"></span>
-            </button>
-            <div
-              className="collapse navbar-collapse "
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav m-auto align-items-center">
-                <li>
-                  <a className="user-anchor nav-link " href="/user">
+    <header className="page-header ">
+      <nav className="main-menu static-top navbar-dark collapse-color navbar navbar-expand-lg fixed-top mb-1">
+        <div className="container">
+          <a
+            className="navbar-brand animated"
+            data-animation="fadeInDown"
+            data-animation-delay="1s"
+            href="/"
+          >
+            <img
+              src="https://pixinvent.com/demo/crypto-ico/theme-assets/images-3d-animation/logo.png"
+              alt="Crypto Logo"
+            />
+            <span className="brand-text">
+              <span className="font-weight-bold">Doncoins</span>
+            </span>
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse collapse-color"
+            id="navbarCollapse"
+          >
+            <div id="navigation" className="navbar-nav ml-auto">
+              <ul className="navbar-nav mt-1">
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.3s"
+                >
+                  <a className="nav-link" href="/user">
                     Dashboard
                   </a>
                 </li>
-
-                <li>
-                  <a className="user-anchor nav-link" href="/withdrawals">
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.3s"
+                >
+                  <a className="nav-link" href="/withdrawals">
                     Withdrawals
                   </a>
                 </li>
-
-                <li>
-                  <a className="user-anchor nav-link" href="/payments">
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.3s"
+                >
+                  <a className="nav-link" href="/payments">
                     Payments
                   </a>
                 </li>
-                <li>
-                  <a className="user-anchor nav-link" href="/investments">
-                    Invest
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.4s"
+                >
+                  <a className="nav-link" href="/investments">
+                    Investments
                   </a>
                 </li>
               </ul>
-              <ul className="navbar-nav  align-items-center">
-                <li className=" nav-link">
-                  <Link
-                    to="#"
-                    className="btn history-info "
-                    onClick={() => window.location.assign('/profile')}
-                  >
-                    {userProfile.initial}
-                  </Link>
-                </li>
-                <li className=" nav-link">
-                  <button className="btn history-info " onClick={handleLogout}>
-                    Logout
-                  </button>
-                </li>
-              </ul>
+              <span id="slide-line"></span>
+              <form className="form-inline mt-2 mt-md-0">
+                <Link
+                  to="#"
+                  className="btn btn-sm btn-gradient-purple btn-round btn-glow my-2 my-sm-0 animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.8s"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Link>
+              </form>
             </div>
-          </nav>
+          </div>
         </div>
-      </header>
-    </>
+      </nav>
+    </header>
   )
 }
 

@@ -9,7 +9,6 @@ import contacts from './components/navigation/contacts'
 import About from './components/navigation/About'
 import './components/CSS/App.css'
 
-import AdminPage from './components/navigation/AdminPage'
 import Empty from './components/navigation/Empty'
 import User from './components/user/User'
 import Profile from './components/user/Profile'
@@ -19,7 +18,6 @@ import { isLoaded, isEmpty } from 'react-redux-firebase'
 import ForgetPassword from './components/navigation/ForgetPassword'
 
 import Teams from './components/body/Teams'
-import FAQ from './components/body/AskedQuestions'
 
 import Features from './components/body/Features'
 
@@ -44,9 +42,6 @@ function App() {
         <Route exact path="/features" component={Features} />
         <Route exact path="/passReset" component={ForgetPassword} />
         <Route exact path="/teams" component={Teams} />
-        <Route exact path="/faq" component={FAQ} />
-
-        <Route exact path="/adm" component={AdminPage} />
 
         <Route
           exact

@@ -1,87 +1,111 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 function NavBar() {
   return (
-    <header
-      className="transition  header-align "
-      style={{ position: 'sticky' }}
-    >
-      <div
-        className="container-fluid darkblue py-2"
-        style={{ position: 'absolute', top: 0 }}
-      >
-        <div className="row flex-align">
-          <div className="col-lg-4 col-md-3 col-8">
-            <div className="logo">
-              <a href="/">
-                <h3 className="sub-heading  little-add ml-3">
-                  <span className="u-design">U</span>
-                  ltimateCoins
-                </h3>
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-8 col-md-9 col-4 text-right">
-            <div className="menu-toggle">
-              <span></span>
-            </div>
-            <div className="menu">
-              <ul className="d-inline-block">
-                <li>
-                  <a href="/" className="nav-color">
+    <header className="page-header ">
+      <nav className="main-menu static-top navbar-dark collapse-color navbar navbar-expand-lg fixed-top mb-1">
+        <div className="container">
+          <a
+            className="navbar-brand animated"
+            data-animation="fadeInDown"
+            data-animation-delay="1s"
+            href="/"
+          >
+            <img
+              src="https://pixinvent.com/demo/crypto-ico/theme-assets/images-3d-animation/logo.png"
+              alt="Crypto Logo"
+            />
+            <span className="brand-text">
+              <span className="font-weight-bold">Doncoins</span>
+            </span>
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse collapse-color"
+            id="navbarCollapse"
+          >
+            <div id="navigation" className="navbar-nav ml-auto">
+              <ul className="navbar-nav mt-1">
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.1s"
+                >
+                  <a className="nav-link" href="/">
                     Home
                   </a>
                 </li>
-                <li className="mega-menu">
-                  <span className="opener plus"></span>
-                  <Link to="#" className="nav-color">
-                    Pages
-                  </Link>
-                  <ul className="transition">
-                    <li>
-                      <a href="/about" className="userTextColor">
-                        About
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/pricing" className="userTextColor">
-                        Pricing
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/contacts" className="userTextColor">
-                        Contact
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/faq" className="userTextColor">
-                        FAQ
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="/features" className="nav-color">
-                    Feature
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.2s"
+                >
+                  <a className="nav-link" href="/about">
+                    About
                   </a>
                 </li>
-
-                <li>
-                  <a href="/teams" className="nav-color">
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.3s"
+                >
+                  <a className="nav-link" href="/contacts">
+                    Contact
+                  </a>
+                </li>
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.3s"
+                >
+                  <a className="nav-link" href="/teams">
                     Team
                   </a>
                 </li>
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.3s"
+                >
+                  <a className="nav-link" href="/pricing">
+                    Pricing
+                  </a>
+                </li>
+                <li
+                  className="nav-item animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.4s"
+                >
+                  <a className="nav-link" href="/features">
+                    Features
+                  </a>
+                </li>
               </ul>
-              <div className="signin d-inline-block">
-                <a href="/login" className="btn history-info">
+              <span id="slide-line"></span>
+              <form className="form-inline mt-2 mt-md-0">
+                <a
+                  className="btn btn-sm btn-gradient-purple btn-round btn-glow my-2 my-sm-0 animated"
+                  data-animation="fadeInDown"
+                  data-animation-delay="1.8s"
+                  href="/login"
+                >
                   Sign in
                 </a>
-              </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     </header>
   )
 }

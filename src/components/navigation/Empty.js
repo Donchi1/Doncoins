@@ -1,38 +1,61 @@
 import React from 'react'
 
-import NavBar from './NavBar'
-
 function Empty() {
   return (
     <>
-      <NavBar />
-      <section className="sub-page-banner site-bg parallax" id="banner">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="page-banner text-center wow fadeInUp">
-                <h1 className="sub-banner-title userTextColor">404</h1>
-                <ul>
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>404</li>
-                </ul>
+      <section className="1-column undefined  page-animated svg-wrapper ">
+        <section className="container pt-5 ">
+          <div>
+            <div className="row">
+              <div className="col-md-12 ">
+                <div className="page-banner text-center">
+                  <div
+                    className=" animated banner-content pt-5 text-uppercase text-bold text-light"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.2s"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="site-bg ptb-100">
-        <div className="row">
-          <div className="col-md-12 wow fadeInUp animated">
-            <div className="section-heading text-center">
-              <h2 className="heading-title">404</h2>
-              <p className="heading-des">Ooops! 404 - Page Not Found</p>
+        <section
+          className=" d-flex justify-content-center align-items-center "
+          style={{ height: '100vh' }}
+        >
+          <div className="row ">
+            <div
+              className="col-md-12 animated"
+              data-animation="fadeInUpShorter"
+              data-animation-delay="0.3s"
+            >
+              <div className="section-heading text-center">
+                <h1
+                  className="title text-danger"
+                  style={{ fontSize: '6rem', fontFamily: 'fantasy' }}
+                >
+                  404
+                </h1>
+                <p className="sub-title">Ooops! 404 - Page Not Found</p>
+              </div>
+            </div>
+            <div
+              className="col-md-12 animated"
+              data-animation="fadeInUpShorter"
+              data-animation-delay="0.3s"
+            >
+              <div className="section-heading text-center">
+                <a
+                  href="/"
+                  className="btn btn-round btn-gradient-purple text-light"
+                >
+                  Back to home
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </section>
     </>
   )

@@ -27,6 +27,7 @@ export const registerAction = (
           totalBalance: '0000',
           initialDeposite: '0000',
           bonus: '25.00',
+          token: '0000',
           disableWithdrawal: true,
         })
     })
@@ -39,6 +40,9 @@ export const registerAction = (
         password: '',
         phone: '',
         country: '',
+        checked: false,
+        loading: false,
+        disableBtn: false,
       })
       dispatch({ type: 'SIGNUP_SUCCESS' })
       window.location.assign('/login')
@@ -52,6 +56,8 @@ export const registerAction = (
         password: '',
         phone: '',
         country: '',
+        loading: false,
+        disableBtn: false,
       })
       dispatch({ type: 'SIGNUP_ERROR', error: err })
       checkAuth()
@@ -72,12 +78,26 @@ export const logginAction = (
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-      setuserData({ ...data, email: '', password: '' })
+      setuserData({
+        ...data,
+        email: '',
+        password: '',
+        checked: false,
+        loading: false,
+        disableBtn: false,
+      })
       dispatch({ type: 'LOGIN_SUCCESS' })
       window.location.assign('/user')
     })
     .catch((err) => {
-      setuserData({ ...data, email: '', password: '' })
+      setuserData({
+        ...data,
+        email: '',
+        password: '',
+        checked: false,
+        loading: false,
+        disableBtn: false,
+      })
       dispatch({ type: 'LOGIN_ERROR', error: err })
       checkAuth()
     })
@@ -202,20 +222,22 @@ export const withdrawalAction = (
   firestore
     .collection('withdrawals')
     .doc(uid)
-    .set(
-      {
-        withdrawalAmount: withdrawalData.amount,
-        wallet: withdrawalData.wallet,
-        date: new Date().toLocaleString(),
-        currentUserfirstname: profile.firstname,
-        currentUserlastname: profile.lastname,
-        withdrawerName: withdrawalData.name,
-        number: withdrawalData.phone,
-        AccountNumber: withdrawalData.accountNumber,
-        uid: uid,
-      },
-      { merge: true },
-    )
+    .collection('withdrawalData')
+    .add({
+      withdrawalAmount: withdrawalData.amount,
+      wallet: withdrawalData.wallet,
+      date: new Date(),
+      currentUserfirstname: profile.firstname,
+      currentUserlastname: profile.lastname,
+      withdrawerName: withdrawalData.name,
+      number: withdrawalData.phone,
+      AccountNumber: withdrawalData.accountNumber,
+      uid: uid,
+      id: Math.random().toString(),
+      statusPending: true,
+      statusFailed: false,
+      statusSuccess: false,
+    })
     .then(() => {
       dispatch({ type: 'WITHDRAWAL_ERROR' })
       handleLoading()
@@ -258,16 +280,18 @@ export const paymentAction = (
   firestore
     .collection('payments')
     .doc(uid)
-    .set(
-      {
-        paymentAmount: amount ? amount : 1,
-        date: new Date().toLocaleString(),
-        firstname: profile.firstname,
-        lastname: profile.lastname,
-        uid: uid,
-      },
-      { merge: true },
-    )
+    .collection('paymentData')
+    .add({
+      paymentAmount: amount ? amount : 1,
+      date: new Date(),
+      firstname: profile.firstname,
+      lastname: profile.lastname,
+      uid: uid,
+      idx: Math.random().toString(),
+      statusPending: true,
+      statusFailed: false,
+      statusSuccess: false,
+    })
     .then(() => {
       firebase
         .storage()
@@ -308,21 +332,21 @@ export const LogoutAction = (firebase, dispatch, handleLogoutRoute) => {
     })
 }
 
-export const newsLetterAction = (email, firebase, dispatch, setinput) => {
+export const newsLetterAction = (input, firebase, dispatch, setinput) => {
   firebase
     .firestore()
     .collection('newsletters')
     .add({
-      newsLetter: email,
+      newsLetter: input.email,
       id: Date.now().toString(),
     })
     .then(() => {
       dispatch({ type: 'SUBCRIPTION_SUCCESSFUL' })
-      setinput('')
+      setinput({ ...input, loading: false, disableBtn: false })
     })
     .catch((error) => {
       dispatch({ type: 'SUBCRIPTION_ERROR', error })
-      setinput('')
+      setinput({ ...input, loading: false, disableBtn: false })
     })
 }
 
@@ -358,6 +382,8 @@ export const contactAction = (
         message: '',
         subject: '',
         phone: '',
+        loading: false,
+        disableBtn: false,
       })
       setopenSnack(true)
     })
@@ -370,6 +396,8 @@ export const contactAction = (
         message: '',
         subject: '',
         phone: '',
+        loading: false,
+        disableBtn: false,
       })
       setopenSnackError(true)
     })

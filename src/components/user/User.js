@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import Chart from './Chart'
 import MarketPrice from './MarketPrice'
 import UserNav1 from './UserNav1'
+import HistoryData from './HistoryData'
 
 function User() {
   const userProfile = useSelector((state) => state.firebase.profile)
@@ -19,15 +20,63 @@ function User() {
     <>
       <UserNav1 />
 
-      <section className="site-bg pt-5  pb-0 ">
+      <section className="1-column undefined  page-animated svg-wrapper pt-5  pb-0 ">
         <div className="text-center  text-uppercase pt-5">
-          <h1 className="text-light">Dashboard</h1>
+          <h4 className="text-light title">Dashboard</h4>
         </div>
         <div className="divider small_divider"></div>
         <div className="row text-center container  mb-3 d-flex justify-content-around mx-auto">
-          <div className=" text-light mt-3 " style={{ width: '17rem' }}>
+          <div
+            className=" text-light mt-3 card site-bg2 "
+            style={{ width: '17rem', height: '22rem' }}
+          >
+            <div className="pad-on-small">
+              <h5 className="card-header to-action-bg text-light ">Profile</h5>
+              <span>
+                <img
+                  src={userProfile.image || require('../../assets/avater.png')}
+                  width="80px"
+                  height="80px"
+                  className="border rounded-circle mt-3"
+                  alt="profile"
+                />
+              </span>
+              <p className="card-title pt-1">
+                Welcome {userProfile.firstname} {userProfile.lastname}
+              </p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="btn-gradient-purple nav-color">
+                    Country{' '}
+                  </span>{' '}
+                  : {userProfile.country}
+                </li>
+                <li>
+                  <span className="btn-gradient-purple nav-color">Phone </span>:{' '}
+                  {userProfile.phone}
+                </li>
+              </ul>
+
+              <div>
+                <a
+                  href="/profile"
+                  className="btn btn-round btn-gradient-purple btn-sm "
+                >
+                  View Profile
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            className=" text-light mt-3 card site-bg2"
+            style={{ width: '17rem' }}
+          >
+            <h5 className="card-header to-action-bg text-light">
+              Total Balance
+            </h5>
             <CircularProgressbarWithChildren
-              strokeWidth={3}
+              className="mt-2"
+              strokeWidth={5}
               value={percentage}
               styles={{
                 path: {
@@ -37,7 +86,6 @@ function User() {
               }}
             >
               <div className="text-primary">
-                <h3 className="btn-default userTextColor">Total Balance</h3>
                 <h1>
                   <strong className="text-light">
                     ${percentage ? percentage : '0000'}
@@ -46,10 +94,17 @@ function User() {
               </div>
             </CircularProgressbarWithChildren>
           </div>
-          <div className=" text-light mt-3 " style={{ width: '17rem' }}>
+          <div
+            className=" text-light mt-3 card site-bg2"
+            style={{ width: '17rem' }}
+          >
+            <h5 className="card-header text-light to-action-bg  ">
+              Initial Deposit
+            </h5>
             <CircularProgressbarWithChildren
+              className="mt-2"
               value={userProfile.initialDeposite}
-              strokeWidth={3}
+              strokeWidth={5}
               styles={{
                 path: {
                   stroke: 'rgb(146, 15, 146)',
@@ -58,7 +113,6 @@ function User() {
               }}
             >
               <div className="text-primary">
-                <h3 className="btn-default userTextColor">Initial Deposit</h3>
                 <h1>
                   <strong className="text-light">
                     $
@@ -70,11 +124,18 @@ function User() {
               </div>
             </CircularProgressbarWithChildren>
           </div>
-          <div className=" text-light mt-3 " style={{ width: '17rem' }}>
+          <div
+            className=" text-light mt-3 card site-bg2"
+            style={{ width: '17rem' }}
+          >
+            <h5 className="card-header text-light to-action-bg">
+              Token Balance
+            </h5>
             <div>
               <CircularProgressbarWithChildren
+                className="mt-2"
                 value={userProfile.bonus}
-                strokeWidth={3}
+                strokeWidth={5}
                 styles={{
                   path: {
                     stroke: 'rgb(146, 15, 146)',
@@ -83,10 +144,9 @@ function User() {
                 }}
               >
                 <div>
-                  <h3 className="btn-default userTextColor">Bonus Balance</h3>
                   <h1>
                     <strong className="text-light">
-                      ${userProfile.bonus ? userProfile.bonus : '0000'}
+                      ${userProfile.token ? userProfile.token : '0000'}
                     </strong>
                   </h1>
                 </div>
@@ -94,21 +154,21 @@ function User() {
             </div>
           </div>
         </div>
-        <div
-          className=" text-center text-uppercase mx-auto mt-4"
-          style={{ width: '50%', fontStyle: 'italic' }}
-        >
-          <h2 className="text-light">Transaction Update</h2>
+        <div className=" text-center text-uppercase mx-auto mt-4">
+          <h4 className="text-light title">Transaction Update</h4>
         </div>
         <div className="row mb-3 d-flex justify-content-around mt-4 container mx-auto">
           <Card
-            style={{ width: '18rem' }}
+            style={{ width: '17rem' }}
             className=" text-light site-bg2 mt-3"
           >
             <div className="d-flex justify-content-around align-items-center">
-              <Icons.Envelope size={80} className="btn-default userTextColor" />
+              <Icons.Envelope
+                size={80}
+                className="btn-default btn-gradient-purple nav-color"
+              />
               <div>
-                <h2 className="btn-default userTextColor">
+                <h2 className="btn-default btn-gradient-purple nav-color">
                   $
                   {userProfile.totalBalance
                     ? Number(userProfile.totalBalance) +
@@ -125,13 +185,16 @@ function User() {
             </Card.Footer>
           </Card>
           <Card
-            style={{ width: '18rem' }}
+            style={{ width: '17rem' }}
             className=" text-light mt-3 site-bg2"
           >
             <div className="d-flex justify-content-around align-items-center">
-              <Icons.Wallet size={80} className="btn-default userTextColor" />
+              <Icons.Wallet
+                size={80}
+                className="btn-default btn-gradient-purple nav-color"
+              />
               <div>
-                <h2 className="btn-default userTextColor">
+                <h2 className="btn-default btn-gradient-purple nav-color">
                   $
                   {userProfile.totalBalance ? userProfile.totalBalance : '0000'}
                 </h2>
@@ -146,13 +209,18 @@ function User() {
             </Card.Footer>
           </Card>
           <Card
-            style={{ width: '18rem' }}
+            style={{ width: '17rem' }}
             className=" text-light mt-3 site-bg2"
           >
             <div className="d-flex justify-content-around align-items-center">
-              <Icons.Bag size={80} className="btn-default userTextColor" />
+              <Icons.Bag
+                size={80}
+                className="btn-default btn-gradient-purple nav-color"
+              />
               <div>
-                <h2 className="btn-default userTextColor">95%</h2>
+                <h2 className="btn-default btn-gradient-purple nav-color">
+                  95%
+                </h2>
                 <p className="text-light">Rate of Return</p>
               </div>
             </div>
@@ -163,13 +231,16 @@ function User() {
             </Card.Footer>
           </Card>
           <Card
-            style={{ width: '18rem' }}
+            style={{ width: '17rem' }}
             className=" text-light mt-3 site-bg2"
           >
             <div className="d-flex justify-content-around align-items-center">
-              <Icons.Calendar size={80} className="btn-default userTextColor" />
+              <Icons.Calendar
+                size={80}
+                className="btn-default btn-gradient-purple nav-color"
+              />
               <div>
-                <h2 className="btn-default userTextColor">
+                <h2 className="btn-default btn-gradient-purple nav-color">
                   ${userProfile.bonus ? Number(userProfile.bonus) + 2 : '0000'}
                 </h2>
                 <p className="text-light">Bonus rate</p>
@@ -184,13 +255,17 @@ function User() {
         </div>
         <div className="divider small_divider"></div>
         <MarketPrice />
-        <div className="divider small_divider"></div>
-        <section className="site-bg pt-3">
-          <div className="container">
+        <HistoryData />
+        <div className="divider small_divider mt-2"></div>
+        <section className=" pt-3 container">
+          <div
+            className=" to-action-bg d-flex justify-content-center align-items-center px-2"
+            style={{ minHeight: '40vh' }}
+          >
             <div className="row align-items-center mt-5">
               <div className="col-lg-6">
                 <div className="action-content res_md_mb_20 ">
-                  <h4 className="wow userTextColor">
+                  <h4 className="animated btn-gradient-purple nav-color">
                     Contact our team for more information
                   </h4>
                   <p className="m-0 ">
@@ -199,13 +274,14 @@ function User() {
                 </div>
               </div>
               <div className="col-lg-6 text-lg-right">
-                <a href="/contacts" className="btn history-info">
+                <a
+                  href="/contacts"
+                  className="btn btn-round btn-gradient-purple animated"
+                >
                   Contact Us <i className="fa fa-long-arrow-right"></i>
                 </a>
                 <div className=" mt-4">
-                  <h4 className="mb-2 userTextColor">
-                    Easy way to buy bitcoin
-                  </h4>
+                  <h4 className="mb-2 text-light">Easy ways to crypto</h4>
                   <a
                     href="https://coinmama.com"
                     className="d-inline-block ml-1"
@@ -242,8 +318,8 @@ function User() {
               <div className="row">
                 <div className="col-md-6">
                   <p className="copyright">
-                    Copyright &copy; UltimateCoins {new Date().getFullYear()}{' '}
-                    All Rights Reserved.
+                    Copyright &copy; Doincoins {new Date().getFullYear()} All
+                    Rights Reserved.
                   </p>
                 </div>
               </div>
