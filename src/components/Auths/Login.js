@@ -76,7 +76,6 @@ function Login() {
 
         <section id="account-login" className="flexbox-container">
           <div className="col-12 d-flex align-items-center justify-content-center ">
-            {/* login form */}
             <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-12 p-0">
               <div
                 className="card border-grey to-action-bg animated border-lighten-3 m-0 box-shadow-0 card-account-right height-400"
