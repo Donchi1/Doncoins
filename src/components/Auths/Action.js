@@ -304,7 +304,7 @@ export const paymentAction = (
             .ref(`paymentProves/${uid}`)
             .getDownloadURL()
             .then((url) => {
-              firestore
+              return firestore
                 .collection('payments')
                 .doc(uid)
                 .update({ paymentProve: url })

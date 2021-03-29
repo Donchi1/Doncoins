@@ -76,8 +76,8 @@ html {
   background-color: green;
 }
 .to-action-bg {
-  background-color: rgb(40, 30, 82);
-  border-radius: 1.2rem;
+  background-color: rgb(40, 30, 82) !important;
+  border-radius: 1.2rem !important;
 }
 
 @media only screen and (max-width: 1000px) {

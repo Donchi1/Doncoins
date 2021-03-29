@@ -134,7 +134,7 @@ function User() {
             <div>
               <CircularProgressbarWithChildren
                 className="mt-2"
-                value={userProfile.bonus}
+                value={userProfile.token}
                 strokeWidth={5}
                 styles={{
                   path: {
