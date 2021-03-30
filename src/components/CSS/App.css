@@ -80,6 +80,27 @@ html {
   border-radius: 1.2rem !important;
 }
 
+.profile-user-bg {
+  background-color: rgb(40, 30, 82) !important;
+}
+
+.translated-ltr {
+  margin-top: -40px;
+}
+.translated-ltr {
+  margin-top: -40px;
+}
+.goog-te-banner-frame {
+  display: none;
+  margin: -20px;
+}
+.goog-logo-link {
+  display: none !important;
+}
+.goog-te-gadget {
+  color: transparent !important;
+}
+
 @media only screen and (max-width: 1000px) {
   .header-align {
     min-width: 100%;

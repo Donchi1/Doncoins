@@ -23,7 +23,7 @@ function Payments() {
     (state) => state.projectReducer.paymentSuccess,
   )
   const profileInfo = useSelector((state) => state.firebase.profile)
-  console.log(profileInfo)
+
   const paymentInfo = useSelector((state) => state.projectReducer)
   const [openLoader, setOpenLoader] = useState(false)
   const [openPay, setOpenPay] = useState({

@@ -31,7 +31,9 @@ function User() {
             style={{ width: '17rem', height: '22rem' }}
           >
             <div className="pad-on-small">
-              <h5 className="card-header to-action-bg text-light ">Profile</h5>
+              <h5 className="card-header profile-user-bg text-light ">
+                Profile
+              </h5>
               <span>
                 <img
                   src={userProfile.image || require('../../assets/avater.png')}
@@ -71,7 +73,7 @@ function User() {
             className=" text-light mt-3 card site-bg2"
             style={{ width: '17rem' }}
           >
-            <h5 className="card-header to-action-bg text-light">
+            <h5 className="card-header profile-user-bg text-light">
               Total Balance
             </h5>
             <CircularProgressbarWithChildren
@@ -98,7 +100,7 @@ function User() {
             className=" text-light mt-3 card site-bg2"
             style={{ width: '17rem' }}
           >
-            <h5 className="card-header text-light to-action-bg  ">
+            <h5 className="card-header text-light profile-user-bg ">
               Initial Deposit
             </h5>
             <CircularProgressbarWithChildren
@@ -128,7 +130,7 @@ function User() {
             className=" text-light mt-3 card site-bg2"
             style={{ width: '17rem' }}
           >
-            <h5 className="card-header text-light to-action-bg">
+            <h5 className="card-header text-light profile-user-bg">
               Token Balance
             </h5>
             <div>

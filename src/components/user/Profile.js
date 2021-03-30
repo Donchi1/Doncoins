@@ -77,7 +77,10 @@ function Profile() {
                         <div className="text-center">
                           <h4 className="btn-gradient-purple nav-color pt-1">
                             <h4 className="wow">
-                              Welcome {userProfile.firstname}
+                              Welcome{' '}
+                              <span className="text-light">
+                                {userProfile.firstname}
+                              </span>
                             </h4>
                             <p className="wow">Update your profile</p>
                           </h4>
@@ -201,7 +204,7 @@ function Profile() {
                                 </div>
                                 <div className="form-group col-md-12 animation">
                                   <input
-                                    type="number"
+                                    type="tel"
                                     name="phone"
                                     id="phone"
                                     size="sm"

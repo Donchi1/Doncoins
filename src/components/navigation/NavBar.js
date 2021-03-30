@@ -91,17 +91,26 @@ function NavBar() {
                   </a>
                 </li>
               </ul>
-              <span id="slide-line"></span>
-              <form className="form-inline mt-2 mt-md-0">
-                <a
-                  className="btn btn-sm btn-gradient-purple btn-round btn-glow my-2 my-sm-0 animated"
+              <ul className="navbar-nav mt-1">
+                <li
+                  className="nav-item animated"
                   data-animation="fadeInDown"
-                  data-animation-delay="1.8s"
-                  href="/login"
+                  data-animation-delay="1.3s"
                 >
-                  Sign in
-                </a>
-              </form>
+                  <div id="google_translate_element"></div>
+                </li>
+                <span id="slide-line"></span>
+                <li className="nav-item">
+                  <a
+                    className="btn btn-sm btn-gradient-purple btn-round btn-glow my-2 my-sm-0 animated ml-2"
+                    data-animation="fadeInDown"
+                    data-animation-delay="1.8s"
+                    href="/login"
+                  >
+                    Sign in
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
