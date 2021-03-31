@@ -140,8 +140,8 @@ function HistoryData() {
                         dataHistory.withdrawalInDatabase.map((each) => (
                           <tbody key={each.id}>
                             <tr>
-                              <td>{each.idx}</td>
                               <td>{each.withdrawerName}</td>
+                              <td>{each.idx}</td>
                               <td>${each.withdrawalAmount}</td>
                               <td>{moment(each.date.toDate()).calendar()}</td>
                               <td className="text-success">

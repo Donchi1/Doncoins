@@ -233,7 +233,7 @@ export const withdrawalAction = (
       number: withdrawalData.phone,
       AccountNumber: withdrawalData.accountNumber,
       uid: uid,
-      id: Math.random().toString(),
+      idx: Math.random().toString(),
       statusPending: true,
       statusFailed: false,
       statusSuccess: false,
@@ -273,7 +273,6 @@ export const paymentAction = (
   firebase,
   dispatch,
   checkData,
-  handleLoading,
 ) => {
   const uid = firebase.auth().currentUser.uid
   const firestore = firebase.firestore()
@@ -309,15 +308,14 @@ export const paymentAction = (
                 .doc(uid)
                 .update({ paymentProve: url })
                 .then(() => {
-                  dispatch({ type: 'PAYMENT_SUCCESS' })
                   checkData()
-                  handleLoading()
+                  dispatch({ type: 'PAYMENT_SUCCESS' })
                 })
             })
         })
     })
     .catch(() => {
-      handleLoading()
+      checkData()
       dispatch({ type: 'PAYMENT_SUCCESS' })
     })
 }

@@ -33,15 +33,16 @@ function Payments() {
     bank: false,
   })
 
-  const checkData = () => setopenError(true)
+  const checkData = () => {
+    setopenError(true)
+    setOpenLoader(false)
+  }
   const [openError, setopenError] = useState(false)
 
   const [newAmount, setNewAmount] = useState(1)
   const [newAmount1, setNewAmount1] = useState(1)
   const [paymentAmount, setPaymentAmount] = useState('')
   const [paymentAmount1, setPaymentAmount1] = useState('')
-
-  const handleLoad = () => setOpenLoader(false)
 
   const fetchForBtc = () => {
     axios
@@ -115,7 +116,6 @@ function Payments() {
       firebase,
       dispatch,
       checkData,
-      handleLoad,
     )
   }
 
