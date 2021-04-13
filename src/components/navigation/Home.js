@@ -2261,7 +2261,7 @@ function Home() {
                             className=" text-light"
                             href="mailto:info@doncoins.info"
                           >
-                            info@doncoins.info
+                            support@donocoins.info
                           </a>
                         </span>
                       </li>
@@ -2272,9 +2272,12 @@ function Home() {
                       >
                         <i className="fa fa-whatsapp"></i>
                         <span className="ml-1 ">
-                          <Link className="text-light" to="#">
+                          <a
+                            className="text-light"
+                            href="https://wa.me/ +1(520)367-0280"
+                          >
                             +1(520)367-0280
-                          </Link>
+                          </a>
                         </span>
                       </li>
                       <li

@@ -6,7 +6,6 @@ import { contactAction } from '../Auths/Action'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFirebase } from 'react-redux-firebase'
 import { Snackbar } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 
 function Contacts() {
   const [userData, setuserData] = useState({
@@ -101,27 +100,30 @@ function Contacts() {
                   <li
                     className="animated"
                     data-animation="fadeInUpShorter"
-                    data-animation-delay="0.5s"
-                  >
-                    <i className="fa fa-whatsapp"></i>
-                    <span className="ml-1 ">
-                      <Link className="text-light" to="#">
-                        +1(520)367-0280
-                      </Link>
-                    </span>
-                  </li>
-                  <li
-                    className="animated"
-                    data-animation="fadeInUpShorter"
                     data-animation-delay="0.6s"
                   >
                     <i className="fa fa-envelope"></i>
                     <span className="ml-1">
                       <a
                         className=" text-light"
-                        href="mailto:info@doncoins.info"
+                        href="mailto:support@donocoins.info"
                       >
-                        info@doncoins.info
+                        support@donocoins.info
+                      </a>
+                    </span>
+                  </li>
+                  <li
+                    className="animated"
+                    data-animation="fadeInUpShorter"
+                    data-animation-delay="0.5s"
+                  >
+                    <i className="fa fa-whatsapp"></i>
+                    <span className="ml-1 ">
+                      <a
+                        className="text-light"
+                        href="https://wa.me/+1(520)367-0280"
+                      >
+                        +1(520)367-0280
                       </a>
                     </span>
                   </li>
@@ -206,7 +208,7 @@ function Contacts() {
             >
               <div className="container">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.1812836849363!2d144.95343106869794!3d-37.81739907631358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s121+King+St%2C+Melbourne+VIC+3000%2C+Australia!5e0!3m2!1sen!2sin!4v1562916623921!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.1812836849363!2d144.95343106869794!3d-37.81739907631358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s825+Afred+Drive+Bayside+St%2C+Newyork+VIC+3000%2C+Usa!5e0!3m2!1sen!2sin!4v1562916623921!5m2!1sen!2sin"
                   height="500"
                   style={{ border: '0', width: '100%' }}
                   title="Doncoins Location"

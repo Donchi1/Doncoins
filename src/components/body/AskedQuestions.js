@@ -185,7 +185,7 @@ function AskedQuestions() {
                           aria-controls="collapseThree"
                         >
                           <span className="icon"></span>
-                          what is Doncoins
+                          what is Doncoins?
                         </Link>
                       </h5>
                     </div>
@@ -516,7 +516,7 @@ function AskedQuestions() {
                       data-parent="#ico-accordion"
                     >
                       <div className="card-body">
-                        Register for membership, choose an investment plan, ypur
+                        Register for membership, choose an investment plan, your
                         earnings starts immediately
                       </div>
                     </div>

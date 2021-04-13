@@ -137,11 +137,12 @@ function About() {
                     </p>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-12 text-center flex-align justify-center wow fadeInRight">
-                  <div className="work-box">
+                <div className="col-lg-6 col-sm-12 text-center flex-align justify-center wow fadeInRight">
+                  <div>
                     <img
                       src="https://themes.templatescoder.com/crypton/html/demo/1-0/01-Dark-Theme/images/about-1.jpg"
                       alt="Work Process"
+                      style={{ maxWidth: '100%' }}
                     />
                   </div>
                 </div>
@@ -152,15 +153,16 @@ function About() {
           <section className="about-main ptb-100">
             <div className="container">
               <div className="row">
-                <div className="col-lg-6 col-md-12 text-center flex-align justify-center order-r-2 wow fadeInLeft">
+                <div className="col-lg-6 col-sm-12 text-center flex-align justify-center order-r-2 wow fadeInLeft">
                   <div
-                    className="work-box animated"
+                    className=" animated"
                     data-animation="fadeInUpShorter"
                     data-animation-delay="0.4s"
                   >
                     <img
                       src="https://themes.templatescoder.com/crypton/html/demo/1-0/01-Dark-Theme/images/about-2.png"
                       alt="Work Process"
+                      style={{ maxWidth: '100%' }}
                     />
                   </div>
                 </div>

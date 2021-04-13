@@ -165,52 +165,54 @@ function Footer() {
                   >
                     Useful Links
                   </h5>
-                  <ul className="useful-links float-left mr-5">
-                    <li
-                      className="animated"
-                      data-animation="fadeInUpShorter"
-                      data-animation-delay="0.6s"
-                    >
-                      <a href="/">Home</a>
-                    </li>
-                    <li
-                      className="animated"
-                      data-animation="fadeInUpShorter"
-                      data-animation-delay="0.7s"
-                    >
-                      <a href="/about">About</a>
-                    </li>
-                    <li
-                      className="animated"
-                      data-animation="fadeInUpShorter"
-                      data-animation-delay="0.8s"
-                    >
-                      <a href="/features">Feature</a>
-                    </li>
-                  </ul>
-                  <ul className="useful-links">
-                    <li
-                      className="animated"
-                      data-animation="fadeInUpShorter"
-                      data-animation-delay="0.9s"
-                    >
-                      <a href="/contact">Contact</a>
-                    </li>
-                    <li
-                      className="animated"
-                      data-animation="fadeInUpShorter"
-                      data-animation-delay="1.0s"
-                    >
-                      <a href="/team">Team</a>
-                    </li>
-                    <li
-                      className="animated"
-                      data-animation="fadeInUpShorter"
-                      data-animation-delay="1.1s"
-                    >
-                      <a href="/login">Sign in</a>
-                    </li>
-                  </ul>
+                  <div className="d-flex ">
+                    <ul className="useful-links  mr-5">
+                      <li
+                        className="animated"
+                        data-animation="fadeInUpShorter"
+                        data-animation-delay="0.6s"
+                      >
+                        <a href="/">Home</a>
+                      </li>
+                      <li
+                        className="animated"
+                        data-animation="fadeInUpShorter"
+                        data-animation-delay="0.7s"
+                      >
+                        <a href="/about">About</a>
+                      </li>
+                      <li
+                        className="animated"
+                        data-animation="fadeInUpShorter"
+                        data-animation-delay="0.8s"
+                      >
+                        <a href="/features">Feature</a>
+                      </li>
+                    </ul>
+                    <ul className="useful-links">
+                      <li
+                        className="animated"
+                        data-animation="fadeInUpShorter"
+                        data-animation-delay="0.9s"
+                      >
+                        <a href="/contacts">Contact</a>
+                      </li>
+                      <li
+                        className="animated"
+                        data-animation="fadeInUpShorter"
+                        data-animation-delay="1.0s"
+                      >
+                        <a href="/teams">Team</a>
+                      </li>
+                      <li
+                        className="animated"
+                        data-animation="fadeInUpShorter"
+                        data-animation-delay="1.1s"
+                      >
+                        <a href="/login">Sign in</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div className="col-md-4">
@@ -230,7 +232,7 @@ function Footer() {
                     >
                       More about Doncoin features, services and other crypto
                       related events:
-                      <a href="https://doncoins.info" className="ml-2">
+                      <a href="https://donocoins.info" className="ml-2">
                         Here
                       </a>
                     </span>
@@ -241,7 +243,7 @@ function Footer() {
                     >
                       More infotamation about Doncoin CIC Coin,trading and
                       pricing
-                      <a href="https://doncoins.info/pricing" className="ml-2">
+                      <a href="https://donocoins.info/pricing" className="ml-2">
                         Here
                       </a>
                     </span>
