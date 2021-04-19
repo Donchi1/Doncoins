@@ -32,12 +32,9 @@ function Payments() {
     litecoin: false,
     bank: false,
   })
-
-  const checkData = () => {
-    setopenError(true)
-    setOpenLoader(false)
-  }
   const [openError, setopenError] = useState(false)
+
+  const checkData = () => setopenError(true)
 
   const [newAmount, setNewAmount] = useState(1)
   const [newAmount1, setNewAmount1] = useState(1)
@@ -116,6 +113,7 @@ function Payments() {
       firebase,
       dispatch,
       checkData,
+      setOpenLoader,
     )
   }
 

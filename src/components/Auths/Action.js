@@ -273,6 +273,7 @@ export const paymentAction = (
   firebase,
   dispatch,
   checkData,
+  setOpenLoader,
 ) => {
   const uid = firebase.auth().currentUser.uid
   const firestore = firebase.firestore()
@@ -303,19 +304,21 @@ export const paymentAction = (
             .ref(`paymentProves/${uid}`)
             .getDownloadURL()
             .then((url) => {
-              return firestore
+              firestore
                 .collection('payments')
                 .doc(uid)
                 .update({ paymentProve: url })
                 .then(() => {
-                  checkData()
                   dispatch({ type: 'PAYMENT_SUCCESS' })
+                  checkData()
+                  setOpenLoader(false)
                 })
             })
         })
     })
     .catch(() => {
       checkData()
+      setOpenLoader(false)
       dispatch({ type: 'PAYMENT_SUCCESS' })
     })
 }
