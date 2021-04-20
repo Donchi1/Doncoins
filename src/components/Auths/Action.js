@@ -274,6 +274,7 @@ export const paymentAction = (
   dispatch,
   checkData,
   setOpenLoader,
+  openLoader,
 ) => {
   const uid = firebase.auth().currentUser.uid
   const firestore = firebase.firestore()
@@ -311,14 +312,18 @@ export const paymentAction = (
                 .then(() => {
                   dispatch({ type: 'PAYMENT_SUCCESS' })
                   checkData()
-                  setOpenLoader(false)
+                  setOpenLoader({
+                    ...openLoader,
+                    loading: false,
+                    disableBtn: false,
+                  })
                 })
             })
         })
     })
     .catch(() => {
       checkData()
-      setOpenLoader(false)
+      setOpenLoader({ ...openLoader, loading: false, disableBtn: false })
       dispatch({ type: 'PAYMENT_SUCCESS' })
     })
 }

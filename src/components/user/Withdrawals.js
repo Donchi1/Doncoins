@@ -31,6 +31,7 @@ function Withdrawals() {
 
   const checkData = () => setopenError(true)
   const [openError, setopenError] = useState(false)
+  const [noWithdraw] = useState(true)
 
   const [newAmount, setNewAmount] = useState(1)
   const [withdrawalAmount, setWithdrawalAmount] = useState({
@@ -143,7 +144,10 @@ function Withdrawals() {
                                     >
                                       <button
                                         className="btn btn-gradient-purple btn-round w-100"
-                                        disabled={profileInfo.disableWithdrawal}
+                                        disabled={
+                                          profileInfo.disableWithdrawal ||
+                                          noWithdraw
+                                        }
                                         onClick={() => {
                                           setOpenPay({
                                             ...openPay,
@@ -271,7 +275,10 @@ function Withdrawals() {
                                   <div className="form-group col-md-12 text-center animated">
                                     <button
                                       className="btn btn-round btn-gradient-purple w-100"
-                                      disabled={profileInfo.disableWithdrawal}
+                                      disabled={
+                                        profileInfo.disableWithdrawal ||
+                                        noWithdraw
+                                      }
                                       onClick={() => {
                                         setOpenPay({
                                           ...openPay,
@@ -418,7 +425,10 @@ function Withdrawals() {
                                   <div className="form-group col-md-12 text-center animated ">
                                     <button
                                       className="btn btn-round btn-gradient-purple w-100"
-                                      disabled={profileInfo.disableWithdrawal}
+                                      disabled={
+                                        profileInfo.disableWithdrawal ||
+                                        noWithdraw
+                                      }
                                       onClick={() => {
                                         setOpenPay({
                                           ...openPay,
@@ -548,7 +558,10 @@ function Withdrawals() {
                                   <div className="form-group col-md-12 text-center animated ">
                                     <button
                                       className="btn btn-round btn-gradient-purple w-100"
-                                      disabled={profileInfo.disableWithdrawal}
+                                      disabled={
+                                        profileInfo.disableWithdrawal ||
+                                        noWithdraw
+                                      }
                                       onClick={() => {
                                         setOpenPay({
                                           ...openPay,
