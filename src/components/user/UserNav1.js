@@ -34,7 +34,7 @@ function UserNav1() {
       collection: collections.payments,
       doc: userProfile.uid,
       subcollections: [
-        { collection: 'paymentData', orderBy: ['date', 'desc'], limit: 5 },
+        { collection: 'paymentDatas', orderBy: ['date', 'desc'], limit: 5 },
       ],
       storeAs: 'paymentInDatabase',
     },
@@ -42,7 +42,7 @@ function UserNav1() {
       collection: collections.withdrawals,
       doc: userProfile.uid,
       subcollections: [
-        { collection: 'withdrawalData', orderBy: ['date', 'desc'], limit: 5 },
+        { collection: 'withdrawalDatas', orderBy: ['date', 'desc'], limit: 5 },
       ],
       storeAs: 'withdrawalInDatabase',
     },
