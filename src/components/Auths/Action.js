@@ -222,7 +222,7 @@ export const withdrawalAction = (
   firestore
     .collection('withdrawals')
     .doc(uid)
-    .collection('withdrawalData')
+    .collection('withdrawalDatas')
     .add({
       withdrawalAmount: withdrawalData.amount,
       wallet: withdrawalData.wallet,
@@ -281,7 +281,7 @@ export const paymentAction = (
   firestore
     .collection('payments')
     .doc(uid)
-    .collection('paymentData')
+    .collection('paymentDatas')
     .add({
       paymentAmount: amount ? amount : 1,
       date: new Date(),

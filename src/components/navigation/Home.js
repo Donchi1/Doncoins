@@ -1627,13 +1627,13 @@ function Home() {
                       <div className="text-center ">
                         <ul className="list-unstyled text-center list-unstyled text-light">
                           <li className="py-2 border">Normal Deposit</li>
-                          <li className="py-2  mt-1 border">$1000</li>
+                          <li className="py-2  mt-1 border">$500</li>
                           <li className="py-2  mt-1 border">
                             Initial Withdrawal
                           </li>
                           <li className="py-2 mt-1 border">$7800</li>
                           <li className="py-2 mt-1 border">Bonus</li>
-                          <li className="py-2 mt-1 border">$200</li>
+                          <li className="py-2 mt-1 border">$150</li>
                         </ul>
                       </div>
                       <div className="py-4">

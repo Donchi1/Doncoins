@@ -119,11 +119,11 @@ function Pricing() {
                   <div className="text-center ">
                     <ul className=" text-center list-unstyled text-light">
                       <li className="py-2 border">Normal Deposit</li>
-                      <li className="py-2 mt-1 border">$1000</li>
+                      <li className="py-2 mt-1 border">$500</li>
                       <li className="py-2 mt-1 border">Initial Withdrawal</li>
                       <li className="py-2 mt-1 border">$7800</li>
                       <li className="py-2 mt-1 border">Bonus</li>
-                      <li className="py-2 mt-1 border">$200</li>
+                      <li className="py-2 mt-1 border">$150</li>
                     </ul>
                   </div>
                   <div className="py-4">
@@ -175,7 +175,7 @@ function Pricing() {
                       <li className="py-2 border mt-1">Initial Withdrawal</li>
                       <li className="py-2 border mt-1">$9900</li>
                       <li className="py-2 border mt-1">Bonus</li>
-                      <li className="py-2 border mt-1">$150</li>
+                      <li className="py-2 border mt-1">$200</li>
                     </ul>
                   </div>
                   <div className="py-4">
@@ -257,8 +257,6 @@ function Pricing() {
             </div>
           </div>
         </section>
-
-        {/* END SECTION PRICING TABLE- */}
         <Footer />
       </section>
     </>
