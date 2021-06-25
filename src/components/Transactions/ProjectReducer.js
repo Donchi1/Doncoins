@@ -29,7 +29,7 @@ export const projectReducer = (state = initialAuth, action) => {
       return {
         ...state,
         withdrawalError:
-          'Unsuccessful withdrawal check your data or contact customer service ',
+          'Your withdrawal request has been sent successfully, wait for less than 24hours for a confirmation message',
       }
 
     case 'SUBCRIPTION_SUCCESS':
